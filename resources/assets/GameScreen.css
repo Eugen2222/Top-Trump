@@ -1,0 +1,38 @@
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.btn-outline-dark{
+    color: #6c757d;
+    border-color: #6c757d;
+    text-transform: capitalize;
+}
+.list-group{
+    color: #6c757d;
+    border-color: #6c757d;
+    text-transform: capitalize;
+}
+
+.numCard{
+    color: #383838;
+    border-color: #383838;
+    background-color: #383838;
+    text-transform: capitalize;
+    -webkit-tap-highlight-color: transparent; 
+}
+
+.badge-warning {
+    color: #fff;
+    background-color: #383838;
+    
+}

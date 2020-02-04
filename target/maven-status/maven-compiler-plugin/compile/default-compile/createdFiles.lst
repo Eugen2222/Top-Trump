@@ -1,0 +1,9 @@
+online\dwResources\GameWebPagesResource.class
+online\dwResources\TopTrumpsRESTAPI.class
+online\TopTrumpsOnlineApplication.class
+online\dwViews\GameScreenView.class
+online\dwViews\StatisticsView.class
+commandline\TopTrumpsCLIApplication.class
+online\dwViews\SelectionScreenView.class
+online\configuration\TopTrumpsJSONConfiguration.class
+TopTrumps.class
