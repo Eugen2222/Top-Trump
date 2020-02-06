@@ -1,8 +1,8 @@
 .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    background-color: rgba(255, 255, 255, 0);
+    border-bottom: 0.5px solid rgb(27, 27, 27, 0.125);
 }
 
 .card-body {
@@ -11,30 +11,55 @@
     min-height: 1px;
     padding: 1.25rem;
 }
+
+.card {
+    border: 0.6px solid rgb(27, 27, 27, 0.15);
+}
+
 .btn-outline-dark {
-    color: #000;
-    border-color: #6c757d;
+    color: rgb(27, 27, 27, 0.85);
+    border-color:  rgb(27, 27, 27);
     text-transform: capitalize;
     font-size: 14px!important;
 }
 .list-group{
-    color: #6c757d;
-    border-color: #6c757d;
+    color: rgb(27, 27, 27);
+    
+    border-color:  rgb(27, 27, 27);
     text-transform: capitalize;
 }
 
-.numCard{
-    color: #383838;
-    border-color: #383838;
-    background-color: #383838;
+
+
+.list-group-item {
+    color: rgb(27, 27, 27);
+    
+    border-color:  rgb(27, 27, 27);
     text-transform: capitalize;
-    -webkit-tap-highlight-color: transparent; 
+}
+
+
+
+.list-group-item-action:focus, .list-group-item-action:hover {
+    font-size: 105%;
+    text-decoration: none;
+    background-color:rgba(27, 27, 27, 0.03);
 }
 
 .badge-warning {
-    color: #fff;
-    background-color: #383838;
-    
+     /* background-color: #3333FF!important; */
+     color: #fff;
+     background-color: rgb(231, 70, 85, 0.9);
+ 
+     display: inline-block;
+     padding: 0.25em 0.4em;
+     font-size: 75%;
+     font-weight: 500;
+     line-height: 1;
+     text-align: center;
+     white-space: nowrap;
+     vertical-align: baseline;
+     border-radius: 0.25rem;
 }
 
 .btn{
@@ -73,21 +98,38 @@ h6, .h6 {
 }
 
 .selectbutton{
-    border: 1px solid #DFD7CA;
+    border: 0.6px solid rgb(27, 27, 27 , 0.3);
 }
+
+.list-group-item-light{
+    background-color: rgba(255, 255, 255, 0.125);
+    border: 0.5px solid rgb(27, 27, 27 , 0.125);
+}
+
+
+.list-group-item-action{
+    border: 0.5px solid rgb(27, 27, 27 , 0.125);
+}
+
+.list-group-item-action:active{
+    background-color: rgba(0, 0, 0, 0.5)!important;
+    border: 0.5px solid rgb(27, 27, 27 , 0.125);
+}
+
 
 .card-Num{
     /* background-color: #3333FF!important; */
     color: #fff;
-    background-color: #383838;
+    background-color: rgb(231, 70, 85, 0.9);
 
     display: inline-block;
     padding: 0.25em 0.4em;
-    font-size: 75%;
-    font-weight: 700;
+    font-size: 70%;
+    font-weight: 300;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.25rem;
 } 
+

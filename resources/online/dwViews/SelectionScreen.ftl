@@ -34,13 +34,13 @@
 				<div class="row justify-content-center mt-5">
 					<div class="col-auto mt-5"style="width:15em;">
 						<div>
-							<a ><button class="btn btn-outline-dark btn-block text-decoration-none"  class="button-size"id = "newGamePanel" onclick = "enableSelectPlayerNumPanel()">New Game</button></a>
+							<a ><button class="btn btn-outline-dark btn-block text-decoration-none selectbutton"  class="button-size"id = "newGamePanel" onclick = "enableSelectPlayerNumPanel()">New Game</button></a>
 						</div>
-						<div class="list-group mb-0" id = "playerNumPanel" style="display: none">
-							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" class="button-size" onclick= userSelect2()>2 Players</button>
-							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" class="button-size" onclick= userSelect3()>3 Players</button>
-							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" class="button-size" onclick= userSelect4()>4 Players</button>
-							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" class="button-size" onclick= userSelect5()>5 Players</button>
+						<div class="list-group mb-0 " id = "playerNumPanel" style="display: none">
+							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1 selectbutton" class="button-size" onclick= userSelect2()>2 Players</button>
+							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1 selectbutton" class="button-size" onclick= userSelect3()>3 Players</button>
+							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1 selectbutton" class="button-size" onclick= userSelect4()>4 Players</button>
+							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1 selectbutton" class="button-size" onclick= userSelect5()>5 Players</button>
 						</div>
 					</div>
 				</div>
@@ -48,7 +48,7 @@
 				<div class="row justify-content-center mt-0">
 					<div class="col-auto mt-3"style="width:15em;">
 						<div>
-							<button class="btn btn-outline-dark btn-block" class="button-size" onclick = userPressStats()>Game Statistics</button>
+							<button class="btn btn-outline-dark btn-block selectbutton" class="button-size" onclick = userPressStats()>Game Statistics</button>
 						</div>
 					</div>
 				</div>

@@ -311,7 +311,7 @@ public class GameModel {
 				CMCStatus = roundString() + "You won this round!!!";
 				roundWinner = playerList.get(roundWinnerIndex);
 			} else {
-				status = roundString() + "Hhhhhhh, " + playerList.get(roundWinnerIndex).getPlayerName()
+				status = roundString() + "Oh, " + playerList.get(roundWinnerIndex).getPlayerName()
 						+ " won this round.";
 				
 				
@@ -387,7 +387,7 @@ public class GameModel {
 				status = roundString() + "Congratulation, you won this game!!!";
 				finalWinnerIndex = 0;
 			} else {
-				status = roundString() + "Hhhhhhh, " + playerList.get(winnerIndex).getPlayerName() + " won the game.";
+				status = roundString() + "Oh, " + playerList.get(winnerIndex).getPlayerName() + " won the game.";
 				finalWinnerIndex = winnerIndex;
 			}
 			gameInfo = "Sorry, the game is over.";
@@ -396,15 +396,13 @@ public class GameModel {
 			// testLog
 			testLog += "Game Winner: " + playerList.get(winnerIndex).getPlayerName();
 		} else if (aliveNum == 0 || !roundWinner.aliveJudge()) {
-			status = roundString() + "Hhhhhhh, someone won but now has no card bye!!!";
+			status = roundString() + "Oh, someone won but now has no card!!!";
 			gameIsOver = 0;
 		}
 		if (humanLose() && humanLose != 0) {
 			humanLose = 0;
-//			System.out.println("humanFuck");
 			autoPlay();
 		}
-//		System.out.println("gameisover");
 	}
 	
 	public void getResults() {
@@ -461,39 +459,7 @@ public class GameModel {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-//	
-//	public void AIgameIsOver() {
-//		int aliveNum = 0;
-//		int winnerIndex = -1;
-//		for(int i = 0 ; i<numOfPlayer;i++) {
-//			if(playerList.get(i).aliveJudge()) {
-//				aliveNum++;
-//				winnerIndex=i;
-//			}
-//		}
-//		System.out.println("alivenum"+aliveNum);
-//		if(aliveNum == 1) {
-//			if(winnerIndex == 0) {
-//				status = roundString()+"Congratulation, you won this game!!!";
-//				finalWinnerIndex=0;
-//			}else{
-//				status = roundString()+"Hhhhhhh, "+ playerList.get(winnerIndex).getPlayerName() +" won the game.";
-//				finalWinnerIndex=winnerIndex;
-//			}
-//			gameInfo = "Sorry, the game is over.";
-//			gameIsOver = 0;
-//		}
-//		else if(aliveNum == 0 || !roundWinner.aliveJudge()){
-//			status = roundString()+"Hhhhhhh, someone won but now has no card bye!!!";	
-//			gameIsOver = 0;
-//		}
-//	}
+
 
 	public int getHumanLose() {
 		return humanLose;
@@ -510,30 +476,18 @@ public class GameModel {
 	}
 
 	public void autoPlay() {
-//		System.out.println("hi");
 		while (this.getGameIsOver() != 0) {
 			this.decideActivePlayers();
 			this.draw();
-//			System.out.println(this.getGameInfo());
-//			System.out.println(this.getGameStatus());
 			if (this.humanIsActivePlayer() == 0) {
 				this.humanSelect(5);
 			} else {
 				this.AISelect();
 			}
-//			for(int i=0;i<this.getCardStringOnDeck().length;i++) {
-//				if(this.getCardStringOnDeck()[i]!=null) {
-//					System.out.println(this.getCardStringOnDeck()[i]);
-//				}else {
-//					System.out.println("null");
-//				}
-//			}
 
-//			System.out.println(this.getGameStatus());
-//			System.out.println(this.getGameInfo());
 			this.showWinner();
 			this.gameIsOver();
-//			System.out.println(this.getGameStatus());
+
 		}
 	}
 
@@ -629,16 +583,16 @@ public class GameModel {
 	public String[] getGameResult() {
 		ArrayList<String> s = new ArrayList<String>();
 		if (finalWinnerIndex == -1) {
-			s.add("Hhhhh , no one won!!!");
+			s.add("Oh , no one won!!!");
 		} else if (finalWinnerIndex == 0) {
 			s.add("Congratulaton, the winner is you!!!");
 			s.add("you won " + playerList.get(0).getWinTimes() + " rounds.");
 		} else {
-			s.add("Hhhhh look at you, the winner is:");
+			s.add("The winner is:");
 			s.add(playerList.get(finalWinnerIndex).getPlayerName() + " won "
 					+ playerList.get(finalWinnerIndex).getWinTimes() + " rounds.");
 		}
-		s.add("The poor losers: ");
+		s.add("The losers: ");
 		for (int i = 0; i < playerList.size(); i++) {
 			if (finalWinnerIndex == i) {
 

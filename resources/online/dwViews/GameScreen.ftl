@@ -32,7 +32,7 @@
 			<div class="container"  id="gamePanel">
 
 			<div class="pricing-header px-1 pt-3 md-1 pb-md-1 mx-auto text-center">
-			<h1 class="display-5">Top Trumps Game</h1>
+			<h1 class="display-4">Top Trumps Game</h1>
 			</div>
 			
 			<div class="pricing-header px-1 pb-3 pt-md-1 md-1 mx-auto text-center">
@@ -77,6 +77,7 @@
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr5()">Cargo</li>
 								</div>
 								
+							
 								<div >
 									<ul id = "playerResult" class=" list-unstyled text-left mt-0 mb-4 px-3">
 										<h6 class= "result"></h6>
