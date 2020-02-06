@@ -2,7 +2,7 @@
     padding: .75rem 1.25rem;
     margin-bottom: 0;
     background-color: rgba(255, 255, 255, 0);
-    border-bottom: 0.5px solid rgb(27, 27, 27, 0.125);
+    border-bottom: 0.9px solid rgb(27, 27, 27, 0.15);
 }
 
 .card-body {
@@ -13,7 +13,7 @@
 }
 
 .card {
-    border: 0.6px solid rgb(27, 27, 27, 0.15);
+    border: 0.8px solid rgb(27, 27, 27, 0.1);
 }
 
 .btn-outline-dark {
@@ -41,15 +41,17 @@
 
 
 .list-group-item-action:focus, .list-group-item-action:hover {
-    font-size: 105%;
+    font-size: 100%;
+
     text-decoration: none;
-    background-color:rgba(27, 27, 27, 0.03);
+    color: #fff;
+    background-color:rgba(27, 27, 27, 0.7);
 }
 
 .badge-warning {
      /* background-color: #3333FF!important; */
      color: #fff;
-     background-color: rgb(231, 70, 85, 0.9);
+     background-color: rgb(227, 23, 13, 0.9);
  
      display: inline-block;
      padding: 0.25em 0.4em;
@@ -94,11 +96,16 @@ h6, .h6 {
     font-size: 15px;
 }
 #gameRole{
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .selectbutton{
-    border: 0.6px solid rgb(27, 27, 27 , 0.3);
+    border: 0.95px solid rgb(27, 27, 27 , 0.125);
+    
+}
+
+.btn-outline-dark {
+    background-color: rgb(240, 250, 255, 0.35);
 }
 
 .list-group-item-light{
@@ -117,10 +124,14 @@ h6, .h6 {
 }
 
 
+
+
+
+
 .card-Num{
     /* background-color: #3333FF!important; */
     color: #fff;
-    background-color: rgb(231, 70, 85, 0.9);
+    background-color: rgb(227, 23, 13, 0.9);
 
     display: inline-block;
     padding: 0.25em 0.4em;
@@ -133,3 +144,38 @@ h6, .h6 {
     border-radius: 0.25rem;
 } 
 
+body { 
+    background: url(http://localhost:7777/assets/sky.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+  }
+
+.display-5 { 
+   color:rgb(250, 250, 250, 1)
+}
+.lead { 
+    color:rgb(250, 250, 250, 0.7)
+ }
+ 
+ .cardStatistic{
+
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: rgb(250, 250, 250, 0.8);
+    background-clip: border-box;
+    border-radius: 0.25rem;
+}
+
+
+ 

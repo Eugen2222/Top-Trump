@@ -168,7 +168,6 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/updateViewGameIsOver")
 	public int updateViewGameIsOver() {
-		System.out.print(model.getHumanLose()+"yooooooo");
 		if(model.getHumanLose()==0) return model.getHumanLose();
 		return model.getGameIsOver();
 	}

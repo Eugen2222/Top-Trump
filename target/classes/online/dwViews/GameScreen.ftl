@@ -31,26 +31,23 @@
 
 			<div class="container"  id="gamePanel">
 
-			<div class="pricing-header px-1 pt-3 md-1 pb-md-1 mx-auto text-center">
-			<h1 class="display-4">Top Trumps Game</h1>
+			<div class="pricing-header px-1 pt-5 md-1 pb-md-1 mx-auto text-center">
+			<h1 class="display-5" id = gameStatus></h1>
 			</div>
 			
-			<div class="pricing-header px-1 pb-3 pt-md-1 md-1 mx-auto text-center">
-			<p id = gameStatus class="lead"></p>
+			<div class="pricing-header px-0 pb-3 pt-md-0 md-1 mx-auto text-center">
+			<h1 class="lead">Top Trumps Game</h1>
 			</div>
-
+	
 
 				<div class="row ">
 					<div class="col-2 col-xl-3 mb-5 ml-5 pb-5 pl-5 mr-3 pr-3">
 						<div class="card  mb-4 " style="width: 13rem;">
 							<div class="card-header" class="cardInfo">
-								<h6 class="my-0 py-0 px-0 font-weight-normal text-left" id="gameRole"></h6>
+								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
 							<div  class="card-body text-center">
 
-								<div id="selectStatus" class=" mb-3">
-									<h4></h4>
-								</div>
 								<div id="showWinner">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressShowWinner()">Show winner</button>
 								</div>
@@ -331,7 +328,6 @@
 				document.getElementById("humanSelectButton").style.display = 'none';
 				document.getElementById("AISelectButton").style.display = 'none';
 				document.getElementById("selectList").style.display = 'none';
-				document.getElementById("selectStatus").style.display = 'none';
 				document.getElementById("returnToMenu").style.display = 'none';
 
 				clearCard();

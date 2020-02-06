@@ -85,7 +85,7 @@ public class GameModel {
 	public void defaultPlayer() {
 		for (int i = 0; i < numOfPlayer; i++) {
 			if (i == 0) {
-				Player player = new Player("YOU");
+				Player player = new Player("You");
 				playerList.add(player);
 			} else {
 				Player player = new Player("AI Player" + i);
@@ -295,7 +295,7 @@ public class GameModel {
 				}
 
 			}
-			status = roundString() + "This round was a draw, common pile now has " + commonPile.size() + "cards.";
+			status = roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
 			CMCStatus = roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
 			roundWinner = activePlayer;
 			// testLog
@@ -307,7 +307,7 @@ public class GameModel {
 		} else {// has winner
 			playerList.get(roundWinnerIndex).addWin();
 			if (roundWinnerIndex == 0) {
-				status = roundString() + "Congratulation, you won this round!!!";
+				status = roundString() + "Congratulation, you won this round!";
 				CMCStatus = roundString() + "You won this round!!!";
 				roundWinner = playerList.get(roundWinnerIndex);
 			} else {
@@ -384,7 +384,7 @@ public class GameModel {
 //		System.out.println(aliveNum);
 		if (aliveNum == 1) {
 			if (winnerIndex == 0) {
-				status = roundString() + "Congratulation, you won this game!!!";
+				status = roundString() + "Congratulation, you won this game!";
 				finalWinnerIndex = 0;
 			} else {
 				status = roundString() + "Oh, " + playerList.get(winnerIndex).getPlayerName() + " won the game.";
@@ -396,7 +396,7 @@ public class GameModel {
 			// testLog
 			testLog += "Game Winner: " + playerList.get(winnerIndex).getPlayerName();
 		} else if (aliveNum == 0 || !roundWinner.aliveJudge()) {
-			status = roundString() + "Oh, someone won but now has no card!!!";
+			status = roundString() + "Oh, someone won but now has no card!";
 			gameIsOver = 0;
 		}
 		if (humanLose() && humanLose != 0) {
@@ -466,10 +466,8 @@ public class GameModel {
 	}
 
 	public boolean humanLose() {
-//		System.out.println(playerList.get(0).aliveJudge()+"isdead");
-//		System.out.println(playerList.get(0).getCardList().isEmpty()+"isempty");
 		if (!playerList.get(0).aliveJudge()) {
-			status = roundString() + "Hhhhhhh, you are loser!!!";
+			status = roundString() + "Sorry, you lose!";
 			return true;
 		}
 		return false;

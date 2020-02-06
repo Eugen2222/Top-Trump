@@ -21,24 +21,27 @@
 
 	</head>
 
-    <body onload=getGameStats()> <!-- Call the initalize method when the page loads -->
-    	<div class="pricing-header px-1 pt-5 mt-2 md-1 pb-2 mx-auto text-center">
-				<h1 class="display-3">Top Trumps Game</h1>
-			</div>
+    <body onload=> <!-- Call the initalize method when the page loads -->
 
 		<div class="container" >
-			<div class="row justify-content-center mt-2">
+			<div class="row justify-content-center mt-5">
 				<div class="col-auto mt-5 ">
+					<div class="cardStatistic mt-5 mb-4 " style="width: 30rem;">
+						<div class="card-header" class="cardInfo">
+							<h3 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left">Statistic</h3>
+						</div>
+						<div  class="card-body">
 							<ul id = "gameStats" class=" list-unstyled text-left mt-0 mb-0 ">
-								<h5 class= "stats"></h5>
-								<h5 class= "stats"></h5>
-								<h5 class= "stats"></h5>
-								<h5 class= "stats"></h5>
-								<h5 class= "stats"></h5>
-								<h5 class= "stats"></h5>
+								<h5 class= "stats" >Number of Games:</h5>
+								<h5 class= "stats" >Number of Games:</h5>
+								<h5 class= "stats" >Number of Games:</h5>
+								<h5 class= "stats" >Number of Games:</h5>
+								<h5 class= "stats" >Number of Games:</h5>
 								<h5 class= "stats"></h5>
 								<h5 class= "stats"></h5>
 							</ul>
+						</div>
+					</div>
 						
 
 				</div>
