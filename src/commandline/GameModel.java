@@ -81,6 +81,7 @@ public class GameModel {
 		initialiseGame(num);
 	}
 	
+	
 	public void defaultPlayer() {
 		for (int i = 0; i < numOfPlayer; i++) {
 			if (i == 0) {
@@ -198,6 +199,7 @@ public class GameModel {
 			Random r = new Random();
 			activePlayer = playerList.get(r.nextInt(numOfPlayer));
 			gameInfo = "The active player is " + activePlayer.getPlayerName() + ".";
+			CMCInfo = "The active player is " + activePlayer.getPlayerName() + ".";
 		} else {
 			activePlayer = roundWinner;
 		}
@@ -311,7 +313,11 @@ public class GameModel {
 			} else {
 				status = roundString() + "Hhhhhhh, " + playerList.get(roundWinnerIndex).getPlayerName()
 						+ " won this round.";
-				CMCStatus = roundString() + "Player " + playerList.get(roundWinnerIndex).getPlayerName()
+				
+				
+				CMCStatus = "Round " + round + "\n" + roundString() + "Players have drawn their cards.";
+				CMCStatus += "\nThe active player is " + activePlayer.getPlayerName() + ".";
+				CMCStatus += "\n" + roundString() + "Player " + playerList.get(roundWinnerIndex).getPlayerName()
 						+ " won this round.";
 				roundWinner = playerList.get(roundWinnerIndex);
 			}
@@ -346,6 +352,7 @@ public class GameModel {
 			}
 
 		}
+		temString += "\n\n";
 		System.out.println(temString);
 //		System.out.println(status);
 
@@ -749,5 +756,13 @@ public class GameModel {
 		
 		return gameStatistics;
 		}
+	
+	public String getCMCStatus() {
+		return CMCStatus;
+	}
+	
+	public String getCMCInfo() {
+		return CMCInfo;
+	}
 	
 }

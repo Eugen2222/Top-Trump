@@ -176,6 +176,7 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/updataViewPlayerResult")
 	public String updataViewPlayerResult() {
+		model.createLog();
 		return arrayTrans(model.getGameResult());
 	}
 	

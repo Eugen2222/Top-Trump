@@ -8,21 +8,11 @@ public class Controller {
 	private int humanSelect;
 	private View view;
 	private int selectNum;
-	private Boolean gameRestart;
+//	private Boolean gameRestart;
+	Scanner s = new Scanner(System.in);
 
 	public Controller() {
-		startNewGame();
-	}
-
-	public void startNewGame(){
-		gameRestart = false;
-		while(!gameRestart){
-			view = new View();
-			selectIndex();
-			model.getResults();
-			gameRestart = false;
-			System.out.println("\n");
-		}
+		view = new View();
 	}
 
 	public void selectIndex() { // select 1 or 2
@@ -32,77 +22,77 @@ public class Controller {
 		}
 	}
 
+	// human player input selected category
 	public void selectCategory() {
 		humanSelect = 0;
-		while (!(humanSelect >= 1 && humanSelect <= 5)) {
+		while (!(humanSelect >= 1 && humanSelect <= 5)) { // category 1 to 5
 			inputCategory();
 		}
 	}
 
+	// input seletion of start game index
+	// 1 for past game history, and 2 for start a new game
 	public void selectNum() {
-		Scanner s = new Scanner(System.in);
 		view.start();
-		selectNum = s.nextInt();
+		selectNum = s.nextInt(); // input via Scanner
 		if (selectNum == 1) {
 			// Read history
 			model = new GameModel(2);
 			String[] output = model.getGameStats();
-			System.out.println("Game Statistics:");
-			for(int i=0;i<output.length;i++) {
-				System.out.println("  "+output[i]);
+			view.printStatistic();
+			for (int i = 0; i < output.length; i++) {
+				System.out.println("  " + output[i]);
 			}
 			selectIndex();
 		} else if (selectNum == 2) {
 			// Start playing
-			gameRestart = true;
-			view.playerNumber();
-			setPlayerNumber();
-			System.out.println("\n\n\nGame Start");
+			view.playerNumber(); // instruction of decide player number
+			setPlayerNumber(); // input player number
+			view.printGameStart(); // instruction of game start
 			model = new GameModel(playerNum);
-			playGame();
+			playGame(); // start playing game
 		} else {
-			System.out.println("wrong input\n");
+			view.printWrongInput(); // catch wrong number
 		}
 	}
 
+	// game process
 	public void playGame() {
 		while (model.getGameIsOver() != 0) {
-			model.decideActivePlayers();
-			model.draw();
-			System.out.println(model.getGameStatus());
+			model.decideActivePlayers(); // decide active player
+			model.draw(); //draw card
+			System.out.println(model.getCMCStatus()); // show draw card instruction
+			System.out.println(model.getCMCInfo()); // show player status
 			if (model.getCardStringOnDeckCML()[0] != null) {
 				System.out.println(model.getCardStringOnDeckCML()[0]);
 			}
 
 			if (model.humanIsActivePlayer() == 0) {
-				selectCategory();
+				selectCategory(); //human select category
 			} else {
-				model.AISelect();
+				model.AISelect(); // model select category
 			}
 
-			model.showWinner();
-			model.gameIsOver();
-			
-			System.out.println("\n\n");
+			model.showWinner(); // show round winner
+			model.gameIsOver(); // game end
+
 		}
-		model.createLog();
-		model.updateGameData();
+		model.createLog(); // Test Log
+		model.updateGameData(); // update game result to database
 	}
 
 	public void setPlayerNumber() { // set player number
-		Scanner s = new Scanner(System.in);
 		playerNum = s.nextInt();
 		s.nextLine();
 	}
 
-	public void inputCategory() {
-		Scanner s = new Scanner(System.in);
+	public void inputCategory() { // input selected category
 		humanSelect = s.nextInt();
 		s.nextLine();
 		if (humanSelect >= 1 && humanSelect <= 5) {
 			model.humanSelect(humanSelect);
 		} else {
-			System.out.println("No option, select again.");
+			view.printNoOption();
 		}
 	}
 
@@ -114,5 +104,10 @@ public class Controller {
 	public void setHumanSelect(int humanSelect) {
 		this.humanSelect = humanSelect;
 	}
+
+	public GameModel getModel() {
+		return model;
+	}
+	
 
 }

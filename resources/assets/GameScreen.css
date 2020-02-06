@@ -11,11 +11,11 @@
     min-height: 1px;
     padding: 1.25rem;
 }
-
-.btn-outline-dark{
-    color: #6c757d;
+.btn-outline-dark {
+    color: #000;
     border-color: #6c757d;
     text-transform: capitalize;
+    font-size: 14px!important;
 }
 .list-group{
     color: #6c757d;
@@ -36,3 +36,58 @@
     background-color: #383838;
     
 }
+
+.btn{
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+}
+
+h6, .h6 {
+    font-size: 11px;
+}
+.cardInfo{
+    font-size: 15px;
+}
+.button-size{
+    font-size: 14px;
+}
+
+#cardName1{
+    font-size: 15px;
+}
+#cardName2{
+    font-size: 15px;
+}
+#cardName3{
+    font-size: 15px;
+}
+#cardName4{
+    font-size: 15px;
+}
+#cardName5{
+    font-size: 15px;
+}
+#gameRole{
+    font-size: 14px;
+}
+
+.selectbutton{
+    border: 1px solid #DFD7CA;
+}
+
+.card-Num{
+    /* background-color: #3333FF!important; */
+    color: #fff;
+    background-color: #383838;
+
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+} 

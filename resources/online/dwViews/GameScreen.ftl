@@ -17,6 +17,8 @@
     	<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://localhost:7777/assets/GameScreen.css">
+
 
 	</head>
 
@@ -40,8 +42,8 @@
 
 				<div class="row ">
 					<div class="col-2 col-xl-3 mb-5 ml-5 pb-5 pl-5 mr-3 pr-3">
-						<div class="card  mb-4 " style="width: 12rem;">
-							<div class="card-header ">
+						<div class="card  mb-4 " style="width: 13rem;">
+							<div class="card-header" class="cardInfo">
 								<h6 class="my-0 py-0 px-0 font-weight-normal text-left" id="gameRole"></h6>
 							</div>
 							<div  class="card-body text-center">
@@ -50,29 +52,29 @@
 									<h4></h4>
 								</div>
 								<div id="showWinner">
-									<button class="btn btn-outline-dark btn-lg mt-3 mb-0" onclick="userPressShowWinner()">Show winner</button>
+									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressShowWinner()">Show winner</button>
 								</div>
 
 								<div id="nextRound">
-									<button class="btn btn-outline-dark btn-lg mt-3 mb-0" onclick="userPressNewTurn()">Next round</button>
+									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressNewTurn()">Next round</button>
 								</div>
 
 
 								<div id="humanSelectButton">
-									<button class="btn btn-outline-dark btn-lg mt-3 mb-0" onclick="userPressSelect()">Select</button>
+									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton"  onclick="userPressSelect()">Select</button>
 								</div>
 
 								<div id="AISelectButton">
-									<button class="btn btn-outline-dark btn-lg mt-3 mb-0" onclick="userPressSelect()">Show AI's selection</button>
+									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressSelect()">Show AI's selection</button>
 								</div>
 								
 
 								<div id = selectList class="list-group">
-									<li class="list-group-item list-group-item-action list-group-item-light" onclick="userSelectAttr1()">Size</li>
-									<li class="list-group-item list-group-item-action list-group-item-light" onclick="userSelectAttr2()">Speed</li>
-									<li class="list-group-item list-group-item-action list-group-item-light" onclick="userSelectAttr3()">Range</li>
-									<li class="list-group-item list-group-item-action list-group-item-light" onclick="userSelectAttr4()">Firepower</li>
-									<li class="list-group-item list-group-item-action list-group-item-light" onclick="userSelectAttr5()">Cargo</li>
+									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr1()">Size</li>
+									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr2()">Speed</li>
+									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr3()">Range</li>
+									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr4()">Firepower</li>
+									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr5()">Cargo</li>
 								</div>
 								
 								<div >
@@ -90,7 +92,7 @@
 								</div>
 
 								<div id="returnToMenu">
-									<a href=http://localhost:7777/toptrumps><button class="btn btn-outline-dark btn-lg mb-0">Retrun to menu</button></a>
+									<a href=http://localhost:7777/toptrumps><button class="btn btn-outline-dark btn-lg mb-0 selectbutton">Retrun to menu</button></a>
 								</div>	
 							</div>	
 						</div>	
@@ -106,21 +108,21 @@
 
 						
 						<div class="row mt-3">
-							<div id="card6" class="card mb-4 shadow-sm" style="width: 12rem;">
+							<div id="card6" class="card mb-4 shadow-sm" style="width: 11rem;">
 								<div class="card-header">
 									<div class="row">
 										<div class="col-auto mx-0 pr-0">
 											<h5 class="my-0 font-weight-normal">Common pile</h5>
 										</div>
 										<div class="col-auto mx-0 pl-1">
-											<span id = numCards6 class="badge badge-warning"></span>
+											<span id = numCards6 class="card-Num" class="badge badge-warning"></span>
 										</div>
 									</div>
 								</div>
 								<div  class="card-body mt-1 pt-2">
 										<h5 id = "cardName6"></h5>
 										<div >
-											<img id="cardImg6" src="" alt="Card image" style="width: 8rem;">
+											<img id="cardImg6" src="" alt="Card image" style="width: 8.5rem;">
 										</div>
 										
 									<div id = "cardContent6" class=" list-unstyled mt-3 mb-0 pb-0">
@@ -143,21 +145,21 @@
 					<div class="col-md-auto">
 						<div class="row">
 							<div class="col-md-auto mb-1">
-								<div id="card1" class="card mb-4 shadow-sm" style="width: 12rem;">
+								<div id="card1" class="card mb-4 shadow-sm" style="width: 11rem;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
 												<h5 class="my-0 font-weight-normal">You</h5>
 											</div>
 											<div class="col-auto mx-0 pl-1">
-												<span id = numCards1 class="badge badge-warning"></span>
+												<span id = numCards1 class="card-Num" class="badge badge-warning"></span>
 											</div>
 										</div>
 									</div>
 									<div  class="card-body mt-1 pt-2">
 											<h5 id = "cardName1"></h5>
 											<div >
-												<img id="cardImg1" src="" alt="Card image" style="width: 8rem;">
+												<img id="cardImg1" src="" alt="Card image" style="width: 8.5rem;">
 											</div>
 											
 										<div id = "cardContent1" class=" list-unstyled mt-3 mb-0 pb-0">
@@ -171,21 +173,21 @@
 								</div>
 							</div>
 							<div class="col-md-auto mb-1">
-								<div id="card2" class="card mb-4 shadow-sm" style="width: 12rem;">
+								<div id="card2" class="card mb-4 shadow-sm" style="width: 11rem;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
 												<h5 class="my-0 font-weight-normal">AI Player 1</h5>
 											</div>
 											<div class="col-auto mx-0 pl-1">
-												<span id = numCards2 class="badge badge-warning"></span>
+												<span id = numCards2 class="card-Num" class="badge badge-warning"></span>
 											</div>
 										</div>
 									</div>
 									<div  class="card-body mt-1 pt-2">
 											<h5 id = "cardName2"></h5>
 											<div >
-												<img id="cardImg2" src="" alt="Card image" style="width:8rem;">
+												<img id="cardImg2" src="" alt="Card image" style="width:8.5rem;">
 											</div>
 											
 										<div id = "cardContent2" class=" list-unstyled mt-3 mb-0 pb-0">
@@ -199,21 +201,21 @@
 								</div>
 							</div>
 							<div class="col-md-auto mb-1">
-								<div id="card3" class="card mb-4 shadow-sm" style="width: 12rem;">
+								<div id="card3" class="card mb-4 shadow-sm" style="width: 11rem;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
 												<h5 class="my-0 font-weight-normal">AI Player 2</h5>
 											</div>
-											<div class="col-auto mx-0 pl-1">
-												<span id = numCards3 class="badge badge-warning"></span>
+											<div class="col-auto mx-0 pl-1" >
+												<span id = numCards3 class="card-Num" class="badge badge-warning"></span>
 											</div>
 										</div>
 									</div>
 									<div  class="card-body mt-1 pt-2">
 											<h5 id = "cardName3"></h5>
 											<div >
-												<img id="cardImg3" src="" alt="Card image" style="width: 8rem;">
+												<img id="cardImg3" src="" alt="Card image" style="width: 8.5rem;">
 											</div>
 											
 										<div id = "cardContent3" class=" list-unstyled mt-3 mb-0 pb-0">
@@ -231,21 +233,21 @@
 					<div class="col-md-auto">
 						<div class="row">
 							<div class="col-md-auto mb-1">
-								<div id="card4" class="card mb-4 shadow-sm" style="width: 12rem;">
+								<div id="card4" class="card mb-4 shadow-sm" style="width: 11rem;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
 												<h5 class="my-0 font-weight-normal">AI Player 3</h5>
 											</div>
 											<div class="col-auto mx-0 pl-1">
-												<span id = numCards4 class="badge badge-warning"></span>
+												<span id = numCards4 class="card-Num" class="badge badge-warning"></span>
 											</div>
 										</div>
 									</div>
 									<div  class="card-body mt-1 pt-2">
 											<h5 id = "cardName4"></h5>
 											<div >
-												<img id="cardImg4" src="" alt="Card image" style="width: 8rem;">
+												<img id="cardImg4" src="" alt="Card image" style="width: 8.5rem;">
 											</div>
 											
 										<div id = "cardContent4" class=" list-unstyled mt-3 mb-0 pb-0">
@@ -259,21 +261,21 @@
 								</div>
 							</div>
 							<div class="col-md-auto mb-1">
-								<div id="card5" class="card mb-4 shadow-sm" style="width: 12rem;">
+								<div id="card5" class="card mb-4 shadow-sm" style="width: 11rem;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
 												<h5 class="my-0 font-weight-normal">AI Player 4</h5>
 											</div>
 											<div class="col-auto mx-0 pl-1">
-												<span id = numCards5 class="badge badge-warning"></span>
+												<span id = numCards5 class="card-Num" class="badge badge-warning"></span>
 											</div>
 										</div>
 									</div>
 									<div  class="card-body mt-1 pt-2">
 											<h5 id = "cardName5"></h5>
 											<div >
-												<img id="cardImg5" src="" alt="Card image" style="width: 8rem;">
+												<img id="cardImg5" src="" alt="Card image" style="width: 8.5rem;">
 											</div>
 											
 										<div id = "cardContent5" class=" list-unstyled mt-3 mb-0 pb-0">
@@ -450,6 +452,7 @@
 				getWinner();
 				getCommonPile();
 				document.getElementById("nextRound").style.display  = 'block';
+				console.log("showWinnerStage");
 			}
 
 			function showGameResultStage(){
@@ -458,6 +461,7 @@
 				getPlayerResult();
 				getCommonPile();
 				document.getElementById("playerResult").style.display = 'block';
+				console.log("showGameResultStage");	
 			}
 
 
@@ -628,7 +632,9 @@
 							console.log(xhr.response+ "gameisnoover");
 
 						}
+						console.log("getGameOver");	
 					}
+					
 				xhr.send();
 
 			}
@@ -647,7 +653,8 @@
 					strr = javaArrayDecode(responseText);
 					setUpElements(strr,"playerResult", "result");
 					document.getElementById("playerResult").style.display = 'block';
-					document.getElementById("returnToMenu").style.display = 'block';	
+					document.getElementById("returnToMenu").style.display = 'block';
+					console.log("getPlayerResult");	
 				}
 				
 				xhr.send();
@@ -680,6 +687,7 @@
 							document.getElementById(cardI).style.display = 'block';
 						}
 					}
+					console.log("getDeskCards");
 				}
 				
 				// We have done everything we need to prepare the CORS request, so send it
@@ -699,7 +707,7 @@
 				}
 				clear();
 				xhr.onload = function(e) {}
-				
+				console.log("requestDraw");
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
 			}
@@ -714,13 +722,18 @@
 					var responseText = xhr.response;
 					var strr = new Array();
 					strr=javaArrayDecode(responseText);
-					cardI = "card"+(1+parseInt(strr[0]));
-					console.log(strr);
-					console.log(cardI);
-					document.getElementById(cardI).style.display = 'block';
-
-					setUpCard(decodeString(strr[1]),parseInt(strr[0]));
+					if(strr[0]=='null'){
+						document.getElementById(cardI).style.display = 'none';  
+					}else{
+						cardI = "card"+(1+parseInt(strr[0]));
+						console.log(strr);
+						console.log(cardI);
+						document.getElementById(cardI).style.display = 'block';
+						setUpCard(decodeString(strr[1]),parseInt(strr[0]));
+					}
+					console.log("getWinner");
 				}
+
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
 			}
@@ -737,12 +750,18 @@
 					var strr = new Array();
 					strr=javaArrayDecode(responseText);
 					console.log(strr);
-					cardI = "card"+(1+parseInt(strr[0]));
-					console.log(strr);
-					console.log(cardI);
-					document.getElementById(cardI).style.display = 'block';
-					setUpCard(decodeString(strr[1]),parseInt(strr[0]));
+					if(strr[0]=='null'){
+					}else{
+						
+						cardI = "card"+(1+parseInt(strr[0]));
+						console.log(strr);
+						console.log(cardI);
+						document.getElementById(cardI).style.display = 'block';
+						setUpCard(decodeString(strr[1]),parseInt(strr[0]));
+					}
 				}
+
+				console.log("getCommonPile");
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
 			}
@@ -758,6 +777,7 @@
 					}
 					xhr.onload = function(e) {
 						getGameInfoPackage();
+						console.log("requestAISelect");	
 					}
 				xhr.send();
 
@@ -776,6 +796,7 @@
 						strr=javaArrayDecode(responseText);
 						document.getElementById("gameStatus").innerHTML = strr[0];
 						document.getElementById("gameRole").innerHTML = strr[1];
+						console.log("getGameInfoPackage");	
 					}
 					// We have done everything we need to prepare the CORS request, so send it
 					xhr.send();	
@@ -804,6 +825,7 @@
 						setUpCard(decodeString(responseText),0);
 						document.getElementById("card1").style.display = 'block';
 					}
+					console.log("getHumanCardOnDeck");	
 				}
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();
@@ -836,6 +858,7 @@
 							document.getElementById(cardI).style.display = 'block';
 						}
 					}
+					console.log("getCardOnDeck");	
 				}
 				xhr.send();
 			}
@@ -850,6 +873,7 @@
 				}
 				xhr.onload = function(e) {
 				}
+				console.log("requestGameInitialised");	
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
 			}

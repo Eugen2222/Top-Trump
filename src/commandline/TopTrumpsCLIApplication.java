@@ -1,5 +1,7 @@
 package commandline;
 
+import java.util.Scanner;
+
 /**
  * Top Trumps command line application
  */
@@ -18,18 +20,21 @@ public class TopTrumpsCLIApplication {
 		// State
 		boolean userWantsToQuit = false; // flag to check whether the user wants to quit the application
 		
+
+		Controller controller = new Controller();		
 		// Loop until the user wants to exit the game
 		while (!userWantsToQuit) {
-			
-			Controller controller = new Controller();
 			// ----------------------------------------------------
 			// Add your game logic here based on the requirements
 			// ----------------------------------------------------
+			controller.selectIndex(); // select index and play game
+			controller.getModel().getResults(); //get result
 			
 			userWantsToQuit=true; // use this when the user wants to exit the game
 			
 		}
 
+		
 
 	}
 

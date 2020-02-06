@@ -17,6 +17,8 @@
     	<link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://localhost:7777/assets/GameScreen.css">
+
 
 	</head>
 
@@ -32,13 +34,13 @@
 				<div class="row justify-content-center mt-5">
 					<div class="col-auto mt-5"style="width:15em;">
 						<div>
-							<a ><button class="btn btn-outline-dark btn-block text-decoration-none"  id = "newGamePanel" onclick = "enableSelectPlayerNumPanel()">New Game</button></a>
+							<a ><button class="btn btn-outline-dark btn-block text-decoration-none"  class="button-size"id = "newGamePanel" onclick = "enableSelectPlayerNumPanel()">New Game</button></a>
 						</div>
 						<div class="list-group mb-0" id = "playerNumPanel" style="display: none">
-							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" onclick= userSelect2()>2 Players</button>
-							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" onclick= userSelect3()>3 Players</button>
-							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" onclick= userSelect4()>4 Players</button>
-							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" onclick= userSelect5()>5 Players</button>
+							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" class="button-size" onclick= userSelect2()>2 Players</button>
+							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" class="button-size" onclick= userSelect3()>3 Players</button>
+							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" class="button-size" onclick= userSelect4()>4 Players</button>
+							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1" class="button-size" onclick= userSelect5()>5 Players</button>
 						</div>
 					</div>
 				</div>
@@ -46,7 +48,7 @@
 				<div class="row justify-content-center mt-0">
 					<div class="col-auto mt-3"style="width:15em;">
 						<div>
-							<button class="btn btn-outline-dark btn-block" onclick = userPressStats()>Game Statistics</button>
+							<button class="btn btn-outline-dark btn-block" class="button-size" onclick = userPressStats()>Game Statistics</button>
 						</div>
 					</div>
 				</div>
