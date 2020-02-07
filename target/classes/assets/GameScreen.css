@@ -14,17 +14,17 @@
 }
 
 .card {
-    border: 4.2px solid rgb(8, 54, 67, 0.8);
+    border: 4.5px solid rgb(8, 54, 67, 0.8);
 }
 
 .card-play {
 	background-color: rgb(250, 250, 250, 1);
 	border: 2px solid rgb(8, 54, 67, 1);
 }
-
+	
 img {
     vertical-align: middle;
-     border: 1.2px solid rgb(8, 54, 67, 0.8);
+     border: 1.8px solid rgb(8, 54, 67, 0.7);
 }
 
 
