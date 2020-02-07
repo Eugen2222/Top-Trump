@@ -42,7 +42,7 @@
 
 				<div class="row ">
 					<div class="col-2 col-xl-3 mb-5 ml-5 pb-5 pl-5 mr-3 pr-3">
-						<div class="card  mb-4 " style="width: 13rem;">
+						<div class="card-play  mb-4 " style="width: 13rem;">
 							<div class="card-header" class="cardInfo">
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
@@ -157,7 +157,7 @@
 									<div  class="card-body mt-1 pt-2">
 											<h5 id = "cardName1"></h5>
 											<div >
-												<img id="cardImg1" src="" alt="Card image" style="width: 8.5rem;">
+												<img id="cardImg1" src="" alt="Card image" style="width: 8.5rem;" >
 											</div>
 											
 										<div id = "cardContent1" class=" list-unstyled mt-3 mb-0 pb-0">

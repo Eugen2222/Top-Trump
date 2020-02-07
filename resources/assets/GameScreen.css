@@ -1,8 +1,8 @@
 .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(255, 255, 255, 0);
-    border-bottom: 0.9px solid rgb(27, 27, 27, 0.15);
+    background-color: rgb(250, 250, 250, 0.8);
+    border-bottom: 0.9px solid rgb(8, 54, 67, 0.3);
 }
 
 .card-body {
@@ -10,11 +10,24 @@
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
+    background-color: rgb(250, 250, 250, 0.8);
 }
 
 .card {
-    border: 0.8px solid rgb(27, 27, 27, 0.1);
+    border: 4.2px solid rgb(8, 54, 67, 0.8);
 }
+
+.card-play {
+	background-color: rgb(250, 250, 250, 1);
+	border: 2px solid rgb(8, 54, 67, 1);
+}
+
+img {
+    vertical-align: middle;
+     border: 1.2px solid rgb(8, 54, 67, 0.8);
+}
+
+
 
 .btn-outline-dark {
     color: rgb(27, 27, 27, 0.85);
@@ -25,7 +38,7 @@
 .list-group{
     color: rgb(27, 27, 27);
     
-    border-color:  rgb(27, 27, 27);
+    border-color:  rgb(8, 54, 67, 1);
     text-transform: capitalize;
 }
 
@@ -34,8 +47,16 @@
 .list-group-item {
     color: rgb(27, 27, 27);
     
-    border-color:  rgb(27, 27, 27);
+    border-color:  rgb(8, 54, 67, 1);
     text-transform: capitalize;
+}
+
+
+
+
+.list-group-item-light{
+    background-color: rgba(255, 255, 255, 0.125);
+    border: 0.6px solid rgb(8, 54, 67, 0.3);
 }
 
 
@@ -45,7 +66,7 @@
 
     text-decoration: none;
     color: #fff;
-    background-color:rgba(27, 27, 27, 0.7);
+    background-color:rgb(8, 54, 67, 1);
 }
 
 .badge-warning {
@@ -100,27 +121,12 @@ h6, .h6 {
 }
 
 .selectbutton{
-    border: 0.95px solid rgb(27, 27, 27 , 0.125);
+    border: 0.95px solid rgb(8, 54, 67, 0.3);
     
 }
 
 .btn-outline-dark {
     background-color: rgb(240, 250, 255, 0.35);
-}
-
-.list-group-item-light{
-    background-color: rgba(255, 255, 255, 0.125);
-    border: 0.5px solid rgb(27, 27, 27 , 0.125);
-}
-
-
-.list-group-item-action{
-    border: 0.5px solid rgb(27, 27, 27 , 0.125);
-}
-
-.list-group-item-action:active{
-    background-color: rgba(0, 0, 0, 0.5)!important;
-    border: 0.5px solid rgb(27, 27, 27 , 0.125);
 }
 
 
@@ -156,6 +162,10 @@ body {
 .display-5 { 
    color:rgb(250, 250, 250, 1)
 }
+
+
+
+
 .lead { 
     color:rgb(250, 250, 250, 0.7)
  }
@@ -175,7 +185,9 @@ body {
     background-color: rgb(250, 250, 250, 0.8);
     background-clip: border-box;
     border-radius: 0.25rem;
+    border: 1px solid rgb(8, 54, 67, 0.6);
 }
+
 
 
  

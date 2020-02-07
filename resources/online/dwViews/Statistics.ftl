@@ -47,7 +47,7 @@
 				</div>
 			</div>
 			<div class="row justify-content-center mt-0">
-				<div class="col-auto mt-5 "style="width:15em;">
+				<div class="col-auto mt-3 "style="width:15em;">
 						<div>
 							<a ><button class="btn btn-outline-dark btn-block text-decoration-none selectbutton"  class="button-size" id = "newGamePanel" onclick = "enableSelectPlayerNumPanel()">New Game</button></a>
 						</div>
