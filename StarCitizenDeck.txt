@@ -1,13 +1,14 @@
 Description Size Speed Range Firepower Cargo
 ADFX10 40 30 20 2 24
 Eagle 6 10 33 6 21
-Falken 7 9 34 11 23
-FightingFalcon 8 14 39 4 22
-Falken 7 9 34 11 23
 FightingFalcon 8 14 39 4 22
 FightingFalcon 8 14 39 4 22
 Fishbed 9 6 17 21 6
 Foxhound 10 12 15 23 4
+Fulcrum 11 16 14 17 17
+Mirage2000 17 21 8 13 12
+Morgan 18 27 36 32 33
+Nighthawk 19 28 19 12 13
 Fulcrum 11 16 14 17 17
 FightingFalcon 8 14 39 4 22
 FightingFalcon 8 14 39 4 22

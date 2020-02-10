@@ -24,7 +24,7 @@
 
     <body onload=stage()> <!-- Call the initalize method when the page loads -->
     	
-    	<div class="container">
+    	<div class="container" id="mainP" >
 
 			<!-- Add your HTML Here -->
 						 		
@@ -42,7 +42,7 @@
 
 				<div class="row ">
 					<div class="col-2 col-xl-3 mb-5 ml-5 pb-5 pl-5 mr-3 pr-3">
-						<div class="card-play  mb-4 " style="width: 13rem;">
+						<div class="card-play  mb-4" style="width: 13rem;">
 							<div class="card-header" class="cardInfo">
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
@@ -376,7 +376,6 @@
 
 					var num = xhr.response;
 					console.log(num);
-			
 					if(num == 2){
 						playerSelectEnableStage();
 					}
@@ -402,6 +401,7 @@
 					else {
 						window.location.href = "http://localhost:7777/toptrumps/";
 					}
+	
 				}
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
@@ -719,8 +719,9 @@
 					var responseText = xhr.response;
 					var strr = new Array();
 					strr=javaArrayDecode(responseText);
+					console.log(strr);
 					if(strr[0]=='null'){
-						document.getElementById(cardI).style.display = 'none';  
+
 					}else{
 						cardI = "card"+(1+parseInt(strr[0]));
 						console.log(strr);
