@@ -200,6 +200,7 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/webMaster")
 	public int webMaster() {
+		System.out.println(cmd);
 		return cmd;	
 	}
 	
@@ -222,9 +223,12 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/userPressNewTurn")
 	public void userPressNewTurn() {
-		model.decideActivePlayers();
-		model.draw();
-		setViewActivePlayer();
+		if(cmd == 2 && cmd == 4) { System.out.println("Error, illegal visit!");}
+		else {
+			model.decideActivePlayers();
+			model.draw();
+			setViewActivePlayer();
+		}
 	}
 	
 	
@@ -241,11 +245,14 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/userPressSelect")
 	public void userPressSelect() {
-		if(model.getHumanIsActivePlayer()) {
-			cmd = 3;
-		}else {
-			model.AISelect();
-			cmd = 5;
+		if(cmd == 3 && cmd == 5) { System.out.println("Error, illegal visit!");}
+		else {
+			if(model.getHumanIsActivePlayer()) {
+				cmd = 3;
+			}else {
+				model.AISelect();
+				cmd = 5;
+			}
 		}
 	}
 	
@@ -254,20 +261,31 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/userSelect")
 	public void userSelect(@QueryParam("Word") int num) {
-		 model.humanSelect(num);
-		 cmd = 5;
+		if(cmd == 5) { System.out.println("Error, illegal visit!");}
+		else {
+			 model.humanSelect(num);
+			 cmd = 5;
+		}
 	}
 	
 	@GET
 	@Path("/userPressShowWinner")
 	public void userPressShowWinner() {
-		model.showWinner();
-		model.gameIsOver();
-		if(model.getHumanLose()==0||model.getGameIsOver()==0){
-			cmd = 7;
-		}
+		if(cmd == 7) { System.out.println("Error, illegal visit!");}
 		else {
-			cmd = 6;
+			System.out.println("showwinnerbutton");
+			model.showWinner();
+			System.out.println("run showwinner1");
+			model.gameIsOver();
+			System.out.println("run gameIsOver1");
+			if(model.getHumanLose()==0||model.getGameIsOver()==0){
+				cmd = 7;
+				//model.updateGameData();
+			}
+			else {
+				cmd = 6;
+			}
+			System.out.println(cmd);
 		}
 	}
 	
@@ -279,8 +297,8 @@ public class TopTrumpsRESTAPI {
 	
 	
 	@GET
-	@Path("/updataGameStats")
-	public String updataGameStats() {
+	@Path("/updateGameStats")
+	public String updateGameStats() {
 		return arrayTrans(model.getGameStats());
 	}
 		

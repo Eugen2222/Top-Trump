@@ -158,6 +158,7 @@ public class GameModel {
 				testLog += "\r";
 		}
 		testLog += "--------------------------\r";
+		System.out.println("defaultCard");
 	}
 
 	public void draw() {
@@ -187,6 +188,7 @@ public class GameModel {
 //			else testLog += playerList.get(j).getPlayerName()+": died\r";
 		}
 		testLog += "--------------------------\r";
+		System.out.println("draw");
 	}
 
 	public String roundString() {
@@ -206,6 +208,7 @@ public class GameModel {
 		// testLog
 		testLog += "Active player: " + activePlayer.getPlayerName() + "\r";
 		testLog += "--------------------------\r";
+		System.out.println("decideActivePlayers");
 	}
 
 	public int humanIsActivePlayer() {
@@ -221,6 +224,7 @@ public class GameModel {
 		CMCStatus = "It is your turn to select a category, the categories are:\n" + category;
 		System.out.println(CMCStatus + "\nEnter the number for your attribute: ");
 //		System.out.println("!!!"+status);
+		System.out.println("humanIsActivePlayer");
 		return 0;
 	}
 
@@ -232,6 +236,7 @@ public class GameModel {
 		testLog += "Category selected:\r" + cardAttribute[num] + ": " + cardOnDeck[0].getDescriptions().get(num - 1)
 				+ "\r";
 		testLog += "--------------------------\r";
+		System.out.println("humanSelect");
 	}
 
 	public void AISelect() {
@@ -263,6 +268,7 @@ public class GameModel {
 		testLog += "Category selected:\r" + cardAttribute[roundSelectIndex] + ": "
 				+ cardOnDeck[activePlayerIndex].getDescriptions().get(bestChoice) + "\r";
 		testLog += "--------------------------\r";
+		System.out.println("AISelect");
 	}
 
 	public void showWinner() {
@@ -270,7 +276,7 @@ public class GameModel {
 		roundWinnerIndex = -1;
 		int maxValue = 0;
 		boolean drew = false;
-
+		System.out.println("showWinner");
 		for (int i = 0; i < cardOnDeck.length; i++) {
 			if (cardOnDeck[i] != null) {
 				int currentValue = cardOnDeck[i].getDescriptions().get(roundSelectIndex - 1);
@@ -282,7 +288,11 @@ public class GameModel {
 					roundWinnerIndex = i;
 					drew = true;
 				}
+				System.out.println(cardOnDeck[i].getCardString());
+			}else {
+				System.out.println("null");
 			}
+
 		}
 
 		winCard = cardOnDeck[roundWinnerIndex];// For command mode
@@ -372,8 +382,10 @@ public class GameModel {
 	}
 
 	public void gameIsOver() {
+		
 		int aliveNum = 0;
 		int winnerIndex = -1;
+		System.out.println("gameIsOver");
 		for (int i = 0; i < numOfPlayer; i++) {
 			if (playerList.get(i).aliveJudge()) {
 				aliveNum++;
@@ -421,6 +433,7 @@ public class GameModel {
 		String [] s = new String [2];
 			if(commonPile.isEmpty()) {
 				s[0]=""+roundWinnerIndex;
+				System.out.print(roundWinnerIndex+"!!!!!");
 				s[1]=getWebCardString(playerList.get(roundWinnerIndex).getPlayerName(), 
 				playerList.get(roundWinnerIndex).getNumOfCards(), winCard);
 			}
@@ -475,6 +488,7 @@ public class GameModel {
 
 	public void autoPlay() {
 		while (this.getGameIsOver() != 0) {
+			System.out.println("autoPlay");
 			this.decideActivePlayers();
 			this.draw();
 			if (this.humanIsActivePlayer() == 0) {
@@ -663,6 +677,7 @@ public class GameModel {
 		} catch (IOException e) {
 			System.out.println("Exception occurred:");
 			e.printStackTrace();
+			
 		}
 	}
 	

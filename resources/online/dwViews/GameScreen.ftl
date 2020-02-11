@@ -466,6 +466,7 @@
 
 
 			function userPressNewTurn(){
+				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressNewTurn"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -478,6 +479,7 @@
 
 
 			function userPressSelect(){
+				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressSelect"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -512,6 +514,7 @@
 
 
 			function userSelect(num) {
+				clear();
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userSelect?Word="+num); // Request type and URL+parameters
 				if (!xhr) {
@@ -525,6 +528,7 @@
 			}
 		
 			function userPressShowWinner(){
+				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressShowWinner"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -612,29 +616,6 @@
 		<!-- Here are examples of how to call REST API Methods -->
 		<script type="text/javascript">
 	
-
-
-		
-			function getGameOver(){
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateViewGameIsOver"); // Request type and URL+parameters
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-					xhr.onload = function(e) {
-						if(xhr.response == 0){
-							console.log(xhr.response+ "!!!!!");
-							document.getElementById("nextRound").style.display  = 'none';
-							getPlayerResult();
-						}else{
-							console.log(xhr.response+ "gameisnoover");
-
-						}
-						console.log("getGameOver");	
-					}
-					
-				xhr.send();
-
-			}
 
 
 			

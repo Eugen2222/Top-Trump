@@ -21,7 +21,7 @@ public class DBAgent {
 
 	private String sqlAddress =  "jdbc:postgresql://localhost:5432/postgres";
 	private String sqlUsername = "postgres"; //"Manager";
-	private String sqlPassword = "wxp339762"; //"123456";
+	private String sqlPassword = "2435638L"; //"123456";
 	
 
 	

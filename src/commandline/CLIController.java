@@ -93,7 +93,7 @@ public class CLIController {
 
 		}
 //		model.createLog(); // Test Log
-//		model.updateGameData(); // update game result to database
+		model.updateGameData(); // update game result to database
 	}
 
 	public void setPlayerNumber() { // set player number

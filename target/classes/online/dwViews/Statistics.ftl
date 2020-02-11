@@ -21,7 +21,7 @@
 
 	</head>
 
-    <body onload=> <!-- Call the initalize method when the page loads -->
+    <body onload=getGameStats()> <!-- Call the initalize method when the page loads -->
 
 		<div class="container" >
 			<div class="row justify-content-center mt-5">
@@ -145,7 +145,7 @@
 			
 
 	function getGameStats(){
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updataGameStats"); // Request type and URL+parameters
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateGameStats"); // Request type and URL+parameters
 				if (!xhr) {
   					alert("CORS not supported");
 				}

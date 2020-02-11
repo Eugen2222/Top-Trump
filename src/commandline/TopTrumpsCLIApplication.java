@@ -30,12 +30,13 @@ public class TopTrumpsCLIApplication {
 		while (!userWantsToQuit) {
 			// Add your game logic here based on the requirements
 			// ----------------------------------------------------
-			System.out.println(args[0]);
+
 			if (args[0].equalsIgnoreCase("true")) {
 				
 				writeGameLogsToFile=true;
-				controller = new CLIController(writeGameLogsToFile);
 			}
+			
+			controller = new CLIController(writeGameLogsToFile);
 			
 			userWantsToQuit=true; // use this when the user wants to exit the game		
 		}
