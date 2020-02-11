@@ -24,7 +24,7 @@
 
     <body onload=stage()> <!-- Call the initalize method when the page loads -->
     	
-    	<div class="container" id="mainP" >
+    	<div class="container" style.display = 'none'>
 
 			<!-- Add your HTML Here -->
 						 		
@@ -42,7 +42,7 @@
 
 				<div class="row ">
 					<div class="col-2 col-xl-3 mb-5 ml-5 pb-5 pl-5 mr-3 pr-3">
-						<div class="card-play  mb-4" style="width: 13rem;">
+						<div class="card-play  mb-4 " style="width: 13rem;">
 							<div class="card-header" class="cardInfo">
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
@@ -90,7 +90,7 @@
 								</div>
 
 								<div id="returnToMenu">
-									<a href=http://localhost:7777/toptrumps><button class="btn btn-outline-dark btn-lg mb-0 selectbutton">Retrun to menu</button></a>
+									<a href=http://localhost:7777/toptrumps><button class="btn btn-outline-dark btn-lg mb-0 selectbutton">Return to menu</button></a>
 								</div>	
 							</div>	
 						</div>	
@@ -376,6 +376,7 @@
 
 					var num = xhr.response;
 					console.log(num);
+					document.getElementById(cardI).style.display = 'none'; style.display = 'block'
 					if(num == 2){
 						playerSelectEnableStage();
 					}
@@ -401,7 +402,6 @@
 					else {
 						window.location.href = "http://localhost:7777/toptrumps/";
 					}
-	
 				}
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
@@ -466,7 +466,6 @@
 
 
 			function userPressNewTurn(){
-				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressNewTurn"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -479,7 +478,6 @@
 
 
 			function userPressSelect(){
-				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressSelect"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -514,7 +512,6 @@
 
 
 			function userSelect(num) {
-				clear();
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userSelect?Word="+num); // Request type and URL+parameters
 				if (!xhr) {
@@ -528,7 +525,6 @@
 			}
 		
 			function userPressShowWinner(){
-				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressShowWinner"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -618,6 +614,29 @@
 	
 
 
+		
+			function getGameOver(){
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateViewGameIsOver"); // Request type and URL+parameters
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+					xhr.onload = function(e) {
+						if(xhr.response == 0){
+							console.log(xhr.response+ "!!!!!");
+							document.getElementById("nextRound").style.display  = 'none';
+							getPlayerResult();
+						}else{
+							console.log(xhr.response+ "gameisnoover");
+
+						}
+						console.log("getGameOver");	
+					}
+					
+				xhr.send();
+
+			}
+
+
 			
 				
 			function getPlayerResult(){
@@ -700,9 +719,8 @@
 					var responseText = xhr.response;
 					var strr = new Array();
 					strr=javaArrayDecode(responseText);
-					console.log(strr);
 					if(strr[0]=='null'){
-
+						document.getElementById(cardI).style.display = 'none';  
 					}else{
 						cardI = "card"+(1+parseInt(strr[0]));
 						console.log(strr);

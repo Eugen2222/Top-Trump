@@ -24,7 +24,7 @@
 
     <body onload=stage()> <!-- Call the initalize method when the page loads -->
     	
-    	<div class="container" id="mainP" >
+    	<div class="container">
 
 			<!-- Add your HTML Here -->
 						 		
@@ -90,7 +90,7 @@
 								</div>
 
 								<div id="returnToMenu">
-									<a href=http://localhost:7777/toptrumps><button class="btn btn-outline-dark btn-lg mb-0 selectbutton">Retrun to menu</button></a>
+									<a href=http://localhost:7777/toptrumps><button class="btn btn-outline-dark btn-lg mb-0 selectbutton">Return to menu</button></a>
 								</div>	
 							</div>	
 						</div>	
@@ -401,7 +401,6 @@
 					else {
 						window.location.href = "http://localhost:7777/toptrumps/";
 					}
-	
 				}
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
@@ -514,7 +513,6 @@
 
 
 			function userSelect(num) {
-				clear();
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userSelect?Word="+num); // Request type and URL+parameters
 				if (!xhr) {
@@ -700,9 +698,7 @@
 					var responseText = xhr.response;
 					var strr = new Array();
 					strr=javaArrayDecode(responseText);
-					console.log(strr);
 					if(strr[0]=='null'){
-
 					}else{
 						cardI = "card"+(1+parseInt(strr[0]));
 						console.log(strr);

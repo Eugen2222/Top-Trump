@@ -280,7 +280,7 @@ public class TopTrumpsRESTAPI {
 			System.out.println("run gameIsOver1");
 			if(model.getHumanLose()==0||model.getGameIsOver()==0){
 				cmd = 7;
-				//model.updateGameData();
+				model.updateGameData();
 			}
 			else {
 				cmd = 6;

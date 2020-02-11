@@ -49,8 +49,6 @@ public class GameModel {
 
 
 	public void initialiseGame(int num) {
-//		System.out.println("initialiseGame");
-//		System.out.println(status);
 		playerList = new ArrayList<>();
 		status = "";
 		cardList = new ArrayList<>();
@@ -76,7 +74,7 @@ public class GameModel {
 		results = "";
 
 	}
-
+	
 	public GameModel(int num) {
 		initialiseGame(num);
 	}
@@ -158,37 +156,35 @@ public class GameModel {
 				testLog += "\r";
 		}
 		testLog += "--------------------------\r";
-		System.out.println("defaultCard");
+		//System.out.println("defaultCard");
 	}
 
 	public void draw() {
-//		Random r =new Random();
-//		System.out.println("draw!!");
 		round++;
 		for (int i = 0; i < numOfPlayer; i++) {
 			if (playerList.get(i).aliveJudge()) {
-//					int number = r.nextInt(playerList.get(i).getCardList().size());
-//					cardOnDeck[i] = playerList.get(i).getCardList().get(number);
+
 				cardOnDeck[i] = playerList.get(i).getCardList().get(0);
 				playerList.get(i).getCardList().remove(0);
 			} else {
 				cardOnDeck[i] = null;
 			}
 		}
+		
 		gameInfo = "The active player is " + activePlayer.getPlayerName() + ".";
 		status = roundString() + "Players have drawn their cards.";
-		CMCInfo = "The active player is " + activePlayer.getPlayerName() + ".";
-		CMCStatus = "Round " + round + "\n" + roundString() + "Players have drawn their cards.";
+		CMCStatus = "\n"+"Round " + round + "\n" + roundString() + "Players have drawn their cards.";
 		// testLog
 		testLog += "Draw:\r";
+		
 		for (int j = 0; j < cardOnDeck.length; j++) {
 			if (cardOnDeck[j] != null) {
 				testLog += playerList.get(j).getPlayerName() + ": " + cardOnDeck[j].getCardString() + "\r";
 			}
-//			else testLog += playerList.get(j).getPlayerName()+": died\r";
+			//else testLog += playerList.get(j).getPlayerName()+": died\r";
 		}
 		testLog += "--------------------------\r";
-		System.out.println("draw");
+		//System.out.println("draw");
 	}
 
 	public String roundString() {
@@ -196,54 +192,43 @@ public class GameModel {
 	}
 
 	public void decideActivePlayers() {
-//		System.out.println("decideActivePlayers!!");
+
 		if (roundWinner == null) {
 			Random r = new Random();
 			activePlayer = playerList.get(r.nextInt(numOfPlayer));
 			gameInfo = "The active player is " + activePlayer.getPlayerName() + ".";
-			CMCInfo = "The active player is " + activePlayer.getPlayerName() + ".";
+			CMCInfo = "\n"+"The active player is " + activePlayer.getPlayerName() + ".";
 		} else {
 			activePlayer = roundWinner;
 		}
 		// testLog
 		testLog += "Active player: " + activePlayer.getPlayerName() + "\r";
 		testLog += "--------------------------\r";
-		System.out.println("decideActivePlayers");
+		//System.out.println("decideActivePlayers");
 	}
 
 	public int humanIsActivePlayer() {
-//		System.out.println("humanIsActivePlayer!!");
 		if (!activePlayer.equals(playerList.get(0))) {
 			status = roundString() + "Waiting on " + activePlayer.getPlayerName() + " to select a category ";
-			CMCStatus = roundString() + "Waiting on " + activePlayer.getPlayerName() + " to select a category ";
 			return -1;
 		}
 		status = roundString() + "Waiting on you to select a category ~ ";
-		//
-		String category = "\t1. Size\n\t2. Speed\n\t3. Range\n\t4. Firepower\n\t5. Cargo";
-		CMCStatus = "It is your turn to select a category, the categories are:\n" + category;
-		System.out.println(CMCStatus + "\nEnter the number for your attribute: ");
-//		System.out.println("!!!"+status);
-		System.out.println("humanIsActivePlayer");
+		//System.out.println("humanIsActivePlayer");
 		return 0;
 	}
 
 	public void humanSelect(int num) {
-//		System.out.println("humanSelect");
 		roundSelectIndex = num;
 		status = roundString() + "You selected " + cardAttribute[num] + ".";
 		// testLog
 		testLog += "Category selected:\r" + cardAttribute[num] + ": " + cardOnDeck[0].getDescriptions().get(num - 1)
 				+ "\r";
 		testLog += "--------------------------\r";
-		System.out.println("humanSelect");
+		CMCStatus =  "\n"+roundString() + "You selected " + cardAttribute[num] + ".";
+		//System.out.println("humanSelect");
 	}
 
 	public void AISelect() {
-//		System.out.println("AISelect");
-//		if(activePlayer.equals(playerList.get(0))){
-//			System.out.println("Error selecet!");
-//		}
 		int activePlayerIndex = 0;
 		int maxValue = 0;
 		int bestChoice = -1;
@@ -263,20 +248,19 @@ public class GameModel {
 		}
 		roundSelectIndex = bestChoice + 1;
 		status = roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[bestChoice + 1] + ".";
-		CMCStatus = roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[bestChoice + 1] + ".";
+		CMCStatus = "\n"+roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[bestChoice + 1] + ".";
 		// testLog
 		testLog += "Category selected:\r" + cardAttribute[roundSelectIndex] + ": "
 				+ cardOnDeck[activePlayerIndex].getDescriptions().get(bestChoice) + "\r";
 		testLog += "--------------------------\r";
-		System.out.println("AISelect");
+		//System.out.println("AISelect");
 	}
 
 	public void showWinner() {
-//		System.out.println("showWinner");
 		roundWinnerIndex = -1;
 		int maxValue = 0;
 		boolean drew = false;
-		System.out.println("showWinner");
+		//System.out.println("showWinner");
 		for (int i = 0; i < cardOnDeck.length; i++) {
 			if (cardOnDeck[i] != null) {
 				int currentValue = cardOnDeck[i].getDescriptions().get(roundSelectIndex - 1);
@@ -288,11 +272,7 @@ public class GameModel {
 					roundWinnerIndex = i;
 					drew = true;
 				}
-				System.out.println(cardOnDeck[i].getCardString());
-			}else {
-				System.out.println("null");
 			}
-
 		}
 
 		winCard = cardOnDeck[roundWinnerIndex];// For command mode
@@ -306,7 +286,7 @@ public class GameModel {
 
 			}
 			status = roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
-			CMCStatus = roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
+			CMCStatus +="\n"+roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
 			roundWinner = activePlayer;
 			// testLog
 			testLog += "CommonPile:\r";
@@ -318,15 +298,11 @@ public class GameModel {
 			playerList.get(roundWinnerIndex).addWin();
 			if (roundWinnerIndex == 0) {
 				status = roundString() + "Congratulation, you won this round!";
-				CMCStatus = roundString() + "You won this round!!!";
+				CMCStatus += "\n"+roundString() + "You won this round!!!";
 				roundWinner = playerList.get(roundWinnerIndex);
 			} else {
 				status = roundString() + "Oh, " + playerList.get(roundWinnerIndex).getPlayerName()
 						+ " won this round.";
-				
-				
-				CMCStatus = "Round " + round + "\n" + roundString() + "Players have drawn their cards.";
-				CMCStatus += "\nThe active player is " + activePlayer.getPlayerName() + ".";
 				CMCStatus += "\n" + roundString() + "Player " + playerList.get(roundWinnerIndex).getPlayerName()
 						+ " won this round.";
 				roundWinner = playerList.get(roundWinnerIndex);
@@ -348,23 +324,20 @@ public class GameModel {
 
 		}
 		//HUI
-		System.out.println(CMCStatus);
-		String temString = "The winning card was '" + winCard.getCardName() + "' :";
+		CMCStatus += "\nThe winning card was '" + winCard.getCardName() + "' :";
 		for (int i = 0; i < numOfAttribute; i++) {
 			if (i == numOfAttribute - 1) {
-				temString += "\n\t> " + cardAttribute[i + 1] + ": "
+				CMCStatus += "\n\t> " + cardAttribute[i + 1] + ": "
 						+ winCard.getDescriptions().get(cardOnDeck.length - 1);
 			} else {
-				temString += "\n\t> " + cardAttribute[i + 1] + ": " + winCard.getDescriptions().get(i);
+				CMCStatus += "\n\t> " + cardAttribute[i + 1] + ": " + winCard.getDescriptions().get(i);
 			}
 			if (i + 1 == roundSelectIndex) {
-				temString += "\t<--";
+				CMCStatus += "\t<--";
 			}
 
 		}
-		temString += "\n\n";
-		System.out.println(temString);
-//		System.out.println(status);
+		CMCStatus += "\n\n";
 
 		// testLog
 		testLog += "Round" + round + ":\rRound winner:" + roundWinner.getPlayerName() + "\r";
@@ -382,10 +355,10 @@ public class GameModel {
 	}
 
 	public void gameIsOver() {
-		
+		CMCStatus = "";
 		int aliveNum = 0;
 		int winnerIndex = -1;
-		System.out.println("gameIsOver");
+		//System.out.println("gameIsOver");
 		for (int i = 0; i < numOfPlayer; i++) {
 			if (playerList.get(i).aliveJudge()) {
 				aliveNum++;
@@ -393,7 +366,6 @@ public class GameModel {
 			}
 		}
 
-//		System.out.println(aliveNum);
 		if (aliveNum == 1) {
 			if (winnerIndex == 0) {
 				status = roundString() + "Congratulation, you won this game!";
@@ -417,23 +389,12 @@ public class GameModel {
 		}
 	}
 	
-	public void getResults() {
-		results = "The overall winner was " + playerList.get(finalWinnerIndex).getPlayerName()
-				+ "\nScores:\n";
-		  for(int i=0;i<playerList.size();i++) {
-		   results += "\t"+playerList.get(i).getPlayerName()+": "+playerList.get(i).getWinTimes()+"\n";
-		  }
-		  System.out.println(results);
-	}
-	
-	
 	
 	
 	public String[] showWinnerCard() {
 		String [] s = new String [2];
 			if(commonPile.isEmpty()) {
 				s[0]=""+roundWinnerIndex;
-				System.out.print(roundWinnerIndex+"!!!!!");
 				s[1]=getWebCardString(playerList.get(roundWinnerIndex).getPlayerName(), 
 				playerList.get(roundWinnerIndex).getNumOfCards(), winCard);
 			}
@@ -487,20 +448,21 @@ public class GameModel {
 	}
 
 	public void autoPlay() {
+		String temp = "";
 		while (this.getGameIsOver() != 0) {
-			System.out.println("autoPlay");
+			//System.out.println("autoPlay");
+			temp += CMCStatus;
 			this.decideActivePlayers();
+			temp += CMCStatus;
 			this.draw();
-			if (this.humanIsActivePlayer() == 0) {
-				this.humanSelect(5);
-			} else {
-				this.AISelect();
-			}
-
+			temp += CMCStatus;
+			this.AISelect();
 			this.showWinner();
+			temp += CMCStatus;
 			this.gameIsOver();
-
+			temp += CMCStatus;
 		}
+		CMCStatus =temp;
 	}
 
 	public int getGameIsOver() {
@@ -572,7 +534,7 @@ public class GameModel {
 		for (int i = 0; i < cardOnDeck.length; i++) {
 			if (cardOnDeck[i] != null) {
 
-				CMCtemString += "You drew '" + cardOnDeck[i].getCardName() + "' :";
+				CMCtemString += "\nYou drew '" + cardOnDeck[i].getCardName() + "' :";
 				for (int j = 0; j < numOfAttribute; j++) {
 					if (j == numOfAttribute - 1) {
 						CMCtemString += "\n\t> " + cardAttribute[j + 1] + ": "
@@ -581,7 +543,7 @@ public class GameModel {
 						CMCtemString += "\n\t> " + cardAttribute[j + 1] + ": " + cardOnDeck[i].getDescriptions().get(j);
 					}
 				}
-				CMCtemString += "\nThere are '" + playerList.get(i).getNumOfCards() + " cards in your deck";
+				CMCtemString += "\nThere are " + playerList.get(i).getNumOfCards() + " cards in your deck.";
 
 				s[i] = CMCtemString;
 				CMCtemString = "";
