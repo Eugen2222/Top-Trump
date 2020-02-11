@@ -34,7 +34,6 @@ public class GameModel {
 //	private int numberOfDrew = 0;
 	private String testLog;
 	private int[] dataBase;
-	private String results;
 	// wei part
 	private int activePlayerIndex;
 	private String gameInfo; //Wei
@@ -48,7 +47,7 @@ public class GameModel {
 	
 
 
-	public void initialiseGame() {
+	public void initialiseGame(int num) {
 		playerList = new ArrayList<>();
 		status = "";
 		cardList = new ArrayList<>();
@@ -60,6 +59,8 @@ public class GameModel {
 		gameWinner = null;
 		activePlayer = null;
 		activePlayerIndex = -1;
+		cardOnDeck = new Card[num];
+		numOfPlayer = num;
 		roundSelectIndex = 0;
 		gameInfo = "";
 		gameIsOver = -1;
@@ -69,18 +70,9 @@ public class GameModel {
 		defaultCard();
 		decideActivePlayers();
 		dataBase = new int[4];
-		results = "";
 
 	}
 	
-	public GameModel() {
-		initialiseGame();
-	}
-	
-	public void setNumOfPlayer(int number) {
-		numOfPlayer = number;
-		cardOnDeck = new Card[number];
-	}
 	
 	public void defaultPlayer() {
 		for (int i = 0; i < numOfPlayer; i++) {

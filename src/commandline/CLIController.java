@@ -1,6 +1,5 @@
 package commandline;
 
-import java.util.Scanner;
 
 public class CLIController {
 	private GameModel model;
@@ -42,9 +41,9 @@ public class CLIController {
 	}
 	
 	public void selectPlayerNumStage() {
-		int numOfPlayer = view.askNumberOfPlayers();
 		model = new GameModel();
-		model.setNumOfPlayer(numOfPlayer);
+		int numOfPlayer = view.askNumberOfPlayers();
+		model.initialiseGame(numOfPlayer);
 		playGameStage();
 	}
 	

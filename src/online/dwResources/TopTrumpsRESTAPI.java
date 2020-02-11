@@ -50,7 +50,6 @@ public class TopTrumpsRESTAPI {
 	TopTrumpsJSONConfiguration webConfiguration;
 	
 	public TopTrumpsRESTAPI(TopTrumpsJSONConfiguration conf) {
-		
 		webConfiguration = conf;
 	}
 	
@@ -209,9 +208,8 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/userRequestGameInitialised")
 	public void userRequestGameInitialised(@QueryParam("num") int num) {
-		model.initialiseGame();
 		webConfiguration.setNumAIPlayers(num-1);
-		model.setNumOfPlayer(webConfiguration.getNumAIPlayers()+1);
+		model.initialiseGame(webConfiguration.getNumAIPlayers()+1);
 		model.decideActivePlayers();
 		model.draw();
 		setViewActivePlayer();
