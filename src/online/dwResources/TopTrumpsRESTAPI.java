@@ -50,7 +50,7 @@ public class TopTrumpsRESTAPI {
 
 	
 	public TopTrumpsRESTAPI(TopTrumpsJSONConfiguration conf) {
-		model = new GameModel(5);
+		
 		
 	}
 	
