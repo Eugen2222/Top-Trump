@@ -48,7 +48,7 @@ public class GameModel {
 	
 
 
-	public void initialiseGame(int num) {
+	public void initialiseGame() {
 		playerList = new ArrayList<>();
 		status = "";
 		cardList = new ArrayList<>();
@@ -63,8 +63,6 @@ public class GameModel {
 		roundSelectIndex = 0;
 		gameInfo = "";
 		gameIsOver = -1;
-		setNumOfPlayer(num);
-		cardOnDeck = new Card[num];
 		humanLose = -1;
 		testLog = "";
 		defaultPlayer();
@@ -75,10 +73,14 @@ public class GameModel {
 
 	}
 	
-	public GameModel(int num) {
-		initialiseGame(num);
+	public GameModel() {
+		initialiseGame();
 	}
 	
+	public void setNumOfPlayer(int number) {
+		numOfPlayer = number;
+		cardOnDeck = new Card[number];
+	}
 	
 	public void defaultPlayer() {
 		for (int i = 0; i < numOfPlayer; i++) {
@@ -480,9 +482,7 @@ public class GameModel {
 		return playerList.get(pos);
 	}
 
-	public void setNumOfPlayer(int number) {
-		numOfPlayer = number;
-	}
+
 
 	public int getNumOfPlayer() {
 		return numOfPlayer;

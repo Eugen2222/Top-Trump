@@ -28,7 +28,7 @@ public class CLIController {
 	public void selectModeStage() {
 		int mode = view.askPlayerSelectMode();
 		if(mode==1) {
-			model = new GameModel(0);
+			model = new GameModel();
 			String[] stats = model.getGameStats();
 			view.printArray(stats);
 			selectModeStage();
@@ -43,7 +43,8 @@ public class CLIController {
 	
 	public void selectPlayerNumStage() {
 		int numOfPlayer = view.askNumberOfPlayers();
-		model = new GameModel(numOfPlayer);
+		model = new GameModel();
+		model.setNumOfPlayer(numOfPlayer);
 		playGameStage();
 	}
 	

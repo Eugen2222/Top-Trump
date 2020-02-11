@@ -46,12 +46,12 @@ public class TopTrumpsRESTAPI {
 	 * the deck file and the number of AI players.
 	 * @param conf
 	 */
-	GameModel model ;
-
+	GameModel model = new GameModel();
+	TopTrumpsJSONConfiguration webConfiguration;
 	
 	public TopTrumpsRESTAPI(TopTrumpsJSONConfiguration conf) {
 		
-		
+		webConfiguration = conf;
 	}
 	
 	// ----------------------------------------------------
@@ -209,7 +209,9 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/userRequestGameInitialised")
 	public void userRequestGameInitialised(@QueryParam("num") int num) {
-		model.initialiseGame(num);
+		model.initialiseGame();
+		webConfiguration.setNumAIPlayers(num-1);
+		model.setNumOfPlayer(webConfiguration.getNumAIPlayers()+1);
 		model.decideActivePlayers();
 		model.draw();
 		setViewActivePlayer();
