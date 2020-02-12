@@ -1,14 +1,12 @@
 package test;
-
+import database.DBAgent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Scanner;
 
-import database.DBAgent;
-
 /**
  *
- * @author Ting Ting van Abbema
+ * @author TvA
  */
 
 public class DBTest {
@@ -21,22 +19,51 @@ public class DBTest {
     public static void main(String args[]) {
         // input from standard in
     	DBAgent dbA = new DBAgent(); // use a single DBAgent instance to connect to a database
-    	int nResult = -1;
-       
-        // Test open connection
+    	int nResult = 0;
+    	double rResult = 0.0;
+  
+    	// Test command interface
+  /*
+    	Scanner input = new Scanner(System.in);
+        System.out.print("Enter Username: ");
+        String username = input.nextLine();
+
+        System.out.print("Enter Password: ");
+        String password = input.nextLine();
+        System.out.println();
+        input.close();
+                
+        // Test set user and password
+        dbA.setSQLUsername(username);
+        dbA.setSQLPassword(password);
+   */     
+        
+    	// Test open connection
         if (dbA.openConnection()) {
         	 System.out.println("Database is online and available,");
         } else {
         	System.out.println("Database is NOT online. Exiting");
         	return;
         }
+/*
+        try {  	      
+           dbA.sendUpdate("INSERT INTO  public.\"GameStatus\""
+              		+ "( \"NumberOfDraws\", \"PName\", \"WinTime\", \"Winner\", \"RoundsPlayed\", \"RoundsWon\") "
+              		+ "VALUES ('10', '{PlayerOne}', '5', '{AI}', '15', '3');");
+  		}
         
-     System.out.print(dbA.getTotalGamesPlayed());
+ 		catch (Exception e) {
+ 			// Print exception information
+            e.printStackTrace();
+            System.err.println(e.getClass().getName()+": "+e.getMessage());
+            System.exit(0);
+        }	
+*/       
         try {
     	      
-           java.sql.ResultSet sResult =  dbA.sendQuery("SELECT * FROM GAMESTATUS");
+           java.sql.ResultSet sResult =  dbA.sendQuery("SELECT * FROM public.\"GameStatus\"");
 	       while (sResult.next()) {
-				System.out.println("GameID: " + sResult.getString("GAMEID"));
+				System.out.println("GameID: " + sResult.getString("GameID"));
 	       }
 		}
 		catch (Exception e) {
@@ -45,11 +72,13 @@ public class DBTest {
            System.err.println(e.getClass().getName()+": "+e.getMessage());
            System.exit(0);
        }	
-        
    
-        dbA.updateGameStatus(12, 5, 3, "YOU");
-        dbA.updatePlayerStatus(132, "YOU", 7);
-    
+        
+        //dbA.updatePlayerStatus(dbA.getMaxGameID(), "TestPlayer", 25);
+        
+        // Test invalid parameters
+        // dbA.updatePlayerStatus(-1, "", -1);
+        
         nResult = dbA.getTotalGamesPlayed();
 		System.out.println("TOTAL_GAME_NUMBER: " + nResult);
 		
@@ -59,15 +88,19 @@ public class DBTest {
         nResult = dbA.getHumanWins();
 		System.out.println("TOTAL_HUMAN_WINS: " + nResult);
 		
-        Double nResultDouble = dbA.getAvgDraws();
-		System.out.println("AVERAGE_DRAWS: " + nResultDouble);
+        rResult = dbA.getAvgDraws();
+		System.out.println("AVERAGE_DRAWS: " + nResult);
 				
         nResult = dbA.getLargestRoundsPlayed();
 		System.out.println("MOST_ROUNDS_PLAYED: " + nResult);
 		
-//       Test close connection
+        nResult = dbA.getMaxGameID();
+		System.out.println("MAX_IDS: " + nResult);
+				
+      // Test close connection
         dbA.closeConnection();
         System.out.println("Database is closed.");
     }
 
 }
+
