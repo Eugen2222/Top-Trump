@@ -501,18 +501,25 @@ public class GameModel {
 		String [] gameStatistics = new String[5];
 	
 		DBAgent dbA = new DBAgent(); // use a single DBAgent instance to connect to the database
-		dbA.openConnection();
+		if(dbA.openConnection()) {
 				
-		// Get game statistics
-		gameStatistics[0] = " Number of Games: "+dbA.getTotalGamesPlayed();		// Total games played
-		gameStatistics[1] = " Number of AI Wins: "+dbA.getAIWins();		 		// Number of AI wins	
-	    gameStatistics[2] = " Number of Human Wins: "+dbA.getHumanWins();       // Number of Human wins	
-	    DecimalFormat fmt = new DecimalFormat("##0.0");
-	    gameStatistics[3] = " Average number of Draws: "+fmt.format(dbA.getAvgDraws());		// Average of draws		
-	    gameStatistics[4] = " Longest Game: "+dbA.getLargestRoundsPlayed()+"\r";			// Most round played
-			                     			
-	    // Close connection when done
-		dbA.closeConnection();		
+			// Get game statistics
+			gameStatistics[0] = " Number of Games: "+dbA.getTotalGamesPlayed();		// Total games played
+			gameStatistics[1] = " Number of AI Wins: "+dbA.getAIWins();		 		// Number of AI wins	
+		    gameStatistics[2] = " Number of Human Wins: "+dbA.getHumanWins();       // Number of Human wins	
+		    DecimalFormat fmt = new DecimalFormat("##0.0");
+		    gameStatistics[3] = " Average number of Draws: "+fmt.format(dbA.getAvgDraws());		// Average of draws		
+		    gameStatistics[4] = " Longest Game: "+dbA.getLargestRoundsPlayed()+"\r";			// Most round played
+				                     			
+		    // Close connection when done
+			dbA.closeConnection();		
+		}else {
+			gameStatistics[0] = "Error database is not available.";	// Total games played
+			gameStatistics[1] = "";		 		// Number of AI wins	
+		    gameStatistics[2] = "";       // Number of Human wins	
+		    gameStatistics[3] = "";		// Average of draws		
+		    gameStatistics[4] = "";
+		}
 		
 		return gameStatistics;
 	}
