@@ -43,8 +43,8 @@ public class View {
 	
 	public void printAskSelectCategory() {
 		String category = "\t1. Size\n\t2. Speed\n\t3. Range\n\t4. Firepower\n\t5. Cargo";
-		String s = "It is your turn to select a category, the categories are:\n" + category;
-		System.out.print(s);
+		String s = "\nIt is your turn to select a category, the categories are:\n" + category;
+		System.out.println(s);
 	}
 	
 	public int askPlayerSelectCategory() {
@@ -60,8 +60,14 @@ public class View {
 	}
 	
 	
-	public void printArray(String [] input) {
+	public void printStatistics(String [] input) {
 		System.out.println("Game Statistics:");
+		for (int i = 0; i < input.length; i++) {
+			System.out.println("  " + input[i]);
+		}
+	}
+	
+	public void printArray(String [] input) {
 		for (int i = 0; i < input.length; i++) {
 			System.out.println("  " + input[i]);
 		}

@@ -3,10 +3,6 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- *
- * @author TingTingvanAbbema
- */
 
 public class DBAgent {
 
@@ -19,9 +15,9 @@ public class DBAgent {
     * - Close connection 
     */
 
-	private String sqlAddress =  "jdbc:postgresql://localhost:5432/postgres";
-	private String sqlUsername = "postgres"; //"Manager";
-	private String sqlPassword = "2435638L"; //"123456";
+	private String sqlAddress =  "jdbc:postgresql://52.24.215.108/GetA1";
+	private String sqlUsername = "GetA1"; 
+	private String sqlPassword = "GetA1"; 
 	
 
 	
@@ -241,16 +237,16 @@ public class DBAgent {
 	 * SELECT Avg(DrawTimes) AS AVERAGE_DRAWS
 	 * FROM GAMESTATUS 
 	 */
-	public int getAvgDraws() {
+	public double getAvgDraws() {
 		
-		int rTotal = 0;
+		double rTotal = 0;  //to double
 		java.sql.ResultSet rResultSet;
 		String sQuery = "SELECT AVG(DRAWTIMES) FROM GAMESTATUS";
 		
 		try {  	      
 				rResultSet = sendQuery(sQuery);
 				while (rResultSet.next()) {
-					rTotal = rResultSet.getInt(1);
+					rTotal = rResultSet.getDouble(1); //to double
 							// Double.parseDouble(rResultSet.getString("AVERAGE_DRAWS"));
 				}
 		}

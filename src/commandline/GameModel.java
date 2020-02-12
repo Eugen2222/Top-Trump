@@ -17,11 +17,10 @@ import database.DBAgent;
 public class GameModel {
 	private List<Player> playerList = new ArrayList<>();
 	private List<Card> cardList = new ArrayList<>();
-	private String[] description;
 	private String[] cardAttribute;
 	private int numOfPlayer;
 	private Card[] cardOnDeck;
-	private String status; // Wei
+	private String Webstatus; // Wei
 	private String CMCStatus; //Hui
 	private int round = 0;
 	private Card winCard;
@@ -31,13 +30,11 @@ public class GameModel {
 	private List<Card> commonPile = new ArrayList<>();
 	private Player activePlayer;
 	private int numberOfDraws = 0;
-//	private int numberOfDrew = 0;
 	private String testLog;
 	private int[] dataBase;
 	// wei part
 	private int activePlayerIndex;
-	private String gameInfo; //Wei
-	private String CMCInfo; // Hui
+	private String WebInfo; //Wei
 	private int roundSelectIndex;
 	private int gameIsOver = -1;
 	private int finalWinnerIndex = -1;
@@ -49,7 +46,7 @@ public class GameModel {
 
 	public void initialiseGame(int num) {
 		playerList = new ArrayList<>();
-		status = "";
+		Webstatus = "";
 		cardList = new ArrayList<>();
 		round = 0;
 		commonPile = new ArrayList<>();
@@ -59,10 +56,11 @@ public class GameModel {
 		gameWinner = null;
 		activePlayer = null;
 		activePlayerIndex = -1;
+		roundWinner = null;
 		cardOnDeck = new Card[num];
 		numOfPlayer = num;
 		roundSelectIndex = 0;
-		gameInfo = "";
+		WebInfo = "";
 		gameIsOver = -1;
 		humanLose = -1;
 		testLog = "";
@@ -70,7 +68,6 @@ public class GameModel {
 		defaultCard();
 		decideActivePlayers();
 		dataBase = new int[4];
-
 	}
 	
 	
@@ -152,7 +149,31 @@ public class GameModel {
 		testLog += "--------------------------\r";
 		//System.out.println("defaultCard");
 	}
+	
+	
+	public void decideActivePlayers() {
 
+		if (roundWinner == null) {
+			Random r = new Random();
+			activePlayer = playerList.get(r.nextInt(numOfPlayer));
+
+		} else {
+			activePlayer = roundWinner;
+		}
+		
+		for (int i = 1; i < playerList.size(); i++) {
+			if (activePlayer.equals(playerList.get(i))) {
+				activePlayerIndex = i;
+			}
+		}
+		// testLog
+		testLog += "Active player: " + activePlayer.getPlayerName() + "\r";
+		testLog += "--------------------------\r";
+		//System.out.println("decideActivePlayers");
+	}
+
+	
+	
 	public void draw() {
 		round++;
 		for (int i = 0; i < numOfPlayer; i++) {
@@ -165,9 +186,10 @@ public class GameModel {
 			}
 		}
 		
-		gameInfo = "The active player is " + activePlayer.getPlayerName() + ".";
-		status = roundString() + "Players have drawn their cards.";
+		WebInfo = "The active player is " + activePlayer.getPlayerName() + ".";
+		Webstatus = roundString() + "Players have drawn their cards.";
 		CMCStatus = "\n"+"Round " + round + "\n" + roundString() + "Players have drawn their cards.";
+		CMCStatus += "\n"+ roundString() +"The active player is " + activePlayer.getPlayerName() + ".";
 		// testLog
 		testLog += "Draw:\r";
 		
@@ -185,52 +207,33 @@ public class GameModel {
 		return "Round " + round + ": ";
 	}
 
-	public void decideActivePlayers() {
-
-		if (roundWinner == null) {
-			Random r = new Random();
-			activePlayer = playerList.get(r.nextInt(numOfPlayer));
-			gameInfo = "The active player is " + activePlayer.getPlayerName() + ".";
-			CMCInfo = "\n"+"The active player is " + activePlayer.getPlayerName() + ".";
-		} else {
-			activePlayer = roundWinner;
-		}
-		// testLog
-		testLog += "Active player: " + activePlayer.getPlayerName() + "\r";
-		testLog += "--------------------------\r";
-		//System.out.println("decideActivePlayers");
-	}
 
 	public int humanIsActivePlayer() {
 		if (!activePlayer.equals(playerList.get(0))) {
-			status = roundString() + "Waiting on " + activePlayer.getPlayerName() + " to select a category ";
+			Webstatus = roundString() + "Waiting on " + activePlayer.getPlayerName() + " to select a category ";
 			return -1;
 		}
-		status = roundString() + "Waiting on you to select a category ~ ";
+		Webstatus = roundString() + "Waiting on you to select a category ~ ";
 		//System.out.println("humanIsActivePlayer");
 		return 0;
 	}
 
 	public void humanSelect(int num) {
 		roundSelectIndex = num;
-		status = roundString() + "You selected " + cardAttribute[num] + ".";
+		Webstatus = roundString() + "You selected " + cardAttribute[num] + ".";
 		// testLog
 		testLog += "Category selected:\r" + cardAttribute[num] + ": " + cardOnDeck[0].getDescriptions().get(num - 1)
 				+ "\r";
 		testLog += "--------------------------\r";
-		CMCStatus =  "\n"+roundString() + "You selected " + cardAttribute[num] + ".";
+		CMCStatus = "\n"+roundString() + "You selected " + cardAttribute[num] + ".";
 		//System.out.println("humanSelect");
 	}
 
 	public void AISelect() {
-		int activePlayerIndex = 0;
+		//int activePlayerIndex = 0;
 		int maxValue = 0;
 		int bestChoice = -1;
-		for (int i = 1; i < playerList.size(); i++) {
-			if (activePlayer.equals(playerList.get(i))) {
-				activePlayerIndex = i;
-			}
-		}
+	
 		for (int i = 0; i < cardAttribute.length - 1; i++) {
 			int currentValue = cardOnDeck[activePlayerIndex].getDescriptions().get(i);
 
@@ -241,8 +244,8 @@ public class GameModel {
 			}
 		}
 		roundSelectIndex = bestChoice + 1;
-		status = roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[bestChoice + 1] + ".";
-		CMCStatus = "\n"+roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[bestChoice + 1] + ".";
+		Webstatus = roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[roundSelectIndex] + ".";
+		CMCStatus = "\n"+roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[roundSelectIndex] + ".";
 		// testLog
 		testLog += "Category selected:\r" + cardAttribute[roundSelectIndex] + ": "
 				+ cardOnDeck[activePlayerIndex].getDescriptions().get(bestChoice) + "\r";
@@ -279,7 +282,7 @@ public class GameModel {
 				}
 
 			}
-			status = roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
+			Webstatus = roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
 			CMCStatus +="\n"+roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
 			roundWinner = activePlayer;
 			// testLog
@@ -291,11 +294,11 @@ public class GameModel {
 		} else {// has winner
 			playerList.get(roundWinnerIndex).addWin();
 			if (roundWinnerIndex == 0) {
-				status = roundString() + "Congratulation, you won this round!";
+				Webstatus = roundString() + "Congratulation, you won this round!";
 				CMCStatus += "\n"+roundString() + "You won this round!!!";
 				roundWinner = playerList.get(roundWinnerIndex);
 			} else {
-				status = roundString() + "Oh, " + playerList.get(roundWinnerIndex).getPlayerName()
+				Webstatus = roundString() + "Oh, " + playerList.get(roundWinnerIndex).getPlayerName()
 						+ " won this round.";
 				CMCStatus += "\n" + roundString() + "Player " + playerList.get(roundWinnerIndex).getPlayerName()
 						+ " won this round.";
@@ -362,19 +365,19 @@ public class GameModel {
 
 		if (aliveNum == 1) {
 			if (winnerIndex == 0) {
-				status = roundString() + "Congratulation, you won this game!";
+				Webstatus = roundString() + "Congratulation, you won this game!";
 				finalWinnerIndex = 0;
 			} else {
-				status = roundString() + "Oh, " + playerList.get(winnerIndex).getPlayerName() + " won the game.";
+				Webstatus = roundString() + "Oh, " + playerList.get(winnerIndex).getPlayerName() + " won the game.";
 				finalWinnerIndex = winnerIndex;
 			}
-			gameInfo = "Sorry, the game is over.";
+			WebInfo = "Sorry, the game is over.";
 			gameIsOver = 0;
 
 			// testLog
 			testLog += "Game Winner: " + playerList.get(winnerIndex).getPlayerName();
 		} else if (aliveNum == 0 || !roundWinner.aliveJudge()) {
-			status = roundString() + "Oh, someone won but now has no card!";
+			Webstatus = roundString() + "Oh, someone won but now has no card!";
 			gameIsOver = 0;
 		}
 		if (humanLose() && humanLose != 0) {
@@ -435,7 +438,7 @@ public class GameModel {
 
 	public boolean humanLose() {
 		if (!playerList.get(0).aliveJudge()) {
-			status = roundString() + "Sorry, you lose!";
+			Webstatus = roundString() + "Sorry, you lose!";
 			return true;
 		}
 		return false;
@@ -484,9 +487,6 @@ public class GameModel {
 		return playerList;
 	}
 
-	public String[] getDescription() {
-		return description;
-	}
 
 	public Card[] getCardOnDeck() {
 		return cardOnDeck;
@@ -535,7 +535,7 @@ public class GameModel {
 						CMCtemString += "\n\t> " + cardAttribute[j + 1] + ": " + cardOnDeck[i].getDescriptions().get(j);
 					}
 				}
-				CMCtemString += "\nThere are " + playerList.get(i).getNumOfCards() + " cards in your deck.";
+				CMCtemString += "\nThere are '" + playerList.get(i).getNumOfCards() + " cards in your deck.";
 
 				s[i] = CMCtemString;
 				CMCtemString = "";
@@ -566,20 +566,51 @@ public class GameModel {
 				s.add(playerList.get(i).getPlayerName() + " won " + playerList.get(i).getWinTimes() + " rounds.");
 			}
 		}
+		s.add("Draw rounds: "+ numberOfDraws + " rounds.");
+		
 		String[] strr = s.toArray(new String[s.size()]);
 		return strr;
 	}
 
+	
+	public String[] getGameResultCLI() {
+		ArrayList<String> s = new ArrayList<String>();
+		s.add("Game End\n\n");
+		if (finalWinnerIndex == -1) {
+			s.add("Oh , no one won!!!");
+		} else if (finalWinnerIndex == 0) {
+			s.add("Congratulaton, the winner is you!!!");
+			s.add("you won " + playerList.get(0).getWinTimes() + " rounds.");
+		} else {
+			s.add("The winner is:");
+			s.add(playerList.get(finalWinnerIndex).getPlayerName() + " won "
+					+ playerList.get(finalWinnerIndex).getWinTimes() + " rounds.");
+		}
+		s.add("\nThe losers are: ");
+		for (int i = 0; i < playerList.size(); i++) {
+			if (finalWinnerIndex == i) {
+
+			} else {
+				s.add(playerList.get(i).getPlayerName() + " won " + playerList.get(i).getWinTimes() + " rounds.");
+			}
+		}
+		s.add("Draw rounds: "+ numberOfDraws + " rounds.");
+		String[] strr = s.toArray(new String[s.size()]);
+		return strr;
+	}
+	
+	
+	
 	public int getRound() {
 		return round;
 	}
 
-	public String getGameStatus() {
-		return status;
+	public String getGameStatusWeb() {
+		return Webstatus;
 	}
 
-	public String getGameInfo() {
-		return gameInfo;
+	public String getGameInfoWeb() {
+		return WebInfo;
 	}
 
 	public Card getWinCard() {
@@ -680,10 +711,6 @@ public class GameModel {
 	
 	public String getCMCStatus() {
 		return CMCStatus;
-	}
-	
-	public String getCMCInfo() {
-		return CMCInfo;
 	}
 	
 }

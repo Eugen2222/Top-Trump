@@ -29,7 +29,7 @@ public class CLIController {
 		if(mode==1) {
 			model = new GameModel();
 			String[] stats = model.getGameStats();
-			view.printArray(stats);
+			view.printStatistics(stats);
 			selectModeStage();
 		}
 		else if(mode==2) {
@@ -55,7 +55,7 @@ public class CLIController {
 			model.decideActivePlayers(); // decide active player
 			model.draw(); // draw card
 			view.print(model.getCMCStatus()); // show draw card instruction when human alive
-			view.print(model.getCMCInfo()); // show player status when human alive
+
 			if (model.getCardStringOnDeckCML()[0] != null) {
 				view.print(model.getCardStringOnDeckCML()[0]);
 			}
@@ -73,7 +73,7 @@ public class CLIController {
 			model.gameIsOver(); // game end
 			view.print(model.getCMCStatus()); // show auto play process
 		}
-		view.printArray(model.getGameResult());
+		view.printArray(model.getGameResultCLI());
 		model.updateGameData(); // update game result to database
 	}
 

@@ -57,8 +57,8 @@ public class DBTest {
         nResult = dbA.getHumanWins();
 		System.out.println("TOTAL_HUMAN_WINS: " + nResult);
 		
-        nResult = dbA.getAvgDraws();
-		System.out.println("AVERAGE_DRAWS: " + nResult);
+        Double nResultDouble = dbA.getAvgDraws();
+		System.out.println("AVERAGE_DRAWS: " + nResultDouble);
 				
         nResult = dbA.getLargestRoundsPlayed();
 		System.out.println("MOST_ROUNDS_PLAYED: " + nResult);

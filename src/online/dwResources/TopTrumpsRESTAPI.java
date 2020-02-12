@@ -118,15 +118,15 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/updateViewGameInfo")
 	public String updateViewGameInfo() {
-		return model.getGameInfo();
+		return model.getGameInfoWeb();
 	}
 	
 	@GET
 	@Path("/updateViewGameInformPackage")
 	public String updateViewGameInformPackage() {
 		String [] s = new String[2];
-		s[0]= model.getGameStatus();
-		s[1]= model.getGameInfo();
+		s[0]= model.getGameStatusWeb();
+		s[1]= model.getGameInfoWeb();
 		return arrayTrans(s);
 	}
 	
@@ -280,7 +280,7 @@ public class TopTrumpsRESTAPI {
 			System.out.println("run gameIsOver1");
 			if(model.getHumanLose()==0||model.getGameIsOver()==0){
 				cmd = 7;
-				model.updateGameData();
+				//model.updateGameData();
 			}
 			else {
 				cmd = 6;

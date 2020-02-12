@@ -24,7 +24,7 @@
 
     <body onload=stage()> <!-- Call the initalize method when the page loads -->
     	
-    	<div class="container" style.display = 'none'>
+    	<div class="container">
 
 			<!-- Add your HTML Here -->
 						 		
@@ -42,7 +42,7 @@
 
 				<div class="row ">
 					<div class="col-2 col-xl-3 mb-5 ml-5 pb-5 pl-5 mr-3 pr-3">
-						<div class="card-play  mb-4 " style="width: 13rem;">
+						<div class="card-play  mb-4" style="width: 13rem;">
 							<div class="card-header" class="cardInfo">
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
@@ -376,7 +376,6 @@
 
 					var num = xhr.response;
 					console.log(num);
-					document.getElementById(cardI).style.display = 'none'; style.display = 'block'
 					if(num == 2){
 						playerSelectEnableStage();
 					}
@@ -466,6 +465,7 @@
 
 
 			function userPressNewTurn(){
+				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressNewTurn"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -478,6 +478,7 @@
 
 
 			function userPressSelect(){
+				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressSelect"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -525,6 +526,7 @@
 			}
 		
 			function userPressShowWinner(){
+				clear();
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userPressShowWinner"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -614,29 +616,6 @@
 	
 
 
-		
-			function getGameOver(){
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateViewGameIsOver"); // Request type and URL+parameters
-					if (!xhr) {
-						alert("CORS not supported");
-					}
-					xhr.onload = function(e) {
-						if(xhr.response == 0){
-							console.log(xhr.response+ "!!!!!");
-							document.getElementById("nextRound").style.display  = 'none';
-							getPlayerResult();
-						}else{
-							console.log(xhr.response+ "gameisnoover");
-
-						}
-						console.log("getGameOver");	
-					}
-					
-				xhr.send();
-
-			}
-
-
 			
 				
 			function getPlayerResult(){
@@ -720,7 +699,6 @@
 					var strr = new Array();
 					strr=javaArrayDecode(responseText);
 					if(strr[0]=='null'){
-						document.getElementById(cardI).style.display = 'none';  
 					}else{
 						cardI = "card"+(1+parseInt(strr[0]));
 						console.log(strr);
