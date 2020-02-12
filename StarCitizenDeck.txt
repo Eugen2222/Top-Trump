@@ -18,3 +18,4 @@ Fulcrum 11 16 14 17 17
 Mirage2000 17 21 8 13 12
 Morgan 18 27 36 32 33
 Nighthawk 19 28 19 12 13
+Nighthawk 19 28 19 12 13

@@ -32,11 +32,11 @@
 						</div>
 						<div  class="card-body">
 							<ul id = "gameStats" class=" list-unstyled text-left mt-0 mb-0 ">
-								<h5 class= "stats" >Number of Games:</h5>
-								<h5 class= "stats" >Number of Games:</h5>
-								<h5 class= "stats" >Number of Games:</h5>
-								<h5 class= "stats" >Number of Games:</h5>
-								<h5 class= "stats" >Number of Games:</h5>
+								<h5 class= "stats" >Loading</h5>
+								<h5 class= "stats" ></h5>
+								<h5 class= "stats" ></h5>
+								<h5 class= "stats" ></h5>
+								<h5 class= "stats" ></h5>
 								<h5 class= "stats"></h5>
 								<h5 class= "stats"></h5>
 							</ul>

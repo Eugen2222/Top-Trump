@@ -1,9 +1,9 @@
 package commandline;
-
+import model.CLIGameModel;
 
 public class CLIController {
-	private GameModel model;
-	private View view = new View();
+	private CLIGameModel model;
+	private CLIView view = new CLIView();
 	private Boolean gameRestart;
 
 
@@ -27,7 +27,7 @@ public class CLIController {
 	public void selectModeStage() {
 		int mode = view.askPlayerSelectMode();
 		if(mode==1) {
-			model = new GameModel();
+			model = new CLIGameModel();
 			String[] stats = model.getGameStats();
 			view.printStatistics(stats);
 			selectModeStage();
@@ -41,7 +41,7 @@ public class CLIController {
 	}
 	
 	public void selectPlayerNumStage() {
-		model = new GameModel();
+		model = new CLIGameModel();
 		int numOfPlayer = view.askNumberOfPlayers();
 		model.initialiseGame(numOfPlayer);
 		playGameStage();
@@ -56,8 +56,8 @@ public class CLIController {
 			model.draw(); // draw card
 			view.print(model.getCMCStatus()); // show draw card instruction when human alive
 
-			if (model.getCardStringOnDeckCML()[0] != null) {
-				view.print(model.getCardStringOnDeckCML()[0]);
+			if (model.getCardStringOnDeckCLI()[0] != null) {
+				view.print(model.getCardStringOnDeckCLI()[0]);
 			}
 
 			if (model.humanIsActivePlayer() == 0) {
@@ -67,14 +67,18 @@ public class CLIController {
 			} else {
 				model.AISelect(); // ai select category
 			}
-
 			model.showWinner(); 
-			view.print(model.getCMCStatus());// show round winner
+			view.print(model.getCMCStatus());
+			// show round winner
+
 			model.gameIsOver(); // game end
-			view.print(model.getCMCStatus()); // show auto play process
+			view.print(model.getCMCStatus()); 
+			// show auto play process
+			model.autoPlay();
+			view.print(model.getCMCStatus()); 
 		}
 		view.printArray(model.getGameResultCLI());
-		model.updateGameData(); // update game result to database
+		//model.updateGameData(); // update game result to database
 	}
 
 }

@@ -18,7 +18,8 @@ import online.configuration.TopTrumpsJSONConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
-import commandline.GameModel;
+import model.OGameModel;
+import java.sql.SQLException;
 
 import java.util.*;
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
@@ -46,7 +47,7 @@ public class TopTrumpsRESTAPI {
 	 * the deck file and the number of AI players.
 	 * @param conf
 	 */
-	GameModel model = new GameModel();
+	OGameModel model = new OGameModel();
 	TopTrumpsJSONConfiguration webConfiguration;
 	
 	public TopTrumpsRESTAPI(TopTrumpsJSONConfiguration conf) {
@@ -183,7 +184,7 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/updateViewCardSOnDeck")
 	public String updateViewCardOnDeck() {
-		return arrayTrans(model.getCardStringOnDeckWEB());
+		return arrayTrans(model.getCardStringOnDeckWeb());
 		
 	}
 	
@@ -191,8 +192,8 @@ public class TopTrumpsRESTAPI {
 	@GET
 	@Path("/updateViewHumanCardOnDeck")
 	public String updateViewHumanCardOnDeck() {
-		System.out.print(model.getCardStringOnDeckWEB()[0]);
-		return model.getCardStringOnDeckWEB()[0];
+		System.out.print(model.getCardStringOnDeckWeb()[0]);
+		return model.getCardStringOnDeckWeb()[0];
 	}
 	
 	int cmd = 0;
@@ -278,9 +279,10 @@ public class TopTrumpsRESTAPI {
 			System.out.println("run showwinner1");
 			model.gameIsOver();
 			System.out.println("run gameIsOver1");
+			model.autoPlay();
 			if(model.getHumanLose()==0||model.getGameIsOver()==0){
 				cmd = 7;
-				//model.updateGameData();
+				model.updateGameData();
 			}
 			else {
 				cmd = 6;

@@ -1,5 +1,5 @@
 package test;
-import commandline.GameModel;
+import model.GameModel;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Random;
