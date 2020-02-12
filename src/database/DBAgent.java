@@ -23,7 +23,7 @@ public class DBAgent {
 	
 	Connection cSQL = null; // SQL connection object
 	
-	// Empty initializer
+	// Empty initialiser
 	public DBAgent() {		
 		
 	}
@@ -122,7 +122,6 @@ public class DBAgent {
 				+ nRoundsPlayed + "', '" 
 				+ nDrawTimes + "', '{" 
 				+ sWinner + "}');"; 
-		// System.out.println("updateGameStatus: " + sUpdate);		
         sendUpdate(sUpdate);
 		
 	}
@@ -142,7 +141,6 @@ public class DBAgent {
 				+ sPlayerName + "}', '"
 				+ nWinTimes + "');"; 
 		
-		// System.out.println("updatePlaerStatus: " + sUpdate);		
         sendUpdate(sUpdate);
 		
 	}
@@ -190,7 +188,6 @@ public class DBAgent {
 				rResultSet = sendQuery(sQuery);
 				while (rResultSet.next()) {
 					nTotal = rResultSet.getInt(1);
-							//Integer.parseInt(rResultSet.getString("NUMBER_OF_AI_WINS"));
 				}
 		}
 		catch (Exception e) {
@@ -219,7 +216,6 @@ public class DBAgent {
 				rResultSet = sendQuery(sQuery);
 				while (rResultSet.next()) {
 					nTotal = rResultSet.getInt(1);
-//							Integer.parseInt(rResultSet.getString("NUMBER_OF_HUMAN_WINS"));
 				}
 		}
 		catch (Exception e) {
@@ -247,7 +243,6 @@ public class DBAgent {
 				rResultSet = sendQuery(sQuery);
 				while (rResultSet.next()) {
 					rTotal = rResultSet.getDouble(1); //to double
-							// Double.parseDouble(rResultSet.getString("AVERAGE_DRAWS"));
 				}
 		}
 		catch (Exception e) {
@@ -275,7 +270,6 @@ public class DBAgent {
 				rResultSet = sendQuery(sQuery);
 				while (rResultSet.next()) {
 					nTotal = rResultSet.getInt(1);
-							// Integer.parseInt(rResultSet.getString("MOST_ROUNDS_PLAYED"));
 				}
 		}
 		catch (Exception e) {
@@ -303,7 +297,6 @@ public class DBAgent {
 				java.sql.ResultSet rResultSet = sendQuery(sQuery);
 				if (rResultSet.next()) {
 					nTotal = rResultSet.getInt(1);
-							//Integer.parseInt(rResultSet.getString("MAX_GAME_ID"));
 				}
 		}
 		catch (Exception e) {
@@ -312,7 +305,6 @@ public class DBAgent {
 	           System.err.println(e.getClass().getName()+": "+e.getMessage());
 	           System.exit(0);
 	    }	
-//		if (nTotal <= 0) nTotal = 0;
 		
 		return nTotal;
 		
