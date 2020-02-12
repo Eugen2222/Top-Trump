@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,7 +44,7 @@ public class GameModel {
 
 	// CLM
 	private String CMCStatus;
-	
+	private int humanAliveCount = 1;
 	// OnlineMode
 	private String WebInfo;
 	private String Webstatus;
@@ -373,8 +374,7 @@ public class GameModel {
 			}
 
 		}
-		// CML
-		CMCStatus += "\n\n";
+
 
 		// TestLog
 		testLog += "Round" + round + ":\rRound winner:" + roundWinner.getPlayerName() + "\r";
@@ -389,20 +389,29 @@ public class GameModel {
 				testLog += "\r";
 		}
 		testLog += "--------------------------\r";
+		System.out.println("showweiner");
 	}
 	
 	// Check if the game is over
 	public void gameIsOver() {
+		System.out.println("gameIsOver");
 		CMCStatus = "";
 		int aliveNum = 0;
 		int winnerIndex = -1;
-
+		
+		if (humanLose() && humanLose != 0) {
+			humanLose = 0;
+			autoPlay();
+		}
+		
 		for (int i = 0; i < numOfPlayer; i++) {
-			if (playerList.get(i).aliveJudge()) {
+			if(playerList.get(i).aliveJudge()) {
 				aliveNum++;
 				winnerIndex = i;
 			}
 		}
+		// CML
+		CMCStatus += "\n\n";
 		// If only one player is alive, the game is over
 		if (aliveNum == 1) {
 			if (winnerIndex == 0) {
@@ -424,10 +433,7 @@ public class GameModel {
 			// Online Mode
 			Webstatus = roundString() + "Oh, someone won but now has no card!";
 		}
-		if (humanLose() && humanLose != 0) {
-			humanLose = 0;
-			autoPlay();
-		}
+		
 	}
 	
 	// Online Mode (show win card)
@@ -474,6 +480,7 @@ public class GameModel {
 	
 	// Online Mode (When human dies, the game will automatically proceed to the end)
 	public void autoPlay() {
+		System.out.println("autoPlay");
 		String temp = "";
 		while (this.getGameIsOver() != 0) {
 			//System.out.println("autoPlay");
@@ -521,17 +528,21 @@ public class GameModel {
 	// Online Mode (show game results)
 	public String[] getGameResult() {
 		ArrayList<String> s = new ArrayList<String>();
+		
 		if (finalWinnerIndex == -1) {
 			s.add("Oh , no one won!!!");
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		} else if (finalWinnerIndex == 0) {
 			s.add("Congratulaton, the winner is you!!!");
 			s.add("you won " + playerList.get(0).getWinTimes() + " rounds.");
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		} else {
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 			s.add("The winner is:");
 			s.add(playerList.get(finalWinnerIndex).getPlayerName() + " won "
 					+ playerList.get(finalWinnerIndex).getWinTimes() + " rounds.");
 		}
-		s.add("The losers: ");
+		s.add("The losers are: ");
 		for (int i = 0; i < playerList.size(); i++) {
 			if (finalWinnerIndex == i) {
 
@@ -539,7 +550,7 @@ public class GameModel {
 				s.add(playerList.get(i).getPlayerName() + " won " + playerList.get(i).getWinTimes() + " rounds.");
 			}
 		}
-		s.add("Draw rounds: "+ numberOfDraws + " rounds.");
+
 		
 		String[] strr = s.toArray(new String[s.size()]);
 		return strr;
@@ -561,7 +572,7 @@ public class GameModel {
 						CMCtemString += "\n\t> " + cardAttribute[j + 1] + ": " + cardOnDeck[i].getDescriptions().get(j);
 					}
 				}
-				CMCtemString += "\nThere are '" + playerList.get(i).getNumOfCards() + " cards in your deck.";
+				CMCtemString += "\nThere are '" + (playerList.get(i).getNumOfCards()+1) + " cards in your deck.";
 
 				s[i] = CMCtemString;
 				CMCtemString = "";
@@ -576,18 +587,21 @@ public class GameModel {
 	// CLM (show game results)
 	public String[] getGameResultCLI() {
 		ArrayList<String> s = new ArrayList<String>();
-		s.add("Game End\n\n");
+		s.add("\n\nGame End\n\n");
 		if (finalWinnerIndex == -1) {
 			s.add("Oh , no one won!!!");
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		} else if (finalWinnerIndex == 0) {
 			s.add("Congratulaton, the winner is you!!!");
-			s.add("you won " + playerList.get(0).getWinTimes() + " rounds.");
+			s.add("You won " + playerList.get(0).getWinTimes() + " rounds.");
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		} else {
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 			s.add("The winner is:");
 			s.add(playerList.get(finalWinnerIndex).getPlayerName() + " won "
 					+ playerList.get(finalWinnerIndex).getWinTimes() + " rounds.");
 		}
-		s.add("\nThe losers are: ");
+		s.add("\n  The losers are: ");
 		for (int i = 0; i < playerList.size(); i++) {
 			if (finalWinnerIndex == i) {
 
@@ -595,7 +609,7 @@ public class GameModel {
 				s.add(playerList.get(i).getPlayerName() + " won " + playerList.get(i).getWinTimes() + " rounds.");
 			}
 		}
-		s.add("Draw rounds: "+ numberOfDraws + " rounds.");
+
 		String[] strr = s.toArray(new String[s.size()]);
 		return strr;
 	}
@@ -633,8 +647,9 @@ public class GameModel {
 		// Get game statistics
 		gameStatistics[0] = " Number of Games: "+dbA.getTotalGamesPlayed();		// Total games played
 		gameStatistics[1] = " Number of AI Wins: "+dbA.getAIWins();		 		// Number of AI wins	
-	    gameStatistics[2] = " Number of Human Wins: "+dbA.getHumanWins();		// Number of Human wins	
-	    gameStatistics[3] = " Average number of Draws: "+dbA.getAvgDraws();		// Average of draws		
+	    gameStatistics[2] = " Number of Human Wins: "+dbA.getHumanWins();       // Number of Human wins	
+	    DecimalFormat fmt = new DecimalFormat("##0.0");
+	    gameStatistics[3] = " Average number of Draws: "+fmt.format(dbA.getAvgDraws());		// Average of draws		
 	    gameStatistics[4] = " Longest Game: "+dbA.getLargestRoundsPlayed()+"\r";			// Most round played
 			                     			
 	    // Close connection when done
@@ -670,8 +685,14 @@ public class GameModel {
 	}
 
 	public boolean humanLose() {
+		System.out.println("humanLose"+playerList.get(0).aliveJudge());
 		if (!playerList.get(0).aliveJudge()) {
-			Webstatus = roundString() + "Sorry, you lose!";
+			if(this.humanAliveCount==1) {
+				--humanAliveCount;
+				System.out.println("hhhhhh");
+				Webstatus = roundString() + "Sorry, you lose!";
+				CMCStatus += roundString() + "Sorry, you has lost!";
+			}
 			return true;
 		}
 		return false;

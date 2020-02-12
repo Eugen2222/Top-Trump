@@ -67,11 +67,14 @@ public class CLIController {
 			} else {
 				model.AISelect(); // ai select category
 			}
-
+			view.print("c start showwinner");
 			model.showWinner(); 
-			view.print(model.getCMCStatus());// show round winner
+			view.print(model.getCMCStatus());
+			view.print("c end showwinner");// show round winner
+			view.print("c start game");
 			model.gameIsOver(); // game end
-			view.print(model.getCMCStatus()); // show auto play process
+			view.print(model.getCMCStatus()); 
+			view.print("c end game");// show auto play process
 		}
 		view.printArray(model.getGameResultCLI());
 		model.updateGameData(); // update game result to database

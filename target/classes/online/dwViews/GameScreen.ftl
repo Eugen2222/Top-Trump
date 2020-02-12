@@ -42,8 +42,8 @@
 
 				<div class="row ">
 					<div class="col-2 col-xl-3 mb-5 ml-5 pb-5 pl-5 mr-3 pr-3">
-						<div class="card-play  mb-4" style="width: 13rem;">
-							<div class="card-header" class="cardInfo">
+						<div class="card-play  pb-3" style="width: 13rem;">
+							<div class="card-header " class="cardInfo">
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
 							<div  class="card-body text-center">
@@ -77,7 +77,7 @@
 							
 								<div >
 									<ul id = "playerResult" class=" list-unstyled text-left mt-0 mb-4 px-3">
-										<h6 class= "result"></h6>
+										<h6 class= "result">Loading game result</h6>
 										<h6 class= "result"></h6>
 										<h6 class= "result"></h6>
 										<h6 class= "result"></h6>
@@ -322,7 +322,7 @@
 
 
 			function clear(){
-
+				document.getElementById("playerResult").style.display = 'none';
 				document.getElementById("showWinner").style.display = 'none';
 				document.getElementById("nextRound").style.display = 'none';
 				document.getElementById("humanSelectButton").style.display = 'none';
@@ -452,11 +452,13 @@
 			}
 
 			function showGameResultStage(){
+				console.log("1");	
+				document.getElementById("playerResult").style.display = 'block';
+				console.log("2");	
 				getGameInfoPackage();
 				getWinner();
-				getPlayerResult();
 				getCommonPile();
-				document.getElementById("playerResult").style.display = 'block';
+				getPlayerResult();
 				console.log("showGameResultStage");	
 			}
 
