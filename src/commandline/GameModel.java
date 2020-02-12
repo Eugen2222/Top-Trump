@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,6 +43,7 @@ public class GameModel {
 	//Hui part
 	private int numOfAttribute = 0;
 	
+
 
 
 	public void initialiseGame(int num) {
@@ -334,6 +336,7 @@ public class GameModel {
 			}
 
 		}
+
 		CMCStatus += "\n\n";
 
 		// testLog
@@ -349,20 +352,23 @@ public class GameModel {
 				testLog += "\r";
 		}
 		testLog += "--------------------------\r";
+		System.out.println("showweiner");
 	}
 
 	public void gameIsOver() {
+		System.out.println("gameIsOver");
 		CMCStatus = "";
 		int aliveNum = 0;
 		int winnerIndex = -1;
+
 		//System.out.println("gameIsOver");
+
 		for (int i = 0; i < numOfPlayer; i++) {
-			if (playerList.get(i).aliveJudge()) {
+			if(playerList.get(i).aliveJudge()) {
 				aliveNum++;
 				winnerIndex = i;
 			}
 		}
-
 		if (aliveNum == 1) {
 			if (winnerIndex == 0) {
 				Webstatus = roundString() + "Congratulation, you won this game!";
@@ -380,10 +386,7 @@ public class GameModel {
 			Webstatus = roundString() + "Oh, someone won but now has no card!";
 			gameIsOver = 0;
 		}
-		if (humanLose() && humanLose != 0) {
-			humanLose = 0;
-			autoPlay();
-		}
+		
 	}
 	
 	
@@ -445,6 +448,7 @@ public class GameModel {
 	}
 
 	public void autoPlay() {
+		System.out.println("autoPlay");
 		String temp = "";
 		while (this.getGameIsOver() != 0) {
 			//System.out.println("autoPlay");
@@ -548,17 +552,21 @@ public class GameModel {
 
 	public String[] getGameResult() {
 		ArrayList<String> s = new ArrayList<String>();
+		
 		if (finalWinnerIndex == -1) {
 			s.add("Oh , no one won!!!");
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		} else if (finalWinnerIndex == 0) {
 			s.add("Congratulaton, the winner is you!!!");
 			s.add("you won " + playerList.get(0).getWinTimes() + " rounds.");
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		} else {
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 			s.add("The winner is:");
 			s.add(playerList.get(finalWinnerIndex).getPlayerName() + " won "
 					+ playerList.get(finalWinnerIndex).getWinTimes() + " rounds.");
 		}
-		s.add("The losers: ");
+		s.add("The losers are: ");
 		for (int i = 0; i < playerList.size(); i++) {
 			if (finalWinnerIndex == i) {
 
@@ -566,7 +574,7 @@ public class GameModel {
 				s.add(playerList.get(i).getPlayerName() + " won " + playerList.get(i).getWinTimes() + " rounds.");
 			}
 		}
-		s.add("Draw rounds: "+ numberOfDraws + " rounds.");
+
 		
 		String[] strr = s.toArray(new String[s.size()]);
 		return strr;
@@ -575,18 +583,21 @@ public class GameModel {
 	
 	public String[] getGameResultCLI() {
 		ArrayList<String> s = new ArrayList<String>();
-		s.add("Game End\n\n");
+		s.add("\n\nGame End\n\n");
 		if (finalWinnerIndex == -1) {
 			s.add("Oh , no one won!!!");
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		} else if (finalWinnerIndex == 0) {
 			s.add("Congratulaton, the winner is you!!!");
-			s.add("you won " + playerList.get(0).getWinTimes() + " rounds.");
+			s.add("You won " + playerList.get(0).getWinTimes() + " rounds.");
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		} else {
+			s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 			s.add("The winner is:");
 			s.add(playerList.get(finalWinnerIndex).getPlayerName() + " won "
 					+ playerList.get(finalWinnerIndex).getWinTimes() + " rounds.");
 		}
-		s.add("\nThe losers are: ");
+		s.add("\n  The losers are: ");
 		for (int i = 0; i < playerList.size(); i++) {
 			if (finalWinnerIndex == i) {
 
@@ -594,7 +605,7 @@ public class GameModel {
 				s.add(playerList.get(i).getPlayerName() + " won " + playerList.get(i).getWinTimes() + " rounds.");
 			}
 		}
-		s.add("Draw rounds: "+ numberOfDraws + " rounds.");
+
 		String[] strr = s.toArray(new String[s.size()]);
 		return strr;
 	}

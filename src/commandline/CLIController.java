@@ -67,6 +67,7 @@ public class CLIController {
 			} else {
 				model.AISelect(); // ai select category
 			}
+
 			model.showWinner(); 
 			view.print(model.getCMCStatus());
 			// show round winner
@@ -76,6 +77,7 @@ public class CLIController {
 			// show auto play process
 			model.autoPlay();
 			view.print(model.getCMCStatus()); 
+
 		}
 		view.printArray(model.getGameResultCLI());
 		//model.updateGameData(); // update game result to database
