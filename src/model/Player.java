@@ -1,13 +1,13 @@
 package model;
 
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class Player {
 	private String playerName;
-	private List<Card> cardList = new ArrayList<>();
+	private List<Card> cardList = new LinkedList<>();
 	private int winTimes;
 	private boolean alive = true;
 

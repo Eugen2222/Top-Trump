@@ -125,7 +125,7 @@ public class CLIGameModel extends GameModel {
 						CMCtemString += "\n\t> " + cardAttribute[j + 1] + ": " + cardOnDeck[i].getDescriptions().get(j);
 					}
 				}
-				CMCtemString += "\nThere are '" + (playerList.get(i).getNumOfCards()+1) + " cards in your deck.";
+				CMCtemString += "\nThere are '" + (playerList.get(i).getNumOfCards()) + " cards in your deck.";
 
 				s[i] = CMCtemString;
 				CMCtemString = "";

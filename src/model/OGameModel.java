@@ -150,7 +150,7 @@ public class OGameModel extends GameModel {
 
 				temString += playerList.get(i).getPlayerName() + "  ";
 				temString += "Name:" + cardOnDeck[i].getCardName() + ",";
-				temString += "x" + (playerList.get(i).getNumOfCards() + 1) + ","; // plus the card on deck;
+				temString += "x" + (playerList.get(i).getNumOfCards()) + ","; // plus the card on deck;
 				for (int j = 0; j < cardAttribute.length - 1; j++) {
 					if (j == cardAttribute.length - 2) {
 						temString += cardAttribute[j + 1] + ": "

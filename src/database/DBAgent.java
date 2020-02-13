@@ -19,6 +19,7 @@ public class DBAgent {
 	private String sqlUsername = "GetA1"; 
 	private String sqlPassword = "GetA1"; 
 
+
 	
 	Connection cSQL = null; // SQL connection object
 	
@@ -111,15 +112,15 @@ public class DBAgent {
 	 * GameStatus table parameters: GameID, DrawTimes, RoundsPlayed, Winner
 	 * PlayerPerformance table parameters: GameID, PlayerName, WinTimes
 	 */
-	public void updateGameStatus(int nGameID, int nRoundsPlayed, int nDrawTimes, String sWinner) {
+	public void updateGameStatus(int GameID, int Rounds, int Draw, String Winner) {
 		
 		String sUpdate;
 		
 		sUpdate = "INSERT INTO  GAMESTATUS VALUES ('" 
-				+ nGameID + "', '" 
-				+ nRoundsPlayed + "', '" 
-				+ nDrawTimes + "', '{" 
-				+ sWinner + "}');"; 
+				+ GameID + "', '" 
+				+ Rounds + "', '" 
+				+ Draw + "', '{" 
+				+ Winner + "}');"; 
 		// System.out.println("updateGameStatus: " + sUpdate);		
         sendUpdate(sUpdate);
 		
@@ -131,14 +132,14 @@ public class DBAgent {
 	 * GameStatus table parameters: GameID, DrawTimes, RoundsPlayed, Winner
 	 * PlayerPerformance table parameters: GameID, PlayerName, WinTimes
 	 */
-	public void updatePlayerStatus(int nGameID, String sPlayerName, int nWinTimes) {
+	public void updatePlayerStatus(int GameID, String PlayerName, int WinTimes) {
 		
 		String sUpdate;
 		
 		sUpdate = "INSERT INTO  PLAYERPERFORMANCE VALUES ('" 
-				+ nGameID + "', '{" 
-				+ sPlayerName + "}', '"
-				+ nWinTimes + "');"; 
+				+ GameID + "', '{" 
+				+ PlayerName + "}', '"
+				+ WinTimes + "');"; 
 		
 		// System.out.println("updatePlaerStatus: " + sUpdate);		
         sendUpdate(sUpdate);

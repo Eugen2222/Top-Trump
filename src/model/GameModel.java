@@ -135,7 +135,7 @@ public class GameModel {
 		}
 		testLog += "--------------------------\r";
 		
-		// Each player get one card serially
+		// Each player get one card at order
 		while (!cardList.isEmpty()) {
 			for (int i = 0; i < numOfPlayer && !cardList.isEmpty(); i++) {
 				playerList.get(i).getCardList().add(cardList.get(0));
@@ -187,7 +187,7 @@ public class GameModel {
 		for (int i = 0; i < numOfPlayer; i++) {
 			if (playerList.get(i).aliveJudge()) {
 				cardOnDeck[i] = playerList.get(i).getCardList().get(0);
-				playerList.get(i).getCardList().remove(0);
+
 			} else {
 				cardOnDeck[i] = null;
 			}
@@ -280,6 +280,8 @@ public class GameModel {
 			for (int i = 0; i < cardOnDeck.length; i++) {
 				if (cardOnDeck[i] != null) {
 					commonPile.add(cardOnDeck[i]);
+					cardOnDeck[i]=null;
+					this.playerList.get(i).getCardList().remove(0);
 				}
 
 			}
@@ -315,6 +317,7 @@ public class GameModel {
 				if (cardOnDeck[i] != null) {
 					playerList.get(roundWinnerIndex).getCardList().add(cardOnDeck[i]);
 					cardOnDeck[i]=null;
+					playerList.get(i).getCardList().remove(0);
 				}
 			}
 
