@@ -76,13 +76,19 @@ class GameModelTest {
 		for(int i=0;i<playerNum;i++) {
 			if(model.getPlayerList().get(i).aliveJudge()) numOfAlivePlayer++;
 			if(model.getPlayerList().get(i).getNumOfCards()==0) zeroCardPlayer++;
-			if(model.getPlayerList().get(i).getNumOfCards()==40) allCardPlayer++;//wrong
+			if(model.getPlayerList().get(i).getNumOfCards()==40) allCardPlayer++;
 		}
 		
 		Assert.assertEquals("numOfAlive error",1,numOfAlivePlayer);
-		Assert.assertEquals("numOfAlive error",allCardPlayer,1);
-		Assert.assertEquals("numOfAlive error",zeroCardPlayer+allCardPlayer,playerNum);
-		Assert.assertEquals("numOfAlive error",40,model.getPlayerList().get(model.getFinalWinnerIndex()).getNumOfCards());
+		Assert.assertEquals("numOfDeath error",zeroCardPlayer+allCardPlayer,playerNum);
+		
+		if(model.getCommonPile().isEmpty()) {
+			Assert.assertEquals("winner error",allCardPlayer,1);
+			Assert.assertEquals("total cards error",40,model.getPlayerList().get(model.getFinalWinnerIndex()).getNumOfCards());
+		}else {
+			int cards = model.getCommonPile().size() + model.getPlayerList().get(model.getFinalWinnerIndex()).getNumOfCards();
+			Assert.assertEquals("total cards error",40, cards);
+		}
 	}
 	
 	@Test

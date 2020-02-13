@@ -22,18 +22,23 @@ public class TestGameModel extends GameModel{
 		return finalWinnerIndex;
 	}
 	
-	//junit
+	// Junit test
 	public int getRound() {
 		return round;
 	}
 	
-	//junit
+	// Junit test
 	public int getNumOfPlayer() {
 		return numOfPlayer;
 	}
 		
-		//junit
+	// Junit test
 	public List<Player> getPlayerList() {
 		return playerList;
 	}	
+	
+	// Junit test
+	public List<Card> getCommonPile() {
+		return commonPile;
+	}
 }

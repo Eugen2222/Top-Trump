@@ -21,22 +21,6 @@ public class DBTest {
     	DBAgent dbA = new DBAgent(); // use a single DBAgent instance to connect to a database
     	int nResult = 0;
     	double rResult = 0.0;
-  
-    	// Test command interface
-  /*
-    	Scanner input = new Scanner(System.in);
-        System.out.print("Enter Username: ");
-        String username = input.nextLine();
-
-        System.out.print("Enter Password: ");
-        String password = input.nextLine();
-        System.out.println();
-        input.close();
-                
-        // Test set user and password
-        dbA.setSQLUsername(username);
-        dbA.setSQLPassword(password);
-   */     
         
     	// Test open connection
         if (dbA.openConnection()) {
@@ -45,20 +29,7 @@ public class DBTest {
         	System.out.println("Database is NOT online. Exiting");
         	return;
         }
-/*
-        try {  	      
-           dbA.sendUpdate("INSERT INTO  public.\"GameStatus\""
-              		+ "( \"NumberOfDraws\", \"PName\", \"WinTime\", \"Winner\", \"RoundsPlayed\", \"RoundsWon\") "
-              		+ "VALUES ('10', '{PlayerOne}', '5', '{AI}', '15', '3');");
-  		}
-        
- 		catch (Exception e) {
- 			// Print exception information
-            e.printStackTrace();
-            System.err.println(e.getClass().getName()+": "+e.getMessage());
-            System.exit(0);
-        }	
-*/       
+
         try {
     	      
            java.sql.ResultSet sResult =  dbA.sendQuery("SELECT * FROM public.\"GameStatus\"");

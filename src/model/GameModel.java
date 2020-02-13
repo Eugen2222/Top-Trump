@@ -385,25 +385,15 @@ public abstract class GameModel {
 		return gameResult;
 	}
 	
-	
-	
-	// When human dies, the game will automatically proceed to the end
-	
-	
-	
-	
-	
 	// Update the GameStatus and PlayerPeformance databases
 	public void updateGameData() {
 
 				// Database access object
 				DBAgent dbA = new DBAgent(); // use a single DBAgent instance to connect to the database
-				
-				
+								
 				if(dbA.openConnection()) {
 					
-					// Get the maximum gameID from the database
-					
+					// Get the maximum gameID from the database	
 					
 					int nGameID = dbA.getMaxGameID() +1; // get the next game ID
 				 
@@ -484,42 +474,5 @@ public abstract class GameModel {
 	public boolean getGameIsOver() {
 		return gameIsOver;
 	}
-	
-	
-
-//	public Card[] getCardOnDeck() {
-//		return cardOnDeck;
-//	}
-	
-
-
-
-//	public Card getWinCard() {
-//		return winCard;
-//	}
-
-//	public Player getRoundWinner() {
-//		return roundWinner;
-//	}
-
-//	public int getRoundWinnerIndex() {
-//		return roundWinnerIndex;
-//	}
-
-	
-
-//	public List<Card> getCommonPile() {
-//		return commonPile;
-//	}
-
-//	public int getNumberOfDraws() {
-//		return numberOfDraws;
-//	}
-
-//	public Player getActivePlayer() {
-//		return activePlayer;
-//	}
-//	
-
 
 }
