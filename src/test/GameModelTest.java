@@ -55,16 +55,16 @@ class GameModelTest {
 	@Test
 	public void testGameover() {
 		//player game
-		while(model.getGameIsOver()!= 0) {
+		while(model.getGameIsOver()== false) {
 			model.decideActivePlayers();
 			model.draw();
-			if (model.humanIsActivePlayer() == 0) {
+			if (model.humanIsActivePlayer() == true) {
 				model.humanSelect(5);	
 			} else {
 				model.AISelect(); 
 			}
 			model.showWinner(); 
-			model.gameIsOver();
+			model.checkGameIsOver();
 		}
 		
 		// final result test
@@ -76,7 +76,7 @@ class GameModelTest {
 		for(int i=0;i<playerNum;i++) {
 			if(model.getPlayerList().get(i).aliveJudge()) numOfAlivePlayer++;
 			if(model.getPlayerList().get(i).getNumOfCards()==0) zeroCardPlayer++;
-			if(model.getPlayerList().get(i).getNumOfCards()==40) allCardPlayer++;
+			if(model.getPlayerList().get(i).getNumOfCards()==40) allCardPlayer++;//wrong
 		}
 		
 		Assert.assertEquals("numOfAlive error",1,numOfAlivePlayer);

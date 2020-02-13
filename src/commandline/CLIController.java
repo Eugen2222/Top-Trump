@@ -51,16 +51,16 @@ public class CLIController {
 	// game process
 	public void playGameStage() {
 		view.printGameStart();
-		while (model.getGameIsOver() != 0) {
+		while (model.getGameIsOver() == false) {
 			model.decideActivePlayers(); // decide active player
 			model.draw(); // draw card
 			view.print(model.getCMCStatus()); // show draw card instruction when human alive
 
-			if (model.getCardStringOnDeckCLI()[0] != null) {
+			if (model.getHumanLose() == false) {
 				view.print(model.getCardStringOnDeckCLI()[0]);
 			}
 
-			if (model.humanIsActivePlayer() == 0) {
+			if (model.humanIsActivePlayer() == true) {
 				view.printAskSelectCategory();
 				int categorySelect = view.askPlayerSelectCategory();
 				model.humanSelect(categorySelect);	// human select category
@@ -71,14 +71,12 @@ public class CLIController {
 			view.print(model.getCMCStatus());
 			// show round winner
 
-			model.gameIsOver(); // game end
+			model.checkGameIsOver();// game end
 			view.print(model.getCMCStatus()); 
-			// show auto play process
-			model.autoPlay();
-			view.print(model.getCMCStatus()); 
+			// show auto play process 
 		}
 		view.printArray(model.getGameResultCLI());
-		//model.updateGameData(); // update game result to database
+		model.updateGameData(); // update game result to database
 	}
 
 }

@@ -151,31 +151,24 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	
-	@GET
-	@Path("/updateHumanIsActivePlayer")
-	public int updateViewHumanIsActivePlayer() {
-		return model.humanIsActivePlayer();
-	}
-	
 	@GET
 	@Path("/askViewHumanSelect")
 	public void askViewHumanSelect(@QueryParam("Word") int num) {
 		 model.humanSelect(num);
 	}
 	
-
-	@GET
-	@Path("/updateViewGameIsOver")
-	public int updateViewGameIsOver() {
-		if(model.getHumanLose()==0) return model.getHumanLose();
-		return model.getGameIsOver();
-	}
+//
+//	@GET
+//	@Path("/updateViewGameIsOver")
+//	public int updateViewGameIsOver() {
+//		if(model.getHumanLose()==0) return model.getHumanLose();
+//		return model.getGameIsOver();
+//	}
 	
 	@GET
 	@Path("/updataViewPlayerResult")
 	public String updataViewPlayerResult() {
-		model.createLog();
+
 		return arrayTrans(model.getGameResult());
 	}
 	
@@ -277,12 +270,13 @@ public class TopTrumpsRESTAPI {
 			System.out.println("showwinnerbutton");
 			model.showWinner();
 			System.out.println("run showwinner1");
-			model.gameIsOver();
+			model.checkGameIsOver();
 			System.out.println("run gameIsOver1");
-			model.autoPlay();
-			if(model.getHumanLose()==0||model.getGameIsOver()==0){
+			model.AIAutoPlay();
+			if(model.getGameIsOver()==true){
 				cmd = 7;
-				model.updateGameData();
+				
+				//model.createLog();
 			}
 			else {
 				cmd = 6;
@@ -290,6 +284,12 @@ public class TopTrumpsRESTAPI {
 			System.out.println(cmd);
 		}
 	}
+	@GET
+	@Path("/requestUpdateGameDate")
+	public void requestUpdateGameDate() {
+		model.updateGameData();
+	}
+	
 	
 	@GET
 	@Path("/updateRoundWinner")

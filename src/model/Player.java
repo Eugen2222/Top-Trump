@@ -16,10 +16,7 @@ public class Player {
 		playerName = name;
 	}
 	
-	public void setPlayerName(String n) {
-		playerName = n;
-	}
-	
+
 	public String getPlayerName() {
 		return playerName;
 	}

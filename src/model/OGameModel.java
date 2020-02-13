@@ -3,12 +3,104 @@ package model;
 import java.util.ArrayList;
 
 public class OGameModel extends GameModel {
-
+	
+	private String WebInfo = "";
+	private String Webstatus = "";
+	
 	public OGameModel() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
+	public void draw() {
+		super.draw();
+		WebInfo = "The active player is " + activePlayer.getPlayerName() + ".";
+		Webstatus = roundString() + "Players have drawn their cards.";
+	}
+	
+	
+	public boolean humanIsActivePlayer() {
+		boolean humanIsActive = super.humanIsActivePlayer();
+		if(humanIsActive) {
+			Webstatus = roundString() + "Waiting on you to select a category ~ ";
+			return true;
+		}else {
+			Webstatus = roundString() + "Waiting on " + activePlayer.getPlayerName() + " to select a category ";
+			return false;
+		}
+	}
+	
+	
+	public void humanSelect(int num) {
+		super.humanSelect(num);
+		this.Webstatus = roundString() + "You selected " + cardAttribute[num] + ".";
+		
+	}
+	
+	public void AISelect() {
+		super.AISelect();
+		this.Webstatus = roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[roundSelectIndex] + ".";
+	}
+	
+
+	public int showWinner() {
+		int roundResult = super.showWinner();
+		if(roundResult == 0) {
+			Webstatus = roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
+		}
+		else if(roundResult == 1) {
+			Webstatus = roundString() + "Congratulation, you won this round!";
+		}
+		else if(roundResult == 2) {
+			Webstatus = roundString() + "Oh, " + playerList.get(roundWinnerIndex).getPlayerName()
+					+ " won this round.";
+		}
+		return roundResult;
+	}
+	
+	public int checkGameIsOver() {
+		int gameResult = super.checkGameIsOver();
+		if(gameResult == 0) {
+			Webstatus = roundString() + "Congratulation, you won this game!";
+			WebInfo = "Oh, the game is over.";
+		}
+		else if(gameResult == 1) {
+			Webstatus = roundString() + "Oh, " + playerList.get(finalWinnerIndex).getPlayerName()
+					+ " won this round.";
+			WebInfo = "Sorry, the game is over.";
+		}
+		else if(gameResult == 2) {
+			Webstatus = roundString() + "Oh, someone won but now he has no card!";
+			WebInfo = "Sorry, the game is over.";	
+		}
+		
+		return gameResult;		
+	}
+	
+	
+	
+	
+	public void AIAutoPlay() {
+		if(humanLose==true&&gameIsOver==false) {
+			//System.out.println("autoPlay");
+			while (this.getGameIsOver() == false) {
+				this.decideActivePlayers();
+				this.draw();
+				this.AISelect();
+				this.showWinner();
+				this.checkGameIsOver();
+			}
+		}
+	}
+	
+	
+	public String getGameStatusWeb() {
+		return this.Webstatus;
+	}
+	
+	public String getGameInfoWeb() {
+		return this.WebInfo;
+	}
 	// Online Mode (show win card)
 	public String[] showWinnerCard() {
 		String [] s = new String [2];
@@ -105,4 +197,7 @@ public class OGameModel extends GameModel {
 				
 		String[] strr = s.toArray(new String[s.size()]);			return strr;
 	}
+	
+	
+	
 }

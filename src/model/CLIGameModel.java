@@ -3,10 +3,79 @@ package model;
 import java.util.ArrayList;
 
 public class CLIGameModel extends GameModel {
-
+	private String CLIStatus;
+	private boolean displayHumanLose = false;
 	public CLIGameModel() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public void defaultCard() {
+		super.defaultCard();
+		CLIStatus ="";
+	}
+	
+	
+	public void draw() {
+		super.draw();
+		CLIStatus = "\n"+"Round " + round + "\n" + roundString() + "Players have drawn their cards.";
+		CLIStatus += "\n"+ roundString() +"The active player is " + activePlayer.getPlayerName() + ".";
+	}
+	
+	public void humanSelect(int num) {
+		super.humanSelect(num);
+		CLIStatus = "\n"+roundString() + "You selected " + cardAttribute[num] + ".";
+		
+	}
+	
+	public void AISelect() {
+		super.AISelect();
+		CLIStatus = "\n"+roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[roundSelectIndex] + ".";
+	}
+	
+	
+	public int showWinner() {
+		int roundResult = super.showWinner();
+		if(roundResult == 0) {
+			CLIStatus +="\n"+roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
+		}
+		else if(roundResult == 1) {
+			CLIStatus += "\n"+roundString() + "You won this round!!!";
+		}
+		else if(roundResult == 2) {
+			CLIStatus += "\n" + roundString() + "Player " + playerList.get(roundWinnerIndex).getPlayerName()
+					+ " won this round.";
+		}
+		//show the winning card
+		CLIStatus += "\nThe winning card was '" + winCard.getCardName() + "' :";
+		for (int i = 0; i < cardAttribute.length - 1; i++) {
+			if (i == cardAttribute.length - 1 - 1) {
+				CLIStatus += "\n\t> " + cardAttribute[i + 1] + ": "
+						+ winCard.getDescriptions().get(cardOnDeck.length - 1);
+			} else {
+				CLIStatus += "\n\t> " + cardAttribute[i + 1] + ": " + winCard.getDescriptions().get(i);
+			}
+			if (i + 1 == roundSelectIndex) {
+				CLIStatus += "\t<--";
+			}
+		}
+		
+		return roundResult;
+	}
+	
+	public int checkGameIsOver() {
+		CLIStatus = "";
+		int gameResult = super.checkGameIsOver();
+		if(displayHumanLose==false && humanLose == true) {
+			CLIStatus += "\n"+roundString() + "Sorry, you has lost!";
+			displayHumanLose = true;
+		}
+		CLIStatus += "\n\n";		
+		return gameResult;	
+	}
+	
+	
+	
 	
 	// CLM (show game results)
 	public String[] getGameResultCLI() {
@@ -67,7 +136,12 @@ public class CLIGameModel extends GameModel {
 		return s;
 	}
 	
+	public String getCMCStatus() {
+		return this.CLIStatus;
+	}
 	
-	
+	public boolean getHumanLose() {
+		return this.humanLose;
+	}
 	
 }

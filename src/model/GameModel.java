@@ -36,18 +36,15 @@ public class GameModel {
 	protected int roundSelectIndex;
 	protected int finalWinnerIndex;
 	
-	protected int gameIsOver;
-	protected int humanLose;
+	protected boolean gameIsOver;
+	protected boolean humanLose;
 	
 	// TestLog
 	protected String testLog;
 
 	// CLM
-	protected String CLIStatus;
 	protected int humanAliveCount = 1;
 	// OnlineMode
-	protected String WebInfo;
-	protected String Webstatus;
 	
 	// Initialise the game
 	public void initialiseGame(int num) {
@@ -63,9 +60,6 @@ public class GameModel {
 		winCard = null;
 		activePlayer = null;
 		roundWinner = null;
-		
-		Webstatus = "";
-		WebInfo = "";
 		testLog = "";
 		
 		round = 0;
@@ -73,8 +67,8 @@ public class GameModel {
 		roundSelectIndex = 0;
 		activePlayerIndex = -1;
 		finalWinnerIndex = -1;
-		gameIsOver = -1;
-		humanLose = -1;
+		gameIsOver = false;
+		humanLose = false;
 	
 		defaultPlayer();
 		defaultCard();
@@ -183,7 +177,7 @@ public class GameModel {
 		// TestLog
 		testLog += "Active player: " + activePlayer.getPlayerName() + "\r";
 		testLog += "--------------------------\r";
-		CLIStatus ="";
+
 	}
 
 	
@@ -198,15 +192,6 @@ public class GameModel {
 				cardOnDeck[i] = null;
 			}
 		}
-		
-		// OnlineMode
-		WebInfo = "The active player is " + activePlayer.getPlayerName() + ".";
-		Webstatus = roundString() + "Players have drawn their cards.";
-		
-		// CLM
-		CLIStatus = "\n"+"Round " + round + "\n" + roundString() + "Players have drawn their cards.";
-		CLIStatus += "\n"+ roundString() +"The active player is " + activePlayer.getPlayerName() + ".";
-		
 		// TestLog
 		testLog += "Draw:\r";
 		
@@ -221,23 +206,15 @@ public class GameModel {
 
 
 	// If human is active player, human need to select the attributes
-	public int humanIsActivePlayer() {
-		if (!activePlayer.equals(playerList.get(0))) {
-			Webstatus = roundString() + "Waiting on " + activePlayer.getPlayerName() + " to select a category ";
-			return -1;
+	public boolean humanIsActivePlayer() {
+		if (!activePlayer.equals(playerList.get(0))) {	
+			return false;
 		}
-		Webstatus = roundString() + "Waiting on you to select a category ~ ";
-		return 0;
+		return true;
 	}
 
 	public void humanSelect(int num) {
 		roundSelectIndex = num;
-		
-		// CLM
-		CLIStatus = "\n"+roundString() + "You selected " + cardAttribute[num] + ".";
-		// Online Mode
-		Webstatus = roundString() + "You selected " + cardAttribute[num] + ".";
-		
 		// TestLog
 		testLog += "Category selected:\r" + cardAttribute[num] + ": " + cardOnDeck[0].getDescriptions().get(num - 1)
 				+ "\r";
@@ -262,12 +239,6 @@ public class GameModel {
 		}
 		roundSelectIndex = bestChoice + 1;
 		
-		// CLM
-		CLIStatus = "\n"+roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[roundSelectIndex] + ".";
-		
-		// Online Mode
-		Webstatus = roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[roundSelectIndex] + ".";
-		
 		// TestLog
 		testLog += "Category selected:\r" + cardAttribute[roundSelectIndex] + ": "
 				+ cardOnDeck[activePlayerIndex].getDescriptions().get(bestChoice) + "\r";
@@ -276,10 +247,16 @@ public class GameModel {
 	}
 	
 	// Determine the round winner
-	public void showWinner() {
+	public int showWinner() {
 		roundWinnerIndex = -1;
 		int maxValue = 0;
-		boolean drew = false;
+		boolean draw = false;
+		int roundResult = -1;		
+		// record the types of the round result
+		//0=Draw, 1=Human won,
+		
+		
+		
 		// Compare the selected attribute with other players
 		for (int i = 0; i < cardOnDeck.length; i++) {
 			if (cardOnDeck[i] != null) {
@@ -287,10 +264,10 @@ public class GameModel {
 				if (currentValue > maxValue) {
 					maxValue = currentValue;
 					roundWinnerIndex = i;
-					drew = false;
+					draw = false;
 				} else if (currentValue == maxValue) {
 					roundWinnerIndex = i;
-					drew = true;
+					draw = true;
 				}
 			}
 		}
@@ -298,7 +275,7 @@ public class GameModel {
 		winCard = cardOnDeck[roundWinnerIndex];// For command mode
 		
 		// If drew, add cards to the common pile
-		if (drew) {
+		if (draw) {
 			numberOfDraws++;
 			for (int i = 0; i < cardOnDeck.length; i++) {
 				if (cardOnDeck[i] != null) {
@@ -307,12 +284,7 @@ public class GameModel {
 
 			}
 			roundWinner = activePlayer;
-			
-			// CLM
-			CLIStatus +="\n"+roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
-			
-			// Online Mode
-			Webstatus = roundString() + "This round was a draw, common pile now has " + commonPile.size() + " cards.";
+			roundResult = 0; //record the result
 			
 			// TestLog
 			testLog += "CommonPile:\r";
@@ -322,25 +294,12 @@ public class GameModel {
 			testLog += "--------------------------\r";
 		} else {// Has winner
 			playerList.get(roundWinnerIndex).addWin();
-			if (roundWinnerIndex == 0) {
-				
+			if (roundWinnerIndex == 0) { //human won				
 				roundWinner = playerList.get(roundWinnerIndex);
-				
-				// CLM
-				CLIStatus += "\n"+roundString() + "You won this round!!!";
-				// Online Mode
-				Webstatus = roundString() + "Congratulation, you won this round!";
-			} else {
-				
+				roundResult = 1; //record the result
+			} else {	//AI won
 				roundWinner = playerList.get(roundWinnerIndex);
-				
-				// Online Mode
-				Webstatus = roundString() + "Oh, " + playerList.get(roundWinnerIndex).getPlayerName()
-						+ " won this round.";
-				// CLM
-				CLIStatus += "\n" + roundString() + "Player " + playerList.get(roundWinnerIndex).getPlayerName()
-						+ " won this round.";
-				
+				roundResult = 2;  //record the result
 			}
 			activePlayer = roundWinner;
 			
@@ -360,23 +319,7 @@ public class GameModel {
 			}
 
 		}
-		// CML
-		CLIStatus += "\nThe winning card was '" + winCard.getCardName() + "' :";
 		
-		for (int i = 0; i < cardAttribute.length - 1; i++) {
-			if (i == cardAttribute.length - 1 - 1) {
-				CLIStatus += "\n\t> " + cardAttribute[i + 1] + ": "
-						+ winCard.getDescriptions().get(cardOnDeck.length - 1);
-			} else {
-				CLIStatus += "\n\t> " + cardAttribute[i + 1] + ": " + winCard.getDescriptions().get(i);
-			}
-			if (i + 1 == roundSelectIndex) {
-				CLIStatus += "\t<--";
-			}
-
-		}
-
-
 		// TestLog
 		testLog += "Round" + round + ":\rRound winner:" + roundWinner.getPlayerName() + "\r";
 		testLog += "--------------------------\r";
@@ -390,12 +333,16 @@ public class GameModel {
 				testLog += "\r";
 		}
 		testLog += "--------------------------\r";
+		
+		
+		return roundResult;	//send out result	
 	}
 	
 	// Check if the game is over
-	public void gameIsOver() {
-
-		CLIStatus = "";
+	public int checkGameIsOver() {
+		int gameResult = -1; 
+		// record the game result
+		//0=Human lose the game, 
 		int aliveNum = 0;
 		int winnerIndex = -1;
 		
@@ -406,63 +353,34 @@ public class GameModel {
 			}
 		}
 		
-		if (humanLose!=0&&!playerList.get(0).aliveJudge()) { //If human has lost?
-			this.humanLose = 0;
-			CLIStatus = "";
-			//Webstatus = roundString() + " Sorry, you lose!";
-			CLIStatus += "\n"+roundString() + "Sorry, you has lost!";
+		if (humanLose==false&&!playerList.get(0).aliveJudge()) { //If human has lost?
+			this.humanLose = true;
 		}
 		
-		// CML
-		CLIStatus += "\n\n";
 		// If only one player is alive, the game is over
 		if (aliveNum == 1) {
 			if (winnerIndex == 0) {
-				Webstatus = roundString() + "Congratulation, you won this game!";
 				finalWinnerIndex = 0;
+				gameResult = 0;
 			} else {
 				finalWinnerIndex = winnerIndex;
-				
-				Webstatus = roundString() + "Oh, " + playerList.get(winnerIndex).getPlayerName() + " won the game.";
-				
+				gameResult = 1;					
 			}
-			gameIsOver = 0;
+			gameIsOver = true;
 			// Online Mode
-			WebInfo = "Sorry, the game is over.";
 			// TestLog
 			testLog += "Game Winner: " + playerList.get(winnerIndex).getPlayerName();
 		} else if (aliveNum == 0 || !roundWinner.aliveJudge()) { // Draw all the time......
-			gameIsOver = 0;
-			// Online Mode
-			Webstatus = roundString() + "Oh, someone won but now he has no card!";
+			gameIsOver = true;
 			testLog += "No game Winner: ";
 		}
+		return gameResult;
 	}
 	
 	
 	
 	// When human dies, the game will automatically proceed to the end
-	public void autoPlay() {
-		if(this.humanLose==0) {
-			//System.out.println("autoPlay");
-			String temp = "";
-			CLIStatus = "";
-			while (this.getGameIsOver() != 0) {
-				this.decideActivePlayers();
-				temp += CLIStatus;
-				this.draw();
-				temp += CLIStatus;
-				this.AISelect();
-				this.showWinner();
-				temp += CLIStatus;
-				this.gameIsOver();
-				temp += CLIStatus;
-			}
-			CLIStatus =temp;
-		}else {
-			CLIStatus = "";		
-		}
-	}
+	
 	
 	
 	
@@ -490,6 +408,7 @@ public class GameModel {
 					}
 					// Close connection when done
 					dbA.closeConnection();		
+					System.out.println("\n\nUpdated game data successfully!");
 				}else {
 					System.err.println("Error, unable to connect database");
 				}
@@ -546,13 +465,8 @@ public class GameModel {
 		}
 	}
 		
-	public int getHumanLose() {
-		return humanLose;
-	}
 
-
-
-	public int getGameIsOver() {
+	public boolean getGameIsOver() {
 		return gameIsOver;
 	}
 
@@ -572,13 +486,6 @@ public class GameModel {
 		return round;
 	}
 
-	public String getGameStatusWeb() {
-		return Webstatus;
-	}
-
-	public String getGameInfoWeb() {
-		return WebInfo;
-	}
 
 	public Card getWinCard() {
 		return winCard;
@@ -612,9 +519,6 @@ public class GameModel {
 		return activePlayer;
 	}
 	
-	public String getCMCStatus() {
-		return CLIStatus;
-	}
 		
 	public String roundString() {
 		return "Round " + round + ": ";

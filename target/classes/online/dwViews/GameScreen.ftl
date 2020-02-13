@@ -77,7 +77,7 @@
 							
 								<div >
 									<ul id = "playerResult" class=" list-unstyled text-left mt-0 mb-4 px-3">
-										<h5 class= "result">Loading game result</h5>
+										<h6 class= "result">Loading game result</h6>
 										<h6 class= "result"></h6>
 										<h6 class= "result"></h6>
 										<h6 class= "result"></h6>
@@ -367,6 +367,7 @@
 			
 			function stage(){
 				clear();
+				console.log(1);
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/webMaster"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -397,6 +398,7 @@
 					
 					else if(num == 7){
 						showGameResultStage();
+						requestUpdateGameDate();
 					}
 					else {
 						window.location.href = "http://localhost:7777/toptrumps/";
@@ -630,8 +632,6 @@
 					var strr = new Array();
 					strr = javaArrayDecode(responseText);
 					setUpElements(strr,"playerResult", "result");
-					document.getElementById("playerResult").style.display = 'block';
-					document.getElementById("returnToMenu").style.display = 'block';
 					console.log("getPlayerResult");	
 				}
 				
@@ -760,6 +760,17 @@
 
 			}
 
+			function requestUpdateGameDate(){
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/requestUpdateGameDate"); // Request type and URL+parameters
+					if (!xhr) {
+						alert("CORS not supported");
+					}
+					xhr.onload = function(e) {
+						getGameInfoPackage();
+						console.log("requestUpdateGameDate");	
+					}
+				xhr.send();
+			}
 
 
 			function getGameInfoPackage(){
