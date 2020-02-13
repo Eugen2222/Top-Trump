@@ -136,7 +136,7 @@ public class CLIGameModel extends GameModel {
 		return s;
 	}
 	
-	public String getCMCStatus() {
+	public String getCLIStatus() {
 		return this.CLIStatus;
 	}
 	

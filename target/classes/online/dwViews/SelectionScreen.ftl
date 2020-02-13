@@ -123,9 +123,9 @@
 			}
 
 
-			function userPressStats() {
-				window.location.href = "http://localhost:7777/toptrumps/stats";
-			}
+	function userPressStats() {
+		window.location.href = "http://localhost:7777/toptrumps/stats";
+	}
 
 	
 

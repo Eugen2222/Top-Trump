@@ -367,7 +367,6 @@
 			
 			function stage(){
 				clear();
-				console.log(1);
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/webMaster"); 
 				if (!xhr) {
 					alert("CORS not supported");
@@ -441,9 +440,7 @@
 				document.getElementById("showWinner").style.display  = 'block';
 			}
 
-		
-
-
+	
 
 			function showWinnerStage(){			
 				getGameInfoPackage();
@@ -454,9 +451,7 @@
 			}
 
 			function showGameResultStage(){
-				console.log("1");	
 				document.getElementById("playerResult").style.display = 'block';
-				console.log("2");	
 				getGameInfoPackage();
 				getWinner();
 				getCommonPile();
@@ -495,28 +490,28 @@
 
 
 			function userSelectAttr1(){
-				userSelect("1");
+				sendUserSelect("1");
 			}
 			
 			function userSelectAttr2(){
-				userSelect("2");
+				sendUserSelect("2");
 			}
 
 			function userSelectAttr3(){
-				userSelect("3");
+				sendUserSelect("3");
 			}
 
 			function userSelectAttr4(){
-				userSelect("4");
+				sendUserSelect("4");
 			}
 
 			function userSelectAttr5(){
-				userSelect("5");
+				sendUserSelect("5");
 			}
 
 
 
-			function userSelect(num) {
+			function sendUserSelect(num) {
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userSelect?Word="+num); // Request type and URL+parameters
 				if (!xhr) {
@@ -540,17 +535,6 @@
 				}
 				xhr.send();	
 			}
-
-
-
-
-
-
-
-
-
-
-
 
 
 			function setUpCard(stringArray, index){
@@ -637,58 +621,8 @@
 				
 				xhr.send();
 			}
-			//123
-			function getDeskCards() {
-						
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/data"); // Request type and URL+parameters
-				
-				// Message is not sent yet, but we can check that the browser supports CORS
-				if (!xhr) {
-					alert("CORS not supported");
-				}
+			
 
-				// CORS requests are Asynchronous, i.e. we do not wait for a response, instead we define an action
-				// to do when the response arrives 
-				xhr.onload = function(e) {
-					let responseText = xhr.response; // the text of the response
-					  var strr = new Array();
-					  strr = javaArrayDecode(responseText);
-					  for(i = 0 ; i<strr.length; i++){
-						  cardI = "card"+(1+i);
-						  cardCI = "cardContent"+(1+i);
-					  	if(strr[i]=="null"){
-							document.getElementById(cardI).style.display = 'none';  
-					 	 }
-					  	else{
-							setUpCard(decodeString(strr[i]),i);
-							document.getElementById(cardI).style.display = 'block';
-						}
-					}
-					console.log("getDeskCards");
-				}
-				
-				// We have done everything we need to prepare the CORS request, so send it
-					
-				
-				xhr.send();	
-
-			}
-
-
-			function requestDraw() {
-
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/requestGameDraw"); 
-				if (!xhr) {
-					alert("CORS not supported");
-				}
-				clear();
-				xhr.onload = function(e) {}
-				console.log("requestDraw");
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();	
-			}
 			
 			function getWinner() {
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
@@ -851,21 +785,6 @@
 				xhr.send();
 			}
 
-	
-
-			function requestGameInitialised() {
-				// First create a CORS request, this is the message we are going to send (a get request in this case)
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/requestGameInitialised"); 
-				if (!xhr) {
-					alert("CORS not supported");
-				}
-				xhr.onload = function(e) {
-				}
-				console.log("requestGameInitialised");	
-				// We have done everything we need to prepare the CORS request, so send it
-				xhr.send();	
-			}
-			
 
 		</script>
 </html>

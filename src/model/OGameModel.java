@@ -171,7 +171,7 @@ public class OGameModel extends GameModel {
 		
 	
 	// Online Mode (show game results)
-	public String[] getGameResult() {
+	public String[] getGameResultWeb() {
 		ArrayList<String> s = new ArrayList<String>();
 				
 		if (finalWinnerIndex == -1) {

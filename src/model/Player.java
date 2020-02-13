@@ -35,9 +35,6 @@ public class Player {
 	}
 	
 	
-	public void setCardList(List<Card> c) {
-		cardList =c;
-	}
 	public List<Card> getCardList(){
 		return cardList;
 	}

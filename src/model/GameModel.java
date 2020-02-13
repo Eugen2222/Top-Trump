@@ -43,7 +43,7 @@ public class GameModel {
 	protected String testLog;
 
 	// CLM
-	protected int humanAliveCount = 1;
+	//protected int humanAliveCount = 1;
 	// OnlineMode
 	
 	// Initialise the game

@@ -1,8 +1,6 @@
 package online.dwResources;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,9 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import model.OGameModel;
-import java.sql.SQLException;
 
-import java.util.*;
+
+
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
 @Consumes(MediaType.APPLICATION_JSON) // This resource can take JSON content as input
@@ -58,70 +56,49 @@ public class TopTrumpsRESTAPI {
 	// Add relevant API methods here
 	// ----------------------------------------------------
 	
-	@GET
-	@Path("/helloJSONList")
-	/**
-	 * Here is an example of a simple REST get request that returns a String.
-	 * We also illustrate here how we can convert Java objects to JSON strings.
-	 * @return - List of words as JSON
-	 * @throws IOException
-	 */
-	public String helloJSONList() throws IOException {
-		
-		List<String> listOfWords = new ArrayList<String>();
-		listOfWords.add("Hello");
-		listOfWords.add("World!");
-		
-		// We can turn arbatory Java objects directly into JSON strings using
-		// Jackson seralization, assuming that the Java objects are not too complex.
-		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-		
-		return listAsJSONString;
-	}
-	
-	@GET
-	@Path("/helloWord")
-	/**
-	 * Here is an example of how to read parameters provided in an HTML Get request.
-	 * @param Word - A word
-	 * @return - A String
-	 * @throws IOException
-	 */
-	public String helloWord(@QueryParam("Word") String Word) throws IOException {
-		return "Hello "+Word;
-	}
-	
-	@GET
-	@Path("/viewSelectAtt")
-	/**
-	 * Here is an example of how to read parameters provided in an HTML Get request.
-	 * @param Word - A word
-	 * @return - A String
-	 * @throws IOException
-	 */
-	public void viewSelectAtt(@QueryParam("Word") int i) throws IOException {
-		get(i);
-	}
-	
-	public void get(int i) {
-		System.out.println(i);
-	}
-	
+//	@GET
+//	@Path("/helloJSONList")
+//	/**
+//	 * Here is an example of a simple REST get request that returns a String.
+//	 * We also illustrate here how we can convert Java objects to JSON strings.
+//	 * @return - List of words as JSON
+//	 * @throws IOException
+//	 */
+//	public String helloJSONList() throws IOException {
+//		
+//		List<String> listOfWords = new ArrayList<String>();
+//		listOfWords.add("Hello");
+//		listOfWords.add("World!");
+//		
+//		// We can turn arbatory Java objects directly into JSON strings using
+//		// Jackson seralization, assuming that the Java objects are not too complex.
+//		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
+//		
+//		return listAsJSONString;
+//	}
+//	
+//	@GET
+//	@Path("/helloWord")
+//	/**
+//	 * Here is an example of how to read parameters provided in an HTML Get request.
+//	 * @param Word - A word
+//	 * @return - A String
+//	 * @throws IOException
+//	 */
+//	public String helloWord(@QueryParam("Word") String Word) throws IOException {
+//		return "Hello "+Word;
+//	}
+//	
 
 	
+//	@GET
+//	@Path("/updateViewGameInfo")
+//	public String updateViewGameInfo() {
+//		return model.getGameInfoWeb();
+//	}
 	
-	@GET
-	@Path("/updateViewActivePlayers")
-	public void updateViewActivePlayers() {
-		model.decideActivePlayers();
-	}
 	
-	@GET
-	@Path("/updateViewGameInfo")
-	public String updateViewGameInfo() {
-		return model.getGameInfoWeb();
-	}
-	
+	//update View Game Information
 	@GET
 	@Path("/updateViewGameInformPackage")
 	public String updateViewGameInformPackage() {
@@ -131,19 +108,21 @@ public class TopTrumpsRESTAPI {
 		return arrayTrans(s);
 	}
 	
+	//update view to show the Winner's card
 	@GET
 	@Path("/updateViewShowWinnerCard")
 	public String updateViewShowWinnerCard() {
 		return arrayTrans(model.showWinnerCard());
 	}
 	
+	//update view to show the information of Common Pile 
 	@GET
 	@Path("/updateViewCommonPileCard")
 	public String updateViewCommonPileCard() {
 		return arrayTrans(model.getFirstCardInCommonPile());
 	}
 	
-	
+	//request AI to select
 	@GET
 	@Path("/requestAISelect")
 	public void requestAISelect() {
@@ -151,29 +130,16 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	@GET
-	@Path("/askViewHumanSelect")
-	public void askViewHumanSelect(@QueryParam("Word") int num) {
-		 model.humanSelect(num);
-	}
 	
-//
-//	@GET
-//	@Path("/updateViewGameIsOver")
-//	public int updateViewGameIsOver() {
-//		if(model.getHumanLose()==0) return model.getHumanLose();
-//		return model.getGameIsOver();
-//	}
-	
+	//updataViewPlayerResult
 	@GET
 	@Path("/updataViewPlayerResult")
 	public String updataViewPlayerResult() {
-
-		return arrayTrans(model.getGameResult());
+		return arrayTrans(model.getGameResultWeb());
 	}
 	
 	
-	
+	//update all players' cards drew on deck
 	@GET
 	@Path("/updateViewCardSOnDeck")
 	public String updateViewCardOnDeck() {
@@ -181,7 +147,7 @@ public class TopTrumpsRESTAPI {
 		
 	}
 	
-	
+	//update human's card drew on deck
 	@GET
 	@Path("/updateViewHumanCardOnDeck")
 	public String updateViewHumanCardOnDeck() {
@@ -189,7 +155,10 @@ public class TopTrumpsRESTAPI {
 		return model.getCardStringOnDeckWeb()[0];
 	}
 	
-	int cmd = 0;
+	
+	private int cmd = 0;
+	
+	//send game stages to view according to game process
 	@GET
 	@Path("/webMaster")
 	public int webMaster() {
@@ -198,7 +167,7 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	
+	//Initialised game
 	@GET
 	@Path("/userRequestGameInitialised")
 	public void userRequestGameInitialised(@QueryParam("num") int num) {
@@ -213,7 +182,8 @@ public class TopTrumpsRESTAPI {
 
 	
 	
-	
+	//receive a event that the user press next turn
+	//and set the game stage
 	@GET
 	@Path("/userPressNewTurn")
 	public void userPressNewTurn() {
@@ -225,7 +195,7 @@ public class TopTrumpsRESTAPI {
 		}
 	}
 	
-	
+	//set game stage that human is a active player or not 
 	public void setViewActivePlayer() {
 		if(model.getHumanIsActivePlayer()) {
 			cmd = 2;
@@ -235,7 +205,8 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	
+	//receive a event that the user press select button or show ai's selection
+	//and set the game stage
 	@GET
 	@Path("/userPressSelect")
 	public void userPressSelect() {
@@ -251,7 +222,7 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	
+	//receive a event that the user select a category
 	@GET
 	@Path("/userSelect")
 	public void userSelect(@QueryParam("Word") int num) {
@@ -262,6 +233,7 @@ public class TopTrumpsRESTAPI {
 		}
 	}
 	
+	//receive a event that the user press show winner button
 	@GET
 	@Path("/userPressShowWinner")
 	public void userPressShowWinner() {
@@ -284,6 +256,8 @@ public class TopTrumpsRESTAPI {
 			System.out.println(cmd);
 		}
 	}
+	
+	//request model to update data
 	@GET
 	@Path("/requestUpdateGameDate")
 	public void requestUpdateGameDate() {
@@ -291,13 +265,7 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	@GET
-	@Path("/updateRoundWinner")
-	public int updateRoundWinner() {
-		return model.getRoundWinnerIndex();
-	}
-	
-	
+	//update the statistic of the game 
 	@GET
 	@Path("/updateGameStats")
 	public String updateGameStats() {
@@ -305,8 +273,7 @@ public class TopTrumpsRESTAPI {
 	}
 		
 	
-	
-	
+	//encode java array to a string
 	public String arrayTrans(String[] in) {
 		String s = "";
 		s+=in[0]+"|?|";

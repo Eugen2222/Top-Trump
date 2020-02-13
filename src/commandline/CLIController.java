@@ -54,7 +54,7 @@ public class CLIController {
 		while (model.getGameIsOver() == false) {
 			model.decideActivePlayers(); // decide active player
 			model.draw(); // draw card
-			view.print(model.getCMCStatus()); // show draw card instruction when human alive
+			view.print(model.getCLIStatus()); // show draw card instruction when human alive
 
 			if (model.getHumanLose() == false) {
 				view.print(model.getCardStringOnDeckCLI()[0]);
@@ -68,11 +68,11 @@ public class CLIController {
 				model.AISelect(); // ai select category
 			}
 			model.showWinner(); 
-			view.print(model.getCMCStatus());
+			view.print(model.getCLIStatus());
 			// show round winner
 
 			model.checkGameIsOver();// game end
-			view.print(model.getCMCStatus()); 
+			view.print(model.getCLIStatus()); 
 			// show auto play process 
 		}
 		view.printArray(model.getGameResultCLI());
