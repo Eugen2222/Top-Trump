@@ -397,7 +397,7 @@
 					
 					else if(num == 7){
 						showGameResultStage();
-						requestUpdateGameDate();
+						requestUpdateGameData();
 					}
 					else {
 						window.location.href = "http://localhost:7777/toptrumps/";
@@ -694,14 +694,14 @@
 
 			}
 
-			function requestUpdateGameDate(){
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/requestUpdateGameDate"); // Request type and URL+parameters
+			function requestUpdateGameData(){
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/requestUpdateGameData"); // Request type and URL+parameters
 					if (!xhr) {
 						alert("CORS not supported");
 					}
 					xhr.onload = function(e) {
 						getGameInfoPackage();
-						console.log("requestUpdateGameDate");	
+						console.log("requestUpdateGameData");	
 					}
 				xhr.send();
 			}

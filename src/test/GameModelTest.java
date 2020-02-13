@@ -1,5 +1,5 @@
 package test;
-import model.GameModel;
+import model.TestGameModel;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Random;
@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 class GameModelTest {
-	GameModel model = new GameModel();
+	TestGameModel model = new TestGameModel();
 	int playerNum;
 	
 	public GameModelTest() {
@@ -30,7 +30,7 @@ class GameModelTest {
 	@Test
 	public void testReadCard() {
 		model.readCard();
-		Assert.assertEquals("cardAttribute error",40,model.getCardList().size());
+		Assert.assertEquals("cardAttribute error",40,model.getCardPool().size());
 	}
 	
 	@Test
@@ -49,7 +49,7 @@ class GameModelTest {
 			cardsize += model.getPlayerList().get(i).getNumOfCards();
 		}
 		Assert.assertEquals("cardDeafault error",40,cardsize);
-		Assert.assertEquals("cardDeafault error",0,model.getCardList().size());
+		Assert.assertEquals("cardDeafault error",0,model.getCardPool().size());
 	}
 	
 	@Test

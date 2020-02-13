@@ -38,7 +38,7 @@ public class TopTrumpsRESTAPI {
 	/** A Jackson Object writer. It allows us to turn Java objects
 	 * into JSON strings easily. */
 	ObjectWriter oWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
-	
+
 	/**
 	 * Contructor method for the REST API. This is called first. It provides
 	 * a TopTrumpsJSONConfiguration from which you can get the location of
@@ -98,6 +98,135 @@ public class TopTrumpsRESTAPI {
 //	}
 	
 	
+	
+	private int cmd = 0;
+	
+	//send game stages to view according to game process
+	@GET
+	@Path("/webMaster")
+	public int webMaster() {
+		System.out.println(cmd);
+		return cmd;	
+	}
+	// the meaning of cmd 
+	//2 = playerSelectEnableStage
+	//3 = playerSelectListStage
+	//4 = waitAIPlayerStage
+	//5 = selectionResultStage
+	//6 = showWinnerStage
+	//7 = showGameResultStage
+
+	//set game stage that human is a active player or not 
+	private void setViewActivePlayer() {
+		if(model.getHumanIsActivePlayer()) {
+			cmd = 2;
+		}else {
+			cmd = 4;
+		}
+	}
+	
+	
+	//receive a event that the user press select button or show ai's selection
+	//and set the game stage
+	@GET
+	@Path("/userPressSelect")
+	public void userPressSelect() {
+		if(cmd == 3 && cmd == 5) { System.out.println("Error, illegal visit!");}
+		else {
+			if(model.getHumanIsActivePlayer()) {
+				cmd = 3;
+			}else {
+				model.AISelect();
+				cmd = 5;
+			}
+		}
+	}
+	
+	
+	//receive a event that the user select a category
+	@GET
+	@Path("/userSelect")
+	public void userSelectCategory(@QueryParam("Word") int num) {
+		if(cmd == 5) { System.out.println("Error, illegal visit!");}
+		else {
+			 model.humanSelect(num);
+			 cmd = 5;
+		}
+	}
+	
+	//receive a event that the user press show winner button
+	@GET
+	@Path("/userPressShowWinner")
+	public void userPressShowWinner() {
+		if(cmd == 7) { System.out.println("Error, illegal visit!");}
+		else {
+			model.showWinner();
+			model.checkGameIsOver();
+			model.AIAutoPlay();
+			if(model.getGameIsOver()==true){
+				cmd = 7;
+				
+				//model.createLog();
+			}
+			else {
+				cmd = 6;
+			}
+			System.out.println(cmd);
+		}
+	}
+	
+	
+	
+	//Initialised game
+	@GET
+	@Path("/userRequestGameInitialise")
+	public void userRequestGameInitialise(@QueryParam("num") int num) {
+		webConfiguration.setNumAIPlayers(num-1);
+		model.initialiseGame(webConfiguration.getNumAIPlayers()+1);
+		model.decideActivePlayers();
+		model.draw();
+		setViewActivePlayer();
+	}
+
+	//receive a event that the user press next turn
+	//and set the game stage
+	@GET
+	@Path("/userPressNewTurn")
+	public void userPressNewTurn() {
+		if(cmd == 2 && cmd == 4) { System.out.println("Error, illegal visit!");}
+		else {
+			model.decideActivePlayers();
+			model.draw();
+			setViewActivePlayer();
+		}
+	}
+	
+
+	//request AI to select
+	@GET
+	@Path("/requestAISelect")
+	public void viewRequestAISelect() {
+		model.AISelect();
+	}
+		
+
+	//request model to update data
+	@GET
+	@Path("/requestUpdateGameData")
+	public void viewRequestUpdateGameData() {
+		model.updateGameData();
+	}
+	
+	
+	//update the statistic of the game 
+	@GET
+	@Path("/updateGameStats")
+	public String updateGameStats() {
+		return arrayTrans(model.getGameStats());
+	}
+		
+	
+		
 	//update View Game Information
 	@GET
 	@Path("/updateViewGameInformPackage")
@@ -120,13 +249,6 @@ public class TopTrumpsRESTAPI {
 	@Path("/updateViewCommonPileCard")
 	public String updateViewCommonPileCard() {
 		return arrayTrans(model.getFirstCardInCommonPile());
-	}
-	
-	//request AI to select
-	@GET
-	@Path("/requestAISelect")
-	public void requestAISelect() {
-		model.AISelect();
 	}
 	
 	
@@ -156,122 +278,6 @@ public class TopTrumpsRESTAPI {
 	}
 	
 	
-	private int cmd = 0;
-	
-	//send game stages to view according to game process
-	@GET
-	@Path("/webMaster")
-	public int webMaster() {
-		System.out.println(cmd);
-		return cmd;	
-	}
-	
-	
-	//Initialised game
-	@GET
-	@Path("/userRequestGameInitialised")
-	public void userRequestGameInitialised(@QueryParam("num") int num) {
-		webConfiguration.setNumAIPlayers(num-1);
-		model.initialiseGame(webConfiguration.getNumAIPlayers()+1);
-		model.decideActivePlayers();
-		model.draw();
-		setViewActivePlayer();
-	}
-	
-	
-
-	
-	
-	//receive a event that the user press next turn
-	//and set the game stage
-	@GET
-	@Path("/userPressNewTurn")
-	public void userPressNewTurn() {
-		if(cmd == 2 && cmd == 4) { System.out.println("Error, illegal visit!");}
-		else {
-			model.decideActivePlayers();
-			model.draw();
-			setViewActivePlayer();
-		}
-	}
-	
-	//set game stage that human is a active player or not 
-	public void setViewActivePlayer() {
-		if(model.getHumanIsActivePlayer()) {
-			cmd = 2;
-		}else {
-			cmd = 4;
-		}
-	}
-	
-	
-	//receive a event that the user press select button or show ai's selection
-	//and set the game stage
-	@GET
-	@Path("/userPressSelect")
-	public void userPressSelect() {
-		if(cmd == 3 && cmd == 5) { System.out.println("Error, illegal visit!");}
-		else {
-			if(model.getHumanIsActivePlayer()) {
-				cmd = 3;
-			}else {
-				model.AISelect();
-				cmd = 5;
-			}
-		}
-	}
-	
-	
-	//receive a event that the user select a category
-	@GET
-	@Path("/userSelect")
-	public void userSelect(@QueryParam("Word") int num) {
-		if(cmd == 5) { System.out.println("Error, illegal visit!");}
-		else {
-			 model.humanSelect(num);
-			 cmd = 5;
-		}
-	}
-	
-	//receive a event that the user press show winner button
-	@GET
-	@Path("/userPressShowWinner")
-	public void userPressShowWinner() {
-		if(cmd == 7) { System.out.println("Error, illegal visit!");}
-		else {
-			System.out.println("showwinnerbutton");
-			model.showWinner();
-			System.out.println("run showwinner1");
-			model.checkGameIsOver();
-			System.out.println("run gameIsOver1");
-			model.AIAutoPlay();
-			if(model.getGameIsOver()==true){
-				cmd = 7;
-				
-				//model.createLog();
-			}
-			else {
-				cmd = 6;
-			}
-			System.out.println(cmd);
-		}
-	}
-	
-	//request model to update data
-	@GET
-	@Path("/requestUpdateGameDate")
-	public void requestUpdateGameDate() {
-		model.updateGameData();
-	}
-	
-	
-	//update the statistic of the game 
-	@GET
-	@Path("/updateGameStats")
-	public String updateGameStats() {
-		return arrayTrans(model.getGameStats());
-	}
-		
 	
 	//encode java array to a string
 	public String arrayTrans(String[] in) {

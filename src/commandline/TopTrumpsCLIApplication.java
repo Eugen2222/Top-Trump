@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class TopTrumpsCLIApplication {
 	
 	public TopTrumpsCLIApplication() {
-//		startNewGame();
+
 	}
 	
 	public static void main(String[] args) {

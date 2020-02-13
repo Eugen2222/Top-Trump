@@ -15,9 +15,9 @@ import java.util.Scanner;
 
 import database.DBAgent;
 
-public class GameModel {
+public abstract class GameModel {
 	protected List<Player> playerList;
-	protected List<Card> cardList;
+	protected List<Card> cardPool;
 	protected List<Card> commonPile;
 	protected Card[] cardOnDeck;
 	protected String[] cardAttribute;
@@ -26,6 +26,7 @@ public class GameModel {
 	protected int round;
 	protected int numberOfDraws;
 	
+	//CLI
 	protected Card winCard;
 	
 	protected Player roundWinner;
@@ -40,18 +41,15 @@ public class GameModel {
 	protected boolean humanLose;
 	
 	// TestLog
-	protected String testLog;
+	private String testLog;
 
-	// CLM
-	//protected int humanAliveCount = 1;
-	// OnlineMode
 	
 	// Initialise the game
 	public void initialiseGame(int num) {
 		numOfPlayer = num;
 		
 		playerList = new ArrayList<>();
-		cardList = new ArrayList<>();
+		cardPool = new ArrayList<>();
 		commonPile = new ArrayList<>();
 		
 		cardOnDeck = null;
@@ -73,6 +71,13 @@ public class GameModel {
 		defaultPlayer();
 		defaultCard();
 	}
+	
+	
+	
+	public String roundString() {
+		return "Round " + round + ": ";
+	}
+
 	
 	// Default player name base on input player numbers
 	public void defaultPlayer() {
@@ -113,7 +118,7 @@ public class GameModel {
 					cardD.add(Integer.parseInt(card[i]));
 				}
 				Card cardArray = new Card(card[0], cardD);
-				cardList.add(cardArray);
+				cardPool.add(cardArray);
 			}
 		}
 		try {
@@ -127,19 +132,19 @@ public class GameModel {
 	// Divide cards to a player
 	public void defaultCard() {
 		readCard();
-		Collections.shuffle(cardList);
+		Collections.shuffle(cardPool);
 		
 		// testLog
-		for (int i = 0; i < cardList.size(); i++) {
-			testLog += cardList.get(i).getCardString() + "\r";
+		for (int i = 0; i < cardPool.size(); i++) {
+			testLog += cardPool.get(i).getCardString() + "\r";
 		}
 		testLog += "--------------------------\r";
 		
 		// Each player get one card at order
-		while (!cardList.isEmpty()) {
-			for (int i = 0; i < numOfPlayer && !cardList.isEmpty(); i++) {
-				playerList.get(i).getCardList().add(cardList.get(0));
-				cardList.remove(cardList.get(0));
+		while (!cardPool.isEmpty()) {
+			for (int i = 0; i < numOfPlayer && !cardPool.isEmpty(); i++) {
+				playerList.get(i).getCardList().add(cardPool.get(0));
+				cardPool.remove(cardPool.get(0));
 			}
 		} 
 		
@@ -468,40 +473,6 @@ public class GameModel {
 		}
 	}
 		
-
-	public boolean getGameIsOver() {
-		return gameIsOver;
-	}
-
-	public int getNumOfPlayer() {
-		return numOfPlayer;
-	}
-
-	public List<Player> getPlayerList() {
-		return playerList;
-	}
-
-	public Card[] getCardOnDeck() {
-		return cardOnDeck;
-	}
-
-	public int getRound() {
-		return round;
-	}
-
-
-	public Card getWinCard() {
-		return winCard;
-	}
-
-	public Player getRoundWinner() {
-		return roundWinner;
-	}
-
-	public int getRoundWinnerIndex() {
-		return roundWinnerIndex;
-	}
-
 	public boolean getHumanIsActivePlayer() {
 		if (activePlayer.equals(playerList.get(0))) {
 			return true;
@@ -510,34 +481,45 @@ public class GameModel {
 		}
 	}
 
-	public List<Card> getCommonPile() {
-		return commonPile;
-	}
-
-	public int getNumberOfDraws() {
-		return numberOfDraws;
-	}
-
-	public Player getActivePlayer() {
-		return activePlayer;
+	public boolean getGameIsOver() {
+		return gameIsOver;
 	}
 	
-		
-	public String roundString() {
-		return "Round " + round + ": ";
-	}
+	
 
-	// Junit test
-	public String[] getCardAttribute() {
-		return cardAttribute;
-	}
+//	public Card[] getCardOnDeck() {
+//		return cardOnDeck;
+//	}
 	
-	public List<Card> getCardList(){
-		return cardList;
-	}
+
+
+
+//	public Card getWinCard() {
+//		return winCard;
+//	}
+
+//	public Player getRoundWinner() {
+//		return roundWinner;
+//	}
+
+//	public int getRoundWinnerIndex() {
+//		return roundWinnerIndex;
+//	}
+
 	
-	public int getFinalWinnerIndex() {
-		return finalWinnerIndex;
-	}
+
+//	public List<Card> getCommonPile() {
+//		return commonPile;
+//	}
+
+//	public int getNumberOfDraws() {
+//		return numberOfDraws;
+//	}
+
+//	public Player getActivePlayer() {
+//		return activePlayer;
+//	}
+//	
+
 
 }
