@@ -36,6 +36,7 @@
 						<div>
 							<a ><button class="btn btn-outline-dark btn-block text-decoration-none selectbutton"  class="button-size"id = "newGamePanel" onclick = "enableSelectPlayerNumPanel()">New Game</button></a>
 						</div>
+						<!-- Choose the number of player to play together -->
 						<div class="list-group mb-0 " id = "playerNumPanel" style="display: none">
 							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1 selectbutton" class="button-size" onclick= userSelect2()>2 Players</button>
 							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1 selectbutton" class="button-size" onclick= userSelect3()>3 Players</button>
@@ -44,7 +45,8 @@
 						</div>
 					</div>
 				</div>
-
+                
+				<!--  Go to the Game Statistics page -->
 				<div class="row justify-content-center mt-0">
 					<div class="col-auto mt-3"style="width:15em;">
 						<div>

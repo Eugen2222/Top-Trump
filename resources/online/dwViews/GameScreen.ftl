@@ -47,7 +47,7 @@
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
 							<div  class="card-body text-center">
-
+                               <!-- Buttons -->
 								<div id="showWinner">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressShowWinner()">Show winner</button>
 								</div>
@@ -65,7 +65,7 @@
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressSelect()">Show AI's selection</button>
 								</div>
 								
-
+                                <!-- Buttons for human to select category-->
 								<div id = selectList class="list-group">
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr1()">Size</li>
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr2()">Speed</li>
@@ -74,7 +74,7 @@
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr5()">Cargo</li>
 								</div>
 								
-							
+							    <!-- show the result in the end of the game-->
 								<div >
 									<ul id = "playerResult" class=" list-unstyled text-left mt-0 mb-4 px-3">
 										<h6 class= "result">Loading game result</h6>
@@ -104,7 +104,7 @@
 							</div>
 						</div>
 
-						
+						<!-- Common pile cards-->
 						<div class="row mt-3">
 							<div id="card6" class="card mb-4 shadow-sm" style="width: 11rem;">
 								<div class="card-header">
@@ -138,6 +138,7 @@
 
 
 					</div>
+					<!-- Players cards-->
 					<div class="col-8">
 					<div class="row">
 					<div class="col-md-auto">
@@ -303,7 +304,7 @@
 			// Method that is called on page load
 	
 			
-
+            // if human is the active player
 			function humanActived(){
 				clear();
 				document.getElementById("card1").style.display = 'block';
@@ -311,7 +312,7 @@
 				
 			}
 
-
+            // show AI selection 
 			function showAISelection(){
 				requestAISelect();
 				document.getElementById("AISelectButton").style.display  = 'none';
@@ -320,7 +321,7 @@
 			}
 			
 
-
+            // reset the information for button
 			function clear(){
 				document.getElementById("playerResult").style.display = 'none';
 				document.getElementById("showWinner").style.display = 'none';
@@ -347,7 +348,8 @@
 			function playerSelect(num){
 				sendPlayerSelect(num);
 			}
-
+            
+			// decode the string 
 			function decodeString(s){
 
 				var strr = new Array();
@@ -536,7 +538,7 @@
 				xhr.send();	
 			}
 
-
+            // update the cards
 			function setUpCard(stringArray, index){
 				var name = new Array();
 				var num = new Array();
@@ -555,7 +557,7 @@
 			}
 
 
-
+            // update the image of the cards
 			function getImage(cardName, index) {
 				var img = document.getElementById("cardImg" + index);
 				img.src = "http://localhost:7777/assets/"+cardName+".jpg";

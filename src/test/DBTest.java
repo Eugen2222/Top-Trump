@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author TvA
+ * This class is to test the connection of the database
  */
 
 public class DBTest {

@@ -79,7 +79,7 @@ public class TopTrumpsOnlineApplication extends Application<TopTrumpsJSONConfigu
 
     
     /**
-     * An initalization method that attaches the Configuration to the views
+     * Create an assets path to store local picture and file used for online mode
      */
 	@Override
     public void initialize(Bootstrap<TopTrumpsJSONConfiguration> bootstrap) {
