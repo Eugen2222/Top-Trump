@@ -113,7 +113,7 @@
 
 
 	function userSelectNum(num) {
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userRequestGameInitialised?num="+num); 
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userRequestGameInitialise?num="+num); 
 				if (!xhr) {
 					alert("CORS not supported");
 				}

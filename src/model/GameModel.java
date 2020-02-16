@@ -365,8 +365,12 @@ public abstract class GameModel {
 			this.humanLose = true;
 		}
 		
+		if (aliveNum == 0 || !roundWinner.aliveJudge()) { // Draw all the time......
+			gameIsOver = true;
+			testLog += "No game Winner: ";
+		}
 		// If only one player is alive, the game is over
-		if (aliveNum == 1) {
+		else if (aliveNum == 1) {
 			if (winnerIndex == 0) {
 				finalWinnerIndex = 0;
 				gameResult = 0;
@@ -378,10 +382,7 @@ public abstract class GameModel {
 			// Online Mode
 			// TestLog
 			testLog += "Game Winner: " + playerList.get(winnerIndex).getPlayerName();
-		} else if (aliveNum == 0 || !roundWinner.aliveJudge()) { // Draw all the time......
-			gameIsOver = true;
-			testLog += "No game Winner: ";
-		}
+		} 
 		return gameResult;
 	}
 	

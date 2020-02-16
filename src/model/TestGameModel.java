@@ -41,4 +41,21 @@ public class TestGameModel extends GameModel{
 	public List<Card> getCommonPile() {
 		return commonPile;
 	}
+	
+	
+
+	
+	public int commonPileSize() {
+		if(this.commonPile.isEmpty()) {
+			return 0;
+		}
+		return this.commonPile.size();
+	}
+	
+
+	public int getRoundWinnerIndex() {
+		return this.roundWinnerIndex;
+	}
+	
+	
 }
