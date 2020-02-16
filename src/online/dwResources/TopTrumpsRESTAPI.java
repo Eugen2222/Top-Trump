@@ -1,7 +1,5 @@
 package online.dwResources;
 
-
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,8 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import model.OGameModel;
-
-
 
 @Path("/toptrumps") // Resources specified here should be hosted at http://localhost:7777/toptrumps
 @Produces(MediaType.APPLICATION_JSON) // This resource returns JSON content
@@ -45,61 +41,20 @@ public class TopTrumpsRESTAPI {
 	 * the deck file and the number of AI players.
 	 * @param conf
 	 */
-	OGameModel model = new OGameModel();
-	TopTrumpsJSONConfiguration webConfiguration;
+	private OGameModel model = new OGameModel();
+	private TopTrumpsJSONConfiguration webConfiguration;
+	// the meaning of cmd 
+	//2 = playerSelectEnableStage
+	//3 = playerSelectListStage
+	//4 = waitAIPlayerStage
+	//5 = selectionResultStage
+	//6 = showWinnerStage
+	//7 = showGameResultStage
+	private int cmd = 0;
 	
 	public TopTrumpsRESTAPI(TopTrumpsJSONConfiguration conf) {
 		webConfiguration = conf;
 	}
-	
-	// ----------------------------------------------------
-	// Add relevant API methods here
-	// ----------------------------------------------------
-	
-//	@GET
-//	@Path("/helloJSONList")
-//	/**
-//	 * Here is an example of a simple REST get request that returns a String.
-//	 * We also illustrate here how we can convert Java objects to JSON strings.
-//	 * @return - List of words as JSON
-//	 * @throws IOException
-//	 */
-//	public String helloJSONList() throws IOException {
-//		
-//		List<String> listOfWords = new ArrayList<String>();
-//		listOfWords.add("Hello");
-//		listOfWords.add("World!");
-//		
-//		// We can turn arbatory Java objects directly into JSON strings using
-//		// Jackson seralization, assuming that the Java objects are not too complex.
-//		String listAsJSONString = oWriter.writeValueAsString(listOfWords);
-//		
-//		return listAsJSONString;
-//	}
-//	
-//	@GET
-//	@Path("/helloWord")
-//	/**
-//	 * Here is an example of how to read parameters provided in an HTML Get request.
-//	 * @param Word - A word
-//	 * @return - A String
-//	 * @throws IOException
-//	 */
-//	public String helloWord(@QueryParam("Word") String Word) throws IOException {
-//		return "Hello "+Word;
-//	}
-//	
-
-	
-//	@GET
-//	@Path("/updateViewGameInfo")
-//	public String updateViewGameInfo() {
-//		return model.getGameInfoWeb();
-//	}
-	
-	
-	
-	private int cmd = 0;
 	
 	//send game stages to view according to game process
 	@GET
@@ -108,13 +63,7 @@ public class TopTrumpsRESTAPI {
 		System.out.println(cmd);
 		return cmd;	
 	}
-	// the meaning of cmd 
-	//2 = playerSelectEnableStage
-	//3 = playerSelectListStage
-	//4 = waitAIPlayerStage
-	//5 = selectionResultStage
-	//6 = showWinnerStage
-	//7 = showGameResultStage
+
 
 	//set game stage that human is a active player or not 
 	private void setViewActivePlayer() {
@@ -124,7 +73,6 @@ public class TopTrumpsRESTAPI {
 			cmd = 4;
 		}
 	}
-	
 	
 	//receive a event that the user press select button or show ai's selection
 	//and set the game stage
@@ -141,7 +89,6 @@ public class TopTrumpsRESTAPI {
 			}
 		}
 	}
-	
 	
 	//receive a event that the user select a category
 	@GET
@@ -175,8 +122,6 @@ public class TopTrumpsRESTAPI {
 		}
 	}
 	
-	
-	
 	//Initialised game
 	@GET
 	@Path("/userRequestGameInitialise")
@@ -200,7 +145,6 @@ public class TopTrumpsRESTAPI {
 			setViewActivePlayer();
 		}
 	}
-	
 
 	//request AI to select
 	@GET
@@ -209,7 +153,6 @@ public class TopTrumpsRESTAPI {
 		model.AISelect();
 	}
 		
-
 	//request model to update data
 	@GET
 	@Path("/requestUpdateGameData")
@@ -217,15 +160,12 @@ public class TopTrumpsRESTAPI {
 		model.updateGameData();
 	}
 	
-	
 	//update the statistic of the game 
 	@GET
 	@Path("/updateGameStats")
 	public String updateGameStats() {
 		return arrayTrans(model.getGameStats());
 	}
-		
-	
 		
 	//update View Game Information
 	@GET
@@ -251,8 +191,6 @@ public class TopTrumpsRESTAPI {
 		return arrayTrans(model.getFirstCardInCommonPile());
 	}
 	
-	
-	
 	//updataViewPlayerResult
 	@GET
 	@Path("/updataViewPlayerResult")
@@ -277,8 +215,6 @@ public class TopTrumpsRESTAPI {
 		return model.getCardStringOnDeckWeb()[0];
 	}
 	
-	
-	
 	//encode java array to a string
 	public String arrayTrans(String[] in) {
 		String s = "";
@@ -289,7 +225,5 @@ public class TopTrumpsRESTAPI {
 		s+=in[in.length-1];
 		return s;
 	}
-	
-	
 	
 }

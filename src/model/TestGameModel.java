@@ -5,7 +5,7 @@ import java.util.List;
 public class TestGameModel extends GameModel{
 
 	public TestGameModel() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	// Junit test

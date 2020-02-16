@@ -8,7 +8,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+* This class is to test the database to guarantee the operation of the methods
+*/
 // DBAgentTest class, uses JUnit
 class DBAgentTest {
 

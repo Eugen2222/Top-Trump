@@ -6,10 +6,14 @@ import java.util.Random;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+/**
+*
+* This class is to test the game model methods to guarantee the operation of the methods
+*/
 
 class GameModelTest {
-	TestGameModel model = new TestGameModel();
-	int playerNum;
+	private TestGameModel model = new TestGameModel();
+	private int playerNum;
 	
 	public GameModelTest() {
 		Random r = new Random();

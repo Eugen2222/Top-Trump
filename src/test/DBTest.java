@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author TvA
+ * This class is to test the connection of the database
  */
 
 public class DBTest {
@@ -32,7 +32,7 @@ public class DBTest {
 
         try {
     	      
-           java.sql.ResultSet sResult =  dbA.sendQuery("SELECT * FROM public.\"GameStatus\"");
+           java.sql.ResultSet sResult =  dbA.sendQuery("SELECT * FROM GAMESTATUS");
 	       while (sResult.next()) {
 				System.out.println("GameID: " + sResult.getString("GameID"));
 	       }

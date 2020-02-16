@@ -8,10 +8,10 @@ public class OGameModel extends GameModel {
 	private String Webstatus = "";
 	
 	public OGameModel() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
-	
+	//Get the active player and show description
 	public void draw() {
 		super.draw();
 		WebInfo = "The active player is " + activePlayer.getPlayerName() + ".";
@@ -21,28 +21,30 @@ public class OGameModel extends GameModel {
 	
 	public boolean humanIsActivePlayer() {
 		boolean humanIsActive = super.humanIsActivePlayer();
+		// when human's turn
 		if(humanIsActive) {
 			Webstatus = roundString() + "Waiting on you to select a category ~ ";
 			return true;
-		}else {
+		}else {// when AI player's turn
 			Webstatus = roundString() + "Waiting on " + activePlayer.getPlayerName() + " to select a category ";
 			return false;
 		}
 	}
 	
-	
+	//show the description when human select a attribute
 	public void humanSelect(int num) {
 		super.humanSelect(num);
 		this.Webstatus = roundString() + "You selected " + cardAttribute[num] + ".";
 		
 	}
 	
+	//show the description when AI player selection 
 	public void AISelect() {
 		super.AISelect();
 		this.Webstatus = roundString() + activePlayer.getPlayerName() + " selected " + cardAttribute[roundSelectIndex] + ".";
 	}
 	
-
+	//show the winner description 
 	public int showWinner() {
 		int roundResult = super.showWinner();
 		if(roundResult == 0) {
@@ -79,7 +81,7 @@ public class OGameModel extends GameModel {
 	
 	
 	
-	
+	// when human has lost and the game is not over, AI player run the game 
 	public void AIAutoPlay() {
 		if(humanLose==true&&gameIsOver==false) {
 			//System.out.println("autoPlay");

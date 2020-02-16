@@ -152,8 +152,8 @@ public abstract class GameModel {
 		testLog += "defaultCard" + ":\r";
 		for (int j = 0; j < numOfPlayer; j++) {
 			testLog += playerList.get(j).getPlayerName() + ":\r";
-			for (int jj = 0; jj < playerList.get(j).getCardList().size(); jj++) {
-				testLog += playerList.get(j).getCardList().get(jj).getCardString() + "\r";
+			for (Card card: playerList.get(j).getCardList()) {
+				testLog += card.getCardString() + "\r";
 			}
 			if (j < numOfPlayer - 1)
 				testLog += "\r";
@@ -334,8 +334,8 @@ public abstract class GameModel {
 		testLog += "After round" + round + "\r";
 		for (int j = 0; j < numOfPlayer; j++) {
 			testLog += playerList.get(j).getPlayerName() + "("+playerList.get(j).getNumOfCards()+")"+":\r";
-			for (int jj = 0; jj < playerList.get(j).getCardList().size(); jj++) {
-				testLog += playerList.get(j).getCardList().get(jj).getCardString() + "\r";
+			for (Card card : playerList.get(j).getCardList()) {
+				testLog += card.getCardString() + "\r";
 			}
 			if (j < numOfPlayer - 1)
 				testLog += "\r";

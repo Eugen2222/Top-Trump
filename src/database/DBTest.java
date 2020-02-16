@@ -4,10 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Scanner;
 
-/**
- *
- * @author Ting Ting van Abbema
- */
 
 public class DBTest {
 
