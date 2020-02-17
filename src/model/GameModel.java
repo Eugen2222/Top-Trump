@@ -365,7 +365,9 @@ public abstract class GameModel {
 			this.humanLose = true;
 		}
 		
-		if (aliveNum == 0 || !roundWinner.aliveJudge()) { // Draw all the time......
+		
+		// Draw all the time......or the active player lose all of the card when it is a draw
+		if (aliveNum == 0 || !roundWinner.aliveJudge()) { 
 			gameIsOver = true;
 			testLog += "No game Winner: ";
 		}
@@ -379,7 +381,6 @@ public abstract class GameModel {
 				gameResult = 1;					
 			}
 			gameIsOver = true;
-			// Online Mode
 			// TestLog
 			testLog += "Game Winner: " + playerList.get(winnerIndex).getPlayerName();
 		} 

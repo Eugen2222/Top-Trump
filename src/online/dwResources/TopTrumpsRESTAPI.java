@@ -160,7 +160,7 @@ public class TopTrumpsRESTAPI {
 		model.updateGameData();
 	}
 	
-	//update the statistic of the game 
+	//update the statistic of the view 
 	@GET
 	@Path("/updateGameStats")
 	public String updateGameStats() {
@@ -191,15 +191,15 @@ public class TopTrumpsRESTAPI {
 		return arrayTrans(model.getFirstCardInCommonPile());
 	}
 	
-	//updataViewPlayerResult
+	//update view PlayerResult
 	@GET
-	@Path("/updataViewPlayerResult")
-	public String updataViewPlayerResult() {
+	@Path("/updateViewPlayerResult")
+	public String updateViewPlayerResult() {
 		return arrayTrans(model.getGameResultWeb());
 	}
 	
 	
-	//update all players' cards drew on deck
+	//update all players' cards drew on deck to view
 	@GET
 	@Path("/updateViewCardSOnDeck")
 	public String updateViewCardOnDeck() {
@@ -207,7 +207,7 @@ public class TopTrumpsRESTAPI {
 		
 	}
 	
-	//update human's card drew on deck
+	//update human's card drew on deck to view
 	@GET
 	@Path("/updateViewHumanCardOnDeck")
 	public String updateViewHumanCardOnDeck() {

@@ -197,7 +197,8 @@ public class OGameModel extends GameModel {
 		s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		s.add("Total rounds: "+ this.round + " rounds.");
 				
-		String[] strr = s.toArray(new String[s.size()]);			return strr;
+		String[] strr = s.toArray(new String[s.size()]);
+		return strr;
 	}
 	
 	

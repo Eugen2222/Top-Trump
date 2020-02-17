@@ -40,6 +40,7 @@ public class CLIController {
 		}
 	}
 	
+	//ask player to select the number of total player 
 	public void selectPlayerNumStage() {
 		model = new CLIGameModel();
 		int numOfPlayer = view.askNumberOfPlayers();
@@ -57,25 +58,24 @@ public class CLIController {
 			view.print(model.getCLIStatus()); // show draw card instruction when human alive
 
 			if (model.getHumanLose() == false) {
-				view.print(model.getCardStringOnDeckCLI()[0]);
+				view.print(model.getCardStringOnDeckCLI()[0]);  // show human's draw card when human alive
 			}
 
 			if (model.humanIsActivePlayer() == true) {
 				view.printAskSelectCategory();
-				int categorySelect = view.askPlayerSelectCategory();
+				int categorySelect = view.askPlayerSelectCategory(); // ask human select a category
 				model.humanSelect(categorySelect);	// human select category
 			} else {
 				model.AISelect(); // ai select category
 			}
-			model.showWinner(); 
+			model.showWinner();  //show round's winner
 			view.print(model.getCLIStatus());
 			// show round winner
 
-			model.checkGameIsOver();// game end
-			view.print(model.getCLIStatus()); 
-			// show auto play process 
+			model.checkGameIsOver();// check if game ends
+			view.print(model.getCLIStatus());
 		}
-		view.printArray(model.getGameResultCLI());
+		view.printArray(model.getGameResultCLI()); //print the result of the each game
 		model.updateGameData(); // update game result to database
 	}
 

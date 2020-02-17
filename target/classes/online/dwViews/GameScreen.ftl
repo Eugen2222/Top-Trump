@@ -47,25 +47,24 @@
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
 							<div  class="card-body text-center">
-
+                                <#--  show winner button  -->
 								<div id="showWinner">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressShowWinner()">Show winner</button>
 								</div>
-
+                                <#--  next round button  -->
 								<div id="nextRound">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressNewTurn()">Next round</button>
 								</div>
-
-
+                                <#--  human selection button  -->
 								<div id="humanSelectButton">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton"  onclick="userPressSelect()">Select</button>
 								</div>
-
+                                <#-- AI player selection button  -->
 								<div id="AISelectButton">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressSelect()">Show AI's selection</button>
 								</div>
 								
-
+                                <#--  list of category for human choose <button>  -->
 								<div id = selectList class="list-group">
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr1()">Size</li>
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr2()">Speed</li>
@@ -74,7 +73,7 @@
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr5()">Cargo</li>
 								</div>
 								
-							
+							    <#--  show the result in the end of the game  -->
 								<div >
 									<ul id = "playerResult" class=" list-unstyled text-left mt-0 mb-4 px-3">
 										<h6 class= "result">Loading game result</h6>
@@ -94,6 +93,8 @@
 								</div>	
 							</div>	
 						</div>	
+
+						<#--  quick button to leave the game  -->
 						<div class="row mt-3">
 							<div class="col-md-auto mb-3">
 								<a href="http://localhost:7777/toptrumps/">
@@ -301,7 +302,7 @@
 	<script type="text/javascript">
 	
 			
-
+           // when human is the active player
 			function humanActived(){
 				clear();
 				document.getElementById("card1").style.display = 'block';
@@ -309,7 +310,7 @@
 				
 			}
 
-
+           // when AI player is the active player
 			function showAISelection(){
 				requestAISelect();
 				document.getElementById("AISelectButton").style.display  = 'none';
@@ -318,7 +319,7 @@
 			}
 			
 
-
+           //reset the page information
 			function clear(){
 				document.getElementById("playerResult").style.display = 'none';
 				document.getElementById("showWinner").style.display = 'none';
@@ -330,7 +331,8 @@
 
 				clearCard();
 			}
-
+            
+			//reset the card information
 			function clearCard(){
 					document.getElementById("card1").style.display = 'none';
 					document.getElementById("card2").style.display = 'none';
@@ -373,7 +375,6 @@
 				xhr.onload = function(e) {
 
 					var num = xhr.response;
-					console.log(num);
 					if(num == 2){
 						playerSelectEnableStage();
 					}
@@ -447,7 +448,7 @@
 				getWinner();
 				getCommonPile();
 				document.getElementById("nextRound").style.display  = 'block';
-				console.log("showWinnerStage");
+
 			}
 
 			function showGameResultStage(){
@@ -456,7 +457,7 @@
 				getWinner();
 				getCommonPile();
 				getPlayerResult();
-				console.log("showGameResultStage");	
+
 			}
 
 
@@ -607,7 +608,7 @@
 			
 				
 			function getPlayerResult(){
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updataViewPlayerResult"); // Request type and URL+parameters
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateViewPlayerResult"); // Request type and URL+parameters
 				if (!xhr) {
   					alert("CORS not supported");
 				}
@@ -616,7 +617,7 @@
 					var strr = new Array();
 					strr = javaArrayDecode(responseText);
 					setUpElements(strr,"playerResult", "result");
-					console.log("getPlayerResult");	
+
 				}
 				
 				xhr.send();
@@ -637,12 +638,10 @@
 					if(strr[0]=='null'){
 					}else{
 						cardI = "card"+(1+parseInt(strr[0]));
-						console.log(strr);
-						console.log(cardI);
 						document.getElementById(cardI).style.display = 'block';
 						setUpCard(decodeString(strr[1]),parseInt(strr[0]));
 					}
-					console.log("getWinner");
+
 				}
 
 				// We have done everything we need to prepare the CORS request, so send it
@@ -660,19 +659,16 @@
 					var responseText = xhr.response;
 					var strr = new Array();
 					strr=javaArrayDecode(responseText);
-					console.log(strr);
+
 					if(strr[0]=='null'){
 					}else{
 						
 						cardI = "card"+(1+parseInt(strr[0]));
-						console.log(strr);
-						console.log(cardI);
 						document.getElementById(cardI).style.display = 'block';
 						setUpCard(decodeString(strr[1]),parseInt(strr[0]));
 					}
 				}
 
-				console.log("getCommonPile");
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
 			}
@@ -688,7 +684,6 @@
 					}
 					xhr.onload = function(e) {
 						getGameInfoPackage();
-						console.log("requestAISelect");	
 					}
 				xhr.send();
 
@@ -701,7 +696,6 @@
 					}
 					xhr.onload = function(e) {
 						getGameInfoPackage();
-						console.log("requestUpdateGameData");	
 					}
 				xhr.send();
 			}
@@ -718,7 +712,6 @@
 						strr=javaArrayDecode(responseText);
 						document.getElementById("gameStatus").innerHTML = strr[0];
 						document.getElementById("gameRole").innerHTML = strr[1];
-						console.log("getGameInfoPackage");	
 					}
 					// We have done everything we need to prepare the CORS request, so send it
 					xhr.send();	
@@ -728,7 +721,6 @@
 	
 
 			function getHumanCardOnDeck() {
-				console.log("getHumanCardOnDeck");
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateViewHumanCardOnDeck"); // Request type and URL+parameters
 				// Message is not sent yet, but we can check that the browser supports CORS
@@ -739,7 +731,6 @@
 				// to do when the response arrives 
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					console.log(responseText);
 					if(responseText=='null'){
 							document.getElementById("card1").style.display = 'none';  
 					}
@@ -747,7 +738,6 @@
 						setUpCard(decodeString(responseText),0);
 						document.getElementById("card1").style.display = 'block';
 					}
-					console.log("getHumanCardOnDeck");	
 				}
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();
@@ -768,7 +758,6 @@
 					let responseText = xhr.response; // the text of the response
 					  var strr = new Array();
 					  strr = javaArrayDecode(responseText);
-					console.log(strr);
 					  for(i = 0 ; i<strr.length; i++){
 						  cardI = "card"+(1+i);
 						  cardCI = "cardContent"+(1+i);
@@ -780,7 +769,6 @@
 							document.getElementById(cardI).style.display = 'block';
 						}
 					}
-					console.log("getCardOnDeck");	
 				}
 				xhr.send();
 			}
