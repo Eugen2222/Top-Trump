@@ -1,17 +1,15 @@
 package test;
-import model.TestGameModel;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.Assert.*;
 
 import java.util.Random;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
-/**
-*
-* This class is to test the game model methods to guarantee the operation of the methods
-*/
+import org.junit.Test;
 
-class GameModelTest {
+import model.TestGameModel;
+
+public class GameModelTest {
 	private TestGameModel model = new TestGameModel();
 	private int playerNum;
 	
@@ -116,4 +114,5 @@ class GameModelTest {
 	public void testTestLog() {
 		model.createLog();
 	}
+
 }
