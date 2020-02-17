@@ -108,7 +108,7 @@
   				 return xhr;
 			}
 
-   // send the players number to the web
+   // send the players number to the java
 	function userSelectNum(num) {
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userRequestGameInitialise?num="+num); 
 				if (!xhr) {

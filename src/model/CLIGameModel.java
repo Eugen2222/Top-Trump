@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 
 public class CLIGameModel extends GameModel {
-	private String CLIStatus;
-	private boolean displayHumanLose = false;
+	private String CLIStatus; //string of description
+	private boolean displayHumanLose = false; //determine to display human lose line
 	
 	public CLIGameModel() {
 		
@@ -67,7 +67,7 @@ public class CLIGameModel extends GameModel {
 		int gameResult = super.checkGameIsOver();
 		if(displayHumanLose==false && humanLose == true) {
 			CLIStatus += "\n"+roundString() + "Sorry, you has lost!";
-			displayHumanLose = true;
+			displayHumanLose = true; //only display human lose one time during a game
 		}
 		CLIStatus += "\n\n";		
 		return gameResult;	
@@ -108,7 +108,7 @@ public class CLIGameModel extends GameModel {
 	}
 	
 	
-	// CLI (show cards each round)
+	// CLI (show drew cards each round)
 	public String[] getCardStringOnDeckCLI() {
 		String[] s = new String[cardOnDeck.length];
 		String CMCtemString = "";

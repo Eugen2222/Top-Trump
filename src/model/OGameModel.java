@@ -143,7 +143,7 @@ public class OGameModel extends GameModel {
 		s = temString;
 		return s;
 	}		
-		// Online Mode (show cards each round)
+		// Online Mode (show drew cards each round) 
 	public String[] getCardStringOnDeckWeb() {
 		String[] s = new String[cardOnDeck.length];
 		String temString = "";
@@ -197,7 +197,8 @@ public class OGameModel extends GameModel {
 		s.add("Draw rounds: "+ numberOfDraws + " rounds.");
 		s.add("Total rounds: "+ this.round + " rounds.");
 				
-		String[] strr = s.toArray(new String[s.size()]);			return strr;
+		String[] strr = s.toArray(new String[s.size()]);
+		return strr;
 	}
 	
 	

@@ -1,32 +1,15 @@
 package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 import database.DBAgent;
-// Import JUnit API
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-/**
-* This class is to test the database to guarantee the operation of the methods
-*/
-// DBAgentTest class, uses JUnit
-class DBAgentTest {
-
-	static DBAgent dbA; // use static DBAgent instance for testing
+public class DBAgentTest {
 	
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-		dbA = new DBAgent(); // create DBAgent instance for each test
-	}
-
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-		dbA = null; // free DBAgent instance for each test
-	}
-
-
+	DBAgent dbA = new DBAgent(); // create DBAgent instance for each test
+	
 	@Test
 	void testOpenConnection() {
 		dbA = new DBAgent(); // create DBAgent instance for each test

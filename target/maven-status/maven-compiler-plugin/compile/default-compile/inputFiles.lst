@@ -1,9 +1,22 @@
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\online\dwViews\GameScreenView.java
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\TopTrumps.java
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\online\TopTrumpsOnlineApplication.java
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\online\dwViews\StatisticsView.java
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\online\dwResources\GameWebPagesResource.java
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\online\dwResources\TopTrumpsRESTAPI.java
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\commandline\TopTrumpsCLIApplication.java
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\online\configuration\TopTrumpsJSONConfiguration.java
-C:\TeamProject\WorkSpace\MScIT_TeamProject_TemplateProject\src\online\dwViews\SelectionScreenView.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\model\TestGameModel.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\online\dwViews\GameScreenView.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\model\Player.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\online\dwResources\GameWebPagesResource.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\commandline\TopTrumpsCLIApplication.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\online\dwViews\SelectionScreenView.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\database\DBAgent.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\database\DBTest.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\model\OGameModel.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\test\DBTest.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\online\dwResources\TopTrumpsRESTAPI.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\online\dwViews\StatisticsView.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\test\GameModelTest.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\online\configuration\TopTrumpsJSONConfiguration.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\test\DBAgentTest.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\model\CLIGameModel.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\model\Card.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\model\GameModel.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\TopTrumps.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\commandline\CLIController.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\online\TopTrumpsOnlineApplication.java
+D:\IT Master\MSc IT+ Masters Team Project\workspace\MScIT_TeamProject_TemplateProject\MScIT_TeamProject_TemplateProject\src\commandline\CLIView.java

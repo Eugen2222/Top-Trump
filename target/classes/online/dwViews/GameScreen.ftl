@@ -375,7 +375,6 @@
 				xhr.onload = function(e) {
 
 					var num = xhr.response;
-					console.log(num);
 					if(num == 2){
 						playerSelectEnableStage();
 					}
@@ -449,7 +448,7 @@
 				getWinner();
 				getCommonPile();
 				document.getElementById("nextRound").style.display  = 'block';
-				console.log("showWinnerStage");
+
 			}
 
 			function showGameResultStage(){
@@ -458,7 +457,7 @@
 				getWinner();
 				getCommonPile();
 				getPlayerResult();
-				console.log("showGameResultStage");	
+
 			}
 
 
@@ -609,7 +608,7 @@
 			
 				
 			function getPlayerResult(){
-				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updataViewPlayerResult"); // Request type and URL+parameters
+				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateViewPlayerResult"); // Request type and URL+parameters
 				if (!xhr) {
   					alert("CORS not supported");
 				}
@@ -618,7 +617,7 @@
 					var strr = new Array();
 					strr = javaArrayDecode(responseText);
 					setUpElements(strr,"playerResult", "result");
-					console.log("getPlayerResult");	
+
 				}
 				
 				xhr.send();
@@ -639,12 +638,10 @@
 					if(strr[0]=='null'){
 					}else{
 						cardI = "card"+(1+parseInt(strr[0]));
-						console.log(strr);
-						console.log(cardI);
 						document.getElementById(cardI).style.display = 'block';
 						setUpCard(decodeString(strr[1]),parseInt(strr[0]));
 					}
-					console.log("getWinner");
+
 				}
 
 				// We have done everything we need to prepare the CORS request, so send it
@@ -662,19 +659,16 @@
 					var responseText = xhr.response;
 					var strr = new Array();
 					strr=javaArrayDecode(responseText);
-					console.log(strr);
+
 					if(strr[0]=='null'){
 					}else{
 						
 						cardI = "card"+(1+parseInt(strr[0]));
-						console.log(strr);
-						console.log(cardI);
 						document.getElementById(cardI).style.display = 'block';
 						setUpCard(decodeString(strr[1]),parseInt(strr[0]));
 					}
 				}
 
-				console.log("getCommonPile");
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
 			}
@@ -690,7 +684,6 @@
 					}
 					xhr.onload = function(e) {
 						getGameInfoPackage();
-						console.log("requestAISelect");	
 					}
 				xhr.send();
 
@@ -703,7 +696,6 @@
 					}
 					xhr.onload = function(e) {
 						getGameInfoPackage();
-						console.log("requestUpdateGameData");	
 					}
 				xhr.send();
 			}
@@ -720,7 +712,6 @@
 						strr=javaArrayDecode(responseText);
 						document.getElementById("gameStatus").innerHTML = strr[0];
 						document.getElementById("gameRole").innerHTML = strr[1];
-						console.log("getGameInfoPackage");	
 					}
 					// We have done everything we need to prepare the CORS request, so send it
 					xhr.send();	
@@ -730,7 +721,6 @@
 	
 
 			function getHumanCardOnDeck() {
-				console.log("getHumanCardOnDeck");
 				// First create a CORS request, this is the message we are going to send (a get request in this case)
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/updateViewHumanCardOnDeck"); // Request type and URL+parameters
 				// Message is not sent yet, but we can check that the browser supports CORS
@@ -741,7 +731,6 @@
 				// to do when the response arrives 
 				xhr.onload = function(e) {
 					var responseText = xhr.response; // the text of the response
-					console.log(responseText);
 					if(responseText=='null'){
 							document.getElementById("card1").style.display = 'none';  
 					}
@@ -749,7 +738,6 @@
 						setUpCard(decodeString(responseText),0);
 						document.getElementById("card1").style.display = 'block';
 					}
-					console.log("getHumanCardOnDeck");	
 				}
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();
@@ -770,7 +758,6 @@
 					let responseText = xhr.response; // the text of the response
 					  var strr = new Array();
 					  strr = javaArrayDecode(responseText);
-					console.log(strr);
 					  for(i = 0 ; i<strr.length; i++){
 						  cardI = "card"+(1+i);
 						  cardCI = "cardContent"+(1+i);
@@ -782,7 +769,6 @@
 							document.getElementById(cardI).style.display = 'block';
 						}
 					}
-					console.log("getCardOnDeck");	
 				}
 				xhr.send();
 			}
