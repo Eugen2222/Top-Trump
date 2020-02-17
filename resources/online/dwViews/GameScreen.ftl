@@ -47,25 +47,24 @@
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
 							<div  class="card-body text-center">
-
+                                <#--  show winner button  -->
 								<div id="showWinner">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressShowWinner()">Show winner</button>
 								</div>
-
+                                <#--  next round button  -->
 								<div id="nextRound">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressNewTurn()">Next round</button>
 								</div>
-
-
+                                <#--  human selection button  -->
 								<div id="humanSelectButton">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton"  onclick="userPressSelect()">Select</button>
 								</div>
-
+                                <#-- AI player selection button  -->
 								<div id="AISelectButton">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressSelect()">Show AI's selection</button>
 								</div>
 								
-
+                                <#--  list of category for human choose <button>  -->
 								<div id = selectList class="list-group">
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr1()">Size</li>
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr2()">Speed</li>
@@ -74,7 +73,7 @@
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr5()">Cargo</li>
 								</div>
 								
-							
+							    <#--  show the result in the end of the game  -->
 								<div >
 									<ul id = "playerResult" class=" list-unstyled text-left mt-0 mb-4 px-3">
 										<h6 class= "result">Loading game result</h6>
@@ -94,6 +93,8 @@
 								</div>	
 							</div>	
 						</div>	
+
+						<#--  quick button to leave the game  -->
 						<div class="row mt-3">
 							<div class="col-md-auto mb-3">
 								<a href="http://localhost:7777/toptrumps/">
@@ -301,7 +302,7 @@
 	<script type="text/javascript">
 	
 			
-
+           // when human is the active player
 			function humanActived(){
 				clear();
 				document.getElementById("card1").style.display = 'block';
@@ -309,7 +310,7 @@
 				
 			}
 
-
+           // when AI player is the active player
 			function showAISelection(){
 				requestAISelect();
 				document.getElementById("AISelectButton").style.display  = 'none';
@@ -318,7 +319,7 @@
 			}
 			
 
-
+           //reset the page information
 			function clear(){
 				document.getElementById("playerResult").style.display = 'none';
 				document.getElementById("showWinner").style.display = 'none';
@@ -330,7 +331,8 @@
 
 				clearCard();
 			}
-
+            
+			//reset the card information
 			function clearCard(){
 					document.getElementById("card1").style.display = 'none';
 					document.getElementById("card2").style.display = 'none';

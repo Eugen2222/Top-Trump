@@ -30,6 +30,7 @@
 						<div class="card-header" class="cardInfo">
 							<h3 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left">Statistic</h3>
 						</div>
+						<#--  information from the database  -->
 						<div  class="card-body">
 							<ul id = "gameStats" class=" list-unstyled text-left mt-0 mb-0 ">
 								<h5 class= "stats" >Loading</h5>
@@ -46,6 +47,7 @@
 
 				</div>
 			</div>
+			<#--  buttons for starting a new game  -->
 			<div class="row justify-content-center mt-0">
 				<div class="col-auto mt-3 "style="width:15em;">
 						<div>
