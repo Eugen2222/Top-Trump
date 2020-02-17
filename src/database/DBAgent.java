@@ -18,8 +18,6 @@ public class DBAgent {
 	private String sqlAddress =  "jdbc:postgresql://52.24.215.108/GetA1";
 	private String sqlUsername = "GetA1"; 
 	private String sqlPassword = "GetA1"; 
-
-
 	
 	Connection cSQL = null; // SQL connection object
 	

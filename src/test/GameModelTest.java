@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 */
 
 class GameModelTest {
-	TestGameModel model = new TestGameModel();
-	int playerNum;
+	private TestGameModel model = new TestGameModel();
+	private int playerNum;
 	
 	public GameModelTest() {
 		Random r = new Random();
@@ -59,6 +59,7 @@ class GameModelTest {
 	@Test
 	public void testGameover() {
 		//player game
+		int gameResult = -1;
 		while(model.getGameIsOver()== false) {
 			model.decideActivePlayers();
 			model.draw();
@@ -68,31 +69,47 @@ class GameModelTest {
 				model.AISelect(); 
 			}
 			model.showWinner(); 
-			model.checkGameIsOver();
+			gameResult = model.checkGameIsOver();
 		}
 		
 		// final result test
-		int numOfAlivePlayer=0;
-		int zeroCardPlayer =0;
-		int allCardPlayer =0;
-		
-		
-		for(int i=0;i<playerNum;i++) {
-			if(model.getPlayerList().get(i).aliveJudge()) numOfAlivePlayer++;
-			if(model.getPlayerList().get(i).getNumOfCards()==0) zeroCardPlayer++;
-			if(model.getPlayerList().get(i).getNumOfCards()==40) allCardPlayer++;
+		//if one player won the game
+		if(gameResult==0 || gameResult==1) {//1 player survived
+			int numOfAlivePlayer=0;
+			int zeroCardPlayer =0;
+			int totalCards = 0;
+			for(int i=0;i<playerNum;i++) {
+				totalCards = model.getPlayerList().get(i).getNumOfCards()+model.commonPileSize(); //winner and commonpile cards
+				if(model.getPlayerList().get(i).aliveJudge()) numOfAlivePlayer++;
+				if(model.getPlayerList().get(i).getNumOfCards()==0) zeroCardPlayer++;
+				 //used card number to determine winner
+			}
+			totalCards =  model.getPlayerList().get(model.getFinalWinnerIndex()).getNumOfCards()+model.commonPileSize();
+			
+			Assert.assertEquals("numOfAlive error",1,numOfAlivePlayer); // verify num of alive player 
+			Assert.assertEquals("numOfPlayerNum error",zeroCardPlayer+numOfAlivePlayer,playerNum); // verify num of player 
+			Assert.assertEquals("numOfTotalCards error",40,totalCards); // verify num of cards
 		}
 		
-		Assert.assertEquals("numOfAlive error",1,numOfAlivePlayer);
-		Assert.assertEquals("numOfDeath error",zeroCardPlayer+allCardPlayer,playerNum);
-		
-		if(model.getCommonPile().isEmpty()) {
-			Assert.assertEquals("winner error",allCardPlayer,1);
-			Assert.assertEquals("total cards error",40,model.getPlayerList().get(model.getFinalWinnerIndex()).getNumOfCards());
-		}else {
-			int cards = model.getCommonPile().size() + model.getPlayerList().get(model.getFinalWinnerIndex()).getNumOfCards();
-			Assert.assertEquals("total cards error",40, cards);
+		//deal with drew to end part, if the active player don't have card, the game will end
+		else if(gameResult==2) {//1 or more players survived 
+			int numOfAlivePlayer=0;
+			int zeroCardPlayer =0;
+			int activePlayerLose =0;
+			int totalCards = 0;
+			for(int i=0;i<playerNum;i++) {
+				if(model.getPlayerList().get(i).aliveJudge()) numOfAlivePlayer++;
+				if(model.getPlayerList().get(i).getNumOfCards()==0) zeroCardPlayer++;
+				if(model.getPlayerList().get(model.getRoundWinnerIndex()).getNumOfCards()==0) activePlayerLose++;
+				totalCards += model.getPlayerList().get(i).getNumOfCards();
+			}
+			totalCards += model.commonPileSize();
+			
+			Assert.assertEquals("numOfActivePlayerLose error",1,activePlayerLose);
+			Assert.assertEquals("numOfPlayerNum error",zeroCardPlayer+numOfAlivePlayer,playerNum);
+			Assert.assertEquals("numOfTotalCards error",40,totalCards);
 		}
+		
 	}
 	
 	@Test

@@ -8,7 +8,7 @@ public class OGameModel extends GameModel {
 	private String Webstatus = "";
 	
 	public OGameModel() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	//Get the active player and show description

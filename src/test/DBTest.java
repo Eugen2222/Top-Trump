@@ -32,7 +32,7 @@ public class DBTest {
 
         try {
     	      
-           java.sql.ResultSet sResult =  dbA.sendQuery("SELECT * FROM public.\"GameStatus\"");
+           java.sql.ResultSet sResult =  dbA.sendQuery("SELECT * FROM GAMESTATUS");
 	       while (sResult.next()) {
 				System.out.println("GameID: " + sResult.getString("GameID"));
 	       }

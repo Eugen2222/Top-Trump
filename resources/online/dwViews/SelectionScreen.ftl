@@ -36,7 +36,7 @@
 						<div>
 							<a ><button class="btn btn-outline-dark btn-block text-decoration-none selectbutton"  class="button-size"id = "newGamePanel" onclick = "enableSelectPlayerNumPanel()">New Game</button></a>
 						</div>
-						<!-- Choose the number of player to play together -->
+						<#--  button for choosing the number of players  -->
 						<div class="list-group mb-0 " id = "playerNumPanel" style="display: none">
 							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1 selectbutton" class="button-size" onclick= userSelect2()>2 Players</button>
 							<button type="button" class="btn btn-outline-dark btn-block my-1 py-1 selectbutton" class="button-size" onclick= userSelect3()>3 Players</button>
@@ -45,10 +45,10 @@
 						</div>
 					</div>
 				</div>
-                
-				<!--  Go to the Game Statistics page -->
+
 				<div class="row justify-content-center mt-0">
 					<div class="col-auto mt-3"style="width:15em;">
+					<#--  button for game statistics  -->
 						<div>
 							<button class="btn btn-outline-dark btn-block selectbutton" class="button-size" onclick = userPressStats()>Game Statistics</button>
 						</div>
@@ -63,20 +63,23 @@
 
 
 <script type="text/javascript">
-
-
+    
+	// 2 players
 	function userSelect2(){
 		userSelectNum(2);
 	}
 
+    // 3 players
 	function userSelect3(){
 		userSelectNum(3);
 	}
 
+    // 4 players
 	function userSelect4(){
 		userSelectNum(4);
 	}
-
+    
+	// 5 players
 	function userSelect5(){
 		userSelectNum(5);
 	}
@@ -105,7 +108,7 @@
   				 return xhr;
 			}
 
-
+   // send the players number to the web
 	function userSelectNum(num) {
 				var xhr = createCORSRequest('GET', "http://localhost:7777/toptrumps/userRequestGameInitialise?num="+num); 
 				if (!xhr) {

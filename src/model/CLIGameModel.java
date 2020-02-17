@@ -5,16 +5,15 @@ import java.util.ArrayList;
 public class CLIGameModel extends GameModel {
 	private String CLIStatus;
 	private boolean displayHumanLose = false;
-	public CLIGameModel() {
-		// TODO Auto-generated constructor stub
-	}
 	
+	public CLIGameModel() {
+		
+	}
 	
 	public void defaultCard() {
 		super.defaultCard();
 		CLIStatus ="";
 	}
-	
 	
 	public void draw() {
 		super.draw();

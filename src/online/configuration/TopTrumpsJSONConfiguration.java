@@ -14,7 +14,7 @@ public class TopTrumpsJSONConfiguration extends Configuration{
 	String deckFile;
 	
 	/** This is the number of AI players to use */
-	int numAIPlayers;
+	private int numAIPlayers;
 
 	/** Get the Deck File location */
 	public String getDeckFile() {
@@ -35,6 +35,5 @@ public class TopTrumpsJSONConfiguration extends Configuration{
 	public void setNumAIPlayers(int numAIPlayers) {
 		this.numAIPlayers = numAIPlayers;
 	}
-	
 	
 }

@@ -29,7 +29,7 @@
 			<!-- Add your HTML Here -->
 						 		
 
-			<div class="container"  id="gamePanel">
+			<div class="container">
 
 			<div class="pricing-header px-1 pt-5 md-1 pb-md-1 mx-auto text-center">
 			<h1 class="display-5" id = gameStatus></h1>
@@ -39,33 +39,32 @@
 			<h1 class="lead">Top Trumps Game</h1>
 			</div>
 	
-
+				
 				<div class="row ">
 					<div class="col-2 col-xl-3 mb-5 ml-5 pb-5 pl-5 mr-3 pr-3">
-						<div class="card-play  pb-3" style="width: 13rem;">
+						<div class="card-play  pb-3" id = "gamePanel" style="width: 13rem; display:none;">
 							<div class="card-header " class="cardInfo">
 								<h5 class="my-0 py-0 px-0 mb-1 font-weight-normal text-left" id="gameRole"></h5>
 							</div>
 							<div  class="card-body text-center">
-
+                                <#--  show winner button  -->
 								<div id="showWinner">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressShowWinner()">Show winner</button>
 								</div>
-
+                                <#--  next round button  -->
 								<div id="nextRound">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressNewTurn()">Next round</button>
 								</div>
-
-
+                                <#--  human selection button  -->
 								<div id="humanSelectButton">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton"  onclick="userPressSelect()">Select</button>
 								</div>
-
+                                <#-- AI player selection button  -->
 								<div id="AISelectButton">
 									<button class="btn btn-outline-dark btn-lg mt-3 mb-0 selectbutton" class="button-size" class="selectbutton" onclick="userPressSelect()">Show AI's selection</button>
 								</div>
 								
-
+                                <#--  list of category for human choose <button>  -->
 								<div id = selectList class="list-group">
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr1()">Size</li>
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr2()">Speed</li>
@@ -74,7 +73,7 @@
 									<li class="list-group-item list-group-item-action list-group-item-light" class="button-size" onclick="userSelectAttr5()">Cargo</li>
 								</div>
 								
-							
+							    <#--  show the result in the end of the game  -->
 								<div >
 									<ul id = "playerResult" class=" list-unstyled text-left mt-0 mb-4 px-3">
 										<h6 class= "result">Loading game result</h6>
@@ -94,6 +93,8 @@
 								</div>	
 							</div>	
 						</div>	
+
+						<#--  quick button to leave the game  -->
 						<div class="row mt-3">
 							<div class="col-md-auto mb-3">
 								<a href="http://localhost:7777/toptrumps/">
@@ -106,7 +107,7 @@
 
 						
 						<div class="row mt-3">
-							<div id="card6" class="card mb-4 shadow-sm" style="width: 11rem;">
+							<div id="card6" class="card mb-4 shadow-sm" style="width: 11rem; display:none;">
 								<div class="card-header">
 									<div class="row">
 										<div class="col-auto mx-0 pr-0">
@@ -143,7 +144,7 @@
 					<div class="col-md-auto">
 						<div class="row">
 							<div class="col-md-auto mb-1">
-								<div id="card1" class="card mb-4 shadow-sm" style="width: 11rem;">
+								<div id="card1" class="card mb-4 shadow-sm" style="width: 11rem; display:none;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
@@ -171,7 +172,7 @@
 								</div>
 							</div>
 							<div class="col-md-auto mb-1">
-								<div id="card2" class="card mb-4 shadow-sm" style="width: 11rem;">
+								<div id="card2" class="card mb-4 shadow-sm" style="width: 11rem; display:none;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
@@ -199,7 +200,7 @@
 								</div>
 							</div>
 							<div class="col-md-auto mb-1">
-								<div id="card3" class="card mb-4 shadow-sm" style="width: 11rem;">
+								<div id="card3" class="card mb-4 shadow-sm" style="width: 11rem; display:none;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
@@ -231,7 +232,7 @@
 					<div class="col-md-auto">
 						<div class="row">
 							<div class="col-md-auto mb-1">
-								<div id="card4" class="card mb-4 shadow-sm" style="width: 11rem;">
+								<div id="card4" class="card mb-4 shadow-sm" style="width: 11rem; display:none;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
@@ -259,7 +260,7 @@
 								</div>
 							</div>
 							<div class="col-md-auto mb-1">
-								<div id="card5" class="card mb-4 shadow-sm" style="width: 11rem;">
+								<div id="card5" class="card mb-4 shadow-sm" style="width: 11rem; display:none;">
 									<div class="card-header">
 										<div class="row">
 											<div class="col-auto mx-0 pr-0">
@@ -299,11 +300,9 @@
 		</body>
 
 	<script type="text/javascript">
-			var numPlayer = 5;
-			// Method that is called on page load
 	
 			
-
+           // when human is the active player
 			function humanActived(){
 				clear();
 				document.getElementById("card1").style.display = 'block';
@@ -311,7 +310,7 @@
 				
 			}
 
-
+           // when AI player is the active player
 			function showAISelection(){
 				requestAISelect();
 				document.getElementById("AISelectButton").style.display  = 'none';
@@ -320,7 +319,7 @@
 			}
 			
 
-
+           //reset the page information
 			function clear(){
 				document.getElementById("playerResult").style.display = 'none';
 				document.getElementById("showWinner").style.display = 'none';
@@ -332,14 +331,15 @@
 
 				clearCard();
 			}
-
+            
+			//reset the card information
 			function clearCard(){
-				for(i = 0 ; i<6; i++){
-					cardI = "card"+(1+i);
-					  document.getElementById(cardI).style.display = 'none';
-					  document.getElementById(cardI).style.borderColor = "";
-					document.getElementById(cardI).style.borderWidth = "";  
-				}
+					document.getElementById("card1").style.display = 'none';
+					document.getElementById("card2").style.display = 'none';
+					document.getElementById("card3").style.display = 'none';
+					document.getElementById("card4").style.display = 'none';
+					document.getElementById("card5").style.display = 'none';
+					document.getElementById("card6").style.display = 'none';
 			}
 
 
@@ -402,6 +402,8 @@
 					else {
 						window.location.href = "http://localhost:7777/toptrumps/";
 					}
+
+					document.getElementById("gamePanel").style.display  = 'block';
 				}
 				// We have done everything we need to prepare the CORS request, so send it
 				xhr.send();	
