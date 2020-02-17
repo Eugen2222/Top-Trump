@@ -108,7 +108,7 @@ public class CLIGameModel extends GameModel {
 	}
 	
 	
-	// CLI (show cards each round)
+	// CLI (show drew cards each round)
 	public String[] getCardStringOnDeckCLI() {
 		String[] s = new String[cardOnDeck.length];
 		String CMCtemString = "";

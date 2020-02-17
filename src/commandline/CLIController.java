@@ -11,7 +11,8 @@ public class CLIController {
 		startNewGame(testlog);
 
 	}
-
+	
+	// start a game with enable testlog or not
 	public void startNewGame(boolean testlog) {
 		gameRestart = false;
 		while (!gameRestart) {
